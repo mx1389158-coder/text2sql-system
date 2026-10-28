@@ -1,0 +1,18 @@
+{
+  "text2sql_train_v1": {
+    "file_name": "text2sql_train_v1.json",
+    "formatting": "alpaca",
+    "columns": {"prompt": "instruction", "query": "input", "response": "output"}
+  },
+  "text2sql_dev_v1": {
+    "file_name": "text2sql_dev_v1.json",
+    "formatting": "alpaca",
+    "columns": {"prompt": "instruction", "query": "input", "response": "output"}
+  },
+  "text2sql_smoke_v1": {
+    "file_name": "text2sql_smoke_v1.json",
+    "formatting": "alpaca",
+    "columns": {"prompt": "instruction", "query": "input", "response": "output"}
+  }
+}
+

@@ -1,0 +1,13 @@
+id: E00
+model: base
+strategy: baseline
+dataset: data/evaluation/blind_v1.jsonl
+dataset_sha256: b145e16da36585ed86da0562557a5edb66eaad43ea23fdd793b9065710e027c7
+max_model_calls_per_sample: 5
+overrides:
+  candidate_count: 1
+  max_repair_rounds: 0
+  enable_few_shots: false
+  enable_fk_completion: false
+  enable_adaptive_schema: false
+

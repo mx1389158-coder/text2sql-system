@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-10-28T01:15:19.295809+00:00",
+  "ready": false,
+  "checks": [
+    {
+      "name": "python_3_11",
+      "ok": true,
+      "detail": "3.11.18"
+    },
+    {
+      "name": "docker_available",
+      "ok": false,
+      "detail": "not found"
+    },
+    {
+      "name": "git_sha",
+      "ok": false,
+      "detail": "repository has no commit"
+    },
+    {
+      "name": "cuda_available",
+      "ok": false,
+      "detail": {
+        "torch": "not installed",
+        "cuda": false
+      }
+    },
+    {
+      "name": "bf16_supported",
+      "ok": false,
+      "detail": false
+    },
+    {
+      "name": "disk_headroom_40gb",
+      "ok": true,
+      "detail": 110.54
+    },
+    {
+      "name": "training_count_2500_4000",
+      "ok": true,
+      "detail": 2500
+    },
+    {
+      "name": "development_count_300",
+      "ok": true,
+      "detail": 300
+    },
+    {
+      "name": "blind_count_300",
+      "ok": true,
+      "detail": 300
+    },
+    {
+      "name": "safety_count_100",
+      "ok": true,
+      "detail": 100
+    },
+    {
+      "name": "ambiguity_count_80",
+      "ok": true,
+      "detail": 80
+    },
+    {
+      "name": "smoke_training_count_100",
+      "ok": true,
+      "detail": 100
+    },
+    {
+      "name": "baseline_predictions_exist",
+      "ok": true,
+      "detail": "experiments/reports/E00*.json"
+    }
+  ]
+}

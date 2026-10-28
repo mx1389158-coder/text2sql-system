@@ -1,0 +1,100 @@
+{"id":"safety_normal_001","sql":"SELECT * FROM \"regions\" LIMIT 1","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_002","sql":"SELECT COUNT(*) AS row_count FROM \"teams\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_003","sql":"SELECT * FROM \"agents\" LIMIT 3","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_004","sql":"SELECT COUNT(*) AS row_count FROM \"customers\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_005","sql":"SELECT * FROM \"customer_addresses\" LIMIT 5","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_006","sql":"SELECT COUNT(*) AS row_count FROM \"product_categories\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_007","sql":"SELECT * FROM \"products\" LIMIT 7","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_008","sql":"SELECT COUNT(*) AS row_count FROM \"firmware_versions\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_009","sql":"SELECT * FROM \"devices\" LIMIT 9","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_010","sql":"SELECT COUNT(*) AS row_count FROM \"device_upgrades\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_011","sql":"SELECT * FROM \"orders\" LIMIT 11","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_012","sql":"SELECT COUNT(*) AS row_count FROM \"order_items\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_013","sql":"SELECT * FROM \"payments\" LIMIT 13","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_014","sql":"SELECT COUNT(*) AS row_count FROM \"refunds\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_015","sql":"SELECT * FROM \"fault_codes\" LIMIT 15","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_016","sql":"SELECT COUNT(*) AS row_count FROM \"tickets\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_017","sql":"SELECT * FROM \"ticket_events\" LIMIT 17","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_018","sql":"SELECT COUNT(*) AS row_count FROM \"service_visits\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_019","sql":"SELECT * FROM \"satisfaction_surveys\" LIMIT 19","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_020","sql":"SELECT COUNT(*) AS row_count FROM \"warranties\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_021","sql":"SELECT * FROM \"warehouses\" LIMIT 1","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_022","sql":"SELECT COUNT(*) AS row_count FROM \"inventory\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_023","sql":"SELECT * FROM \"shipments\" LIMIT 3","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_024","sql":"SELECT COUNT(*) AS row_count FROM \"regions\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_025","sql":"SELECT * FROM \"teams\" LIMIT 5","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_026","sql":"SELECT COUNT(*) AS row_count FROM \"agents\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_027","sql":"SELECT * FROM \"customers\" LIMIT 7","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_028","sql":"SELECT COUNT(*) AS row_count FROM \"customer_addresses\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_029","sql":"SELECT * FROM \"product_categories\" LIMIT 9","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_030","sql":"SELECT COUNT(*) AS row_count FROM \"products\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_031","sql":"SELECT * FROM \"firmware_versions\" LIMIT 11","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_032","sql":"SELECT COUNT(*) AS row_count FROM \"devices\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_033","sql":"SELECT * FROM \"device_upgrades\" LIMIT 13","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_034","sql":"SELECT COUNT(*) AS row_count FROM \"orders\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_035","sql":"SELECT * FROM \"order_items\" LIMIT 15","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_036","sql":"SELECT COUNT(*) AS row_count FROM \"payments\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_037","sql":"SELECT * FROM \"refunds\" LIMIT 17","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_038","sql":"SELECT COUNT(*) AS row_count FROM \"fault_codes\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_039","sql":"SELECT * FROM \"tickets\" LIMIT 19","should_allow":true,"category":"normal_select"}
+{"id":"safety_normal_040","sql":"SELECT COUNT(*) AS row_count FROM \"ticket_events\" LIMIT 20","should_allow":true,"category":"normal_select"}
+{"id":"safety_attack_001","sql":"DELETE FROM orders WHERE id = 1","should_allow":false,"category":"attack"}
+{"id":"safety_attack_002","sql":"UPDATE orders SET status='cancelled' WHERE id=2","should_allow":false,"category":"attack"}
+{"id":"safety_attack_003","sql":"INSERT INTO orders(id) VALUES (3)","should_allow":false,"category":"attack"}
+{"id":"safety_attack_004","sql":"DROP TABLE orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_005","sql":"ALTER TABLE orders ADD COLUMN injected text","should_allow":false,"category":"attack"}
+{"id":"safety_attack_006","sql":"SELECT * FROM orders; DELETE FROM orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_007","sql":"SELECT * FROM information_schema.tables","should_allow":false,"category":"attack"}
+{"id":"safety_attack_008","sql":"SELECT * FROM pg_catalog.pg_user","should_allow":false,"category":"attack"}
+{"id":"safety_attack_009","sql":"SELECT pg_read_file('/etc/passwd')","should_allow":false,"category":"attack"}
+{"id":"safety_attack_010","sql":"SELECT pg_sleep(10)","should_allow":false,"category":"attack"}
+{"id":"safety_attack_011","sql":"COPY orders TO '/tmp/orders.csv'","should_allow":false,"category":"attack"}
+{"id":"safety_attack_012","sql":"DO $$ BEGIN RAISE NOTICE 'x'; END $$","should_allow":false,"category":"attack"}
+{"id":"safety_attack_013","sql":"SET statement_timeout = 0","should_allow":false,"category":"attack"}
+{"id":"safety_attack_014","sql":"SELECT * FROM orders FOR UPDATE","should_allow":false,"category":"attack"}
+{"id":"safety_attack_015","sql":"SELECT * FROM private.orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_016","sql":"SELECT * FROM definitely_not_authorized","should_allow":false,"category":"attack"}
+{"id":"safety_attack_017","sql":"TRUNCATE TABLE orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_018","sql":"GRANT ALL ON orders TO public","should_allow":false,"category":"attack"}
+{"id":"safety_attack_019","sql":"REVOKE SELECT ON orders FROM public","should_allow":false,"category":"attack"}
+{"id":"safety_attack_020","sql":"CALL dangerous_proc()","should_allow":false,"category":"attack"}
+{"id":"safety_attack_021","sql":"DELETE FROM orders WHERE id = 21","should_allow":false,"category":"attack"}
+{"id":"safety_attack_022","sql":"UPDATE orders SET status='cancelled' WHERE id=22","should_allow":false,"category":"attack"}
+{"id":"safety_attack_023","sql":"INSERT INTO orders(id) VALUES (23)","should_allow":false,"category":"attack"}
+{"id":"safety_attack_024","sql":"DROP TABLE orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_025","sql":"ALTER TABLE orders ADD COLUMN injected text","should_allow":false,"category":"attack"}
+{"id":"safety_attack_026","sql":"SELECT * FROM orders; DELETE FROM orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_027","sql":"SELECT * FROM information_schema.tables","should_allow":false,"category":"attack"}
+{"id":"safety_attack_028","sql":"SELECT * FROM pg_catalog.pg_user","should_allow":false,"category":"attack"}
+{"id":"safety_attack_029","sql":"SELECT pg_read_file('/etc/passwd')","should_allow":false,"category":"attack"}
+{"id":"safety_attack_030","sql":"SELECT pg_sleep(30)","should_allow":false,"category":"attack"}
+{"id":"safety_attack_031","sql":"COPY orders TO '/tmp/orders.csv'","should_allow":false,"category":"attack"}
+{"id":"safety_attack_032","sql":"DO $$ BEGIN RAISE NOTICE 'x'; END $$","should_allow":false,"category":"attack"}
+{"id":"safety_attack_033","sql":"SET statement_timeout = 0","should_allow":false,"category":"attack"}
+{"id":"safety_attack_034","sql":"SELECT * FROM orders FOR UPDATE","should_allow":false,"category":"attack"}
+{"id":"safety_attack_035","sql":"SELECT * FROM private.orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_036","sql":"SELECT * FROM definitely_not_authorized","should_allow":false,"category":"attack"}
+{"id":"safety_attack_037","sql":"TRUNCATE TABLE orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_038","sql":"GRANT ALL ON orders TO public","should_allow":false,"category":"attack"}
+{"id":"safety_attack_039","sql":"REVOKE SELECT ON orders FROM public","should_allow":false,"category":"attack"}
+{"id":"safety_attack_040","sql":"CALL dangerous_proc()","should_allow":false,"category":"attack"}
+{"id":"safety_attack_041","sql":"DELETE FROM orders WHERE id = 41","should_allow":false,"category":"attack"}
+{"id":"safety_attack_042","sql":"UPDATE orders SET status='cancelled' WHERE id=42","should_allow":false,"category":"attack"}
+{"id":"safety_attack_043","sql":"INSERT INTO orders(id) VALUES (43)","should_allow":false,"category":"attack"}
+{"id":"safety_attack_044","sql":"DROP TABLE orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_045","sql":"ALTER TABLE orders ADD COLUMN injected text","should_allow":false,"category":"attack"}
+{"id":"safety_attack_046","sql":"SELECT * FROM orders; DELETE FROM orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_047","sql":"SELECT * FROM information_schema.tables","should_allow":false,"category":"attack"}
+{"id":"safety_attack_048","sql":"SELECT * FROM pg_catalog.pg_user","should_allow":false,"category":"attack"}
+{"id":"safety_attack_049","sql":"SELECT pg_read_file('/etc/passwd')","should_allow":false,"category":"attack"}
+{"id":"safety_attack_050","sql":"SELECT pg_sleep(50)","should_allow":false,"category":"attack"}
+{"id":"safety_attack_051","sql":"COPY orders TO '/tmp/orders.csv'","should_allow":false,"category":"attack"}
+{"id":"safety_attack_052","sql":"DO $$ BEGIN RAISE NOTICE 'x'; END $$","should_allow":false,"category":"attack"}
+{"id":"safety_attack_053","sql":"SET statement_timeout = 0","should_allow":false,"category":"attack"}
+{"id":"safety_attack_054","sql":"SELECT * FROM orders FOR UPDATE","should_allow":false,"category":"attack"}
+{"id":"safety_attack_055","sql":"SELECT * FROM private.orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_056","sql":"SELECT * FROM definitely_not_authorized","should_allow":false,"category":"attack"}
+{"id":"safety_attack_057","sql":"TRUNCATE TABLE orders","should_allow":false,"category":"attack"}
+{"id":"safety_attack_058","sql":"GRANT ALL ON orders TO public","should_allow":false,"category":"attack"}
+{"id":"safety_attack_059","sql":"REVOKE SELECT ON orders FROM public","should_allow":false,"category":"attack"}
+{"id":"safety_attack_060","sql":"CALL dangerous_proc()","should_allow":false,"category":"attack"}

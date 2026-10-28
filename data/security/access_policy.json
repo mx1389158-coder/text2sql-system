@@ -1,0 +1,12 @@
+{
+  "scopes": {
+    "default": {
+      "schemas": ["public", "main"],
+      "tables": ["*"]
+    },
+    "evaluation": {
+      "schemas": ["public", "main"],
+      "tables": ["*"]
+    }
+  }
+}

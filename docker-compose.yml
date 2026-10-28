@@ -1,0 +1,82 @@
+name: nebula-text2sql
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: text2sql
+      POSTGRES_USER: text2sql_admin
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-local_admin_change_me}
+      TEXT2SQL_READONLY_PASSWORD: ${TEXT2SQL_READONLY_PASSWORD:-local_readonly_change_me}
+    ports:
+      - "${TEXT2SQL_POSTGRES_PORT:-15432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U text2sql_admin -d text2sql"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "60", "1"]
+    ports:
+      - "${TEXT2SQL_REDIS_PORT:-16379}:6379"
+    profiles: ["cache"]
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      TEXT2SQL_DATABASE_URL: postgresql://text2sql_readonly:${TEXT2SQL_READONLY_PASSWORD:-local_readonly_change_me}@postgres:5432/text2sql
+      TEXT2SQL_DATABASE_SCHEMA: public
+      TEXT2SQL_CATALOG_PATH: /app/data/processed/catalog_v1.json
+      TEXT2SQL_SEMANTIC_CATALOG_PATH: /app/data/processed/semantic_catalog_v1.json
+      TEXT2SQL_LLM_PROVIDER: ${TEXT2SQL_LLM_PROVIDER:-demo}
+      TEXT2SQL_LLM_BASE_URL: ${TEXT2SQL_LLM_BASE_URL:-http://host.docker.internal:11434/v1}
+      TEXT2SQL_LLM_API_KEY: ${TEXT2SQL_LLM_API_KEY:-ollama}
+      TEXT2SQL_LLM_MODEL: ${TEXT2SQL_LLM_MODEL:-qwen2.5-coder:3b}
+      TEXT2SQL_STATE_DATABASE_PATH: /app/data/state/text2sql-state.db
+      TEXT2SQL_ACCESS_POLICY_PATH: /app/data/security/access_policy.json
+      TEXT2SQL_EVALUATION_ALLOWED_ROOT: /app/data
+      TEXT2SQL_CANDIDATE_COUNT: ${TEXT2SQL_CANDIDATE_COUNT:-3}
+      TEXT2SQL_LANGFUSE_HOST: ${TEXT2SQL_LANGFUSE_HOST:-}
+      TEXT2SQL_LANGFUSE_PUBLIC_KEY: ${TEXT2SQL_LANGFUSE_PUBLIC_KEY:-}
+      TEXT2SQL_LANGFUSE_SECRET_KEY: ${TEXT2SQL_LANGFUSE_SECRET_KEY:-}
+    ports:
+      - "${TEXT2SQL_API_PORT:-18000}:8000"
+    volumes:
+      - api_state:/app/data/state
+      - api_feedback:/app/data/interim
+      - experiment_reports:/app/experiments/reports
+    depends_on:
+      postgres:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+
+  web:
+    build:
+      context: ./apps/web
+    ports:
+      - "${TEXT2SQL_WEB_PORT:-15173}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  postgres_data:
+  api_state:
+  api_feedback:
+  experiment_reports:
+

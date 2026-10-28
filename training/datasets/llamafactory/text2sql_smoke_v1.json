@@ -1,0 +1,902 @@
+[
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：请查询产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_001",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：请统计产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_002",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：帮我查看产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_003",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：生成报表：产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_004",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：我想知道产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_005",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：给出产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_006",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：分析产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_007",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：列出产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_008",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：计算产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_009",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,name)\n\n问题：展示产品型号与名称",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, name FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_010",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：请查询产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_011",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：请统计产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_012",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：帮我查看产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_013",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：生成报表：产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_014",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：我想知道产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_015",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：给出产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_016",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：分析产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_017",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：列出产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_018",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：计算产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_019",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nproducts(model_code,list_price)\n\n问题：展示产品型号与价格",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT model_code, list_price FROM products ORDER BY model_code LIMIT 200\", \"used_tables\": [\"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_020",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：请查询有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_021",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：请统计有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_022",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：帮我查看有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_023",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：生成报表：有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_024",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：我想知道有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_025",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：给出有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_026",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：分析有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_027",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：列出有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_028",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：计算有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_029",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\norders(status)\n\n问题：展示有效订单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS order_count FROM orders WHERE status IN ('paid','completed')\", \"used_tables\": [\"orders\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_030",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：请查询各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_031",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：请统计各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_032",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：帮我查看各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_033",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：生成报表：各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_034",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：我想知道各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_035",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：给出各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_036",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：分析各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_037",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：列出各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_038",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：计算各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_039",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ndevices(product_id); products(id,model_code)\n\n问题：展示各型号设备数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, COUNT(*) AS device_count FROM devices d JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY device_count DESC LIMIT 200\", \"used_tables\": [\"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_040",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：请查询已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_041",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：请统计已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_042",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：帮我查看已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_043",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：生成报表：已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_044",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：我想知道已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_045",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：给出已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_046",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：分析已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_047",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：列出已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_048",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：计算已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_049",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ntickets(status)\n\n问题：展示已解决工单总数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS resolved_ticket_count FROM tickets WHERE status='resolved'\", \"used_tables\": [\"tickets\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_050",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：请查询各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_051",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：请统计各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_052",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：帮我查看各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_053",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：生成报表：各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_054",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：我想知道各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_055",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：给出各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_056",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：分析各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_057",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：列出各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_058",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：计算各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_059",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：展示各型号平均满意度",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_060",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：请查询各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_061",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：请统计各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_062",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：帮我查看各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_063",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：生成报表：各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_064",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：我想知道各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_065",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：给出各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_066",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：分析各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_067",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：列出各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_068",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：计算各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_069",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\ninventory; products\n\n问题：展示各型号库存总量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory i JOIN products p ON p.id=i.product_id GROUP BY p.model_code ORDER BY inventory_quantity DESC LIMIT 200\", \"used_tables\": [\"inventory\", \"products\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_070",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：请查询升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_071",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：请统计升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_072",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：帮我查看升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_073",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：生成报表：升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_074",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：我想知道升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_075",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：给出升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_076",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：分析升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_077",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：列出升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_078",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：计算升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_079",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nupgrade_jobs(status)\n\n问题：展示升级任务状态分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS job_count FROM upgrade_jobs GROUP BY status ORDER BY job_count DESC LIMIT 200\", \"used_tables\": [\"upgrade_jobs\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_080",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：请查询已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_081",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：请统计已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_082",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：帮我查看已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_083",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：生成报表：已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_084",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：我想知道已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_085",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：给出已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_086",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：分析已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_087",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：列出已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_088",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：计算已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_089",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nrefunds(status)\n\n问题：展示已批准退款数量",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT COUNT(*) AS approved_refund_count FROM refunds WHERE status='approved'\", \"used_tables\": [\"refunds\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_090",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：请查询各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_091",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：请统计各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_092",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：帮我查看各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_093",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：生成报表：各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_094",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：我想知道各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_095",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：给出各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_096",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：分析各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_097",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：列出各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_098",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：计算各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_099",
+      "source": "governed_smoke_template"
+    }
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nteams; agents; tickets\n\n问题：展示各团队已解决工单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT tm.name AS team_name, COUNT(*) AS resolved_ticket_count FROM tickets t JOIN agents a ON a.id=t.assigned_agent_id JOIN teams tm ON tm.id=a.team_id WHERE t.status='resolved' GROUP BY tm.name ORDER BY resolved_ticket_count DESC LIMIT 200\", \"used_tables\": [\"tickets\", \"agents\", \"teams\"], \"assumptions\": []}",
+    "metadata": {
+      "id": "smoke_train_100",
+      "source": "governed_smoke_template"
+    }
+  }
+]

@@ -1,0 +1,30 @@
+.schema-graph { grid-column: 1 / -1; padding: 20px; }
+.schema-graph svg { width: 100%; max-height: 500px; background: #071923; border: 1px solid var(--line); margin-top: 14px; }
+.schema-graph line { stroke: #285165; stroke-width: 1; }
+.schema-graph g { cursor: pointer; }
+.schema-graph circle { fill: #102f3c; stroke: #397084; stroke-width: 1.5; }
+.schema-graph circle.selected { fill: #174c4b; stroke: var(--accent); stroke-width: 3; }
+.schema-graph text { fill: #a8c5cd; font: 9px 'IBM Plex Mono'; pointer-events: none; }
+.result-chart { margin-top: 20px; padding: 16px; background: #081b27; border: 1px solid var(--line); }
+.result-chart h3 { font: 11px 'IBM Plex Mono'; color: var(--accent); }
+.result-chart > div { display: grid; grid-template-columns: 160px 1fr 90px; gap: 10px; align-items: center; margin: 8px 0; font-size: 11px; }
+.result-chart > div > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #a8bec6; }
+.result-chart i { display: block; height: 9px; background: #102d3b; }
+.result-chart i b { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #3a91b5); }
+.result-chart strong { text-align: right; font: 11px 'IBM Plex Mono'; }
+.badcase-page { display: grid; gap: 18px; }
+.badcase-page input { width: 100%; background: #071923; border: 1px solid var(--line); padding: 10px; color: #dbecef; margin: 13px 0; }
+.badcase-card { padding: 16px 0; border-top: 1px solid var(--line); }
+.badcase-card > div { display: flex; align-items: center; gap: 10px; }
+.badcase-card .badge { float: none; padding: 3px 7px; background: #173645; color: var(--accent); }
+.badcase-card small { color: var(--muted); font: 10px 'IBM Plex Mono'; }
+.badcase-card h3 { font-size: 14px; }
+.eval-job { padding: 14px 0; border-top: 1px solid var(--line); }
+.eval-job > div:first-child { display: flex; gap: 10px; align-items: center; }
+.eval-job .badge { float: none; margin-left: auto; color: var(--accent); }
+.eval-job small { color: var(--muted); }
+.metric-strip { display: grid !important; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 12px; }
+.metric-strip > span { padding: 10px; background: #081b27; }
+.metric-strip small, .metric-strip b { display: block; }
+.metric-strip small { font: 9px 'IBM Plex Mono'; color: var(--muted); }
+.metric-strip b { margin-top: 5px; font: 12px 'IBM Plex Mono'; }

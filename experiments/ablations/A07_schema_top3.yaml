@@ -1,0 +1,6 @@
+id: A07_schema_top3
+dataset: data/evaluation/dev_v1.jsonl
+dataset_sha256: 4258b4785966a3cb546d79d8662237cec396829b1c29875082e6e708e52b8a05
+strategy: optimized
+overrides:
+  schema_top_k: 3

@@ -1,0 +1,278 @@
+{
+  "database_id": "nebula_smart_home",
+  "schema": "public",
+  "version": "v1.0.0",
+  "tables": [
+    {
+      "name": "regions", "description": "销售与服务区域", "aliases": ["地区", "区域"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "区域ID", "primary_key": true},
+        {"name": "name", "data_type": "varchar", "description": "区域名称", "examples": ["华东", "华南"]},
+        {"name": "parent_id", "data_type": "bigint", "description": "上级区域ID"}
+      ],
+      "foreign_keys": [{"column": "parent_id", "referred_table": "regions", "referred_column": "id"}]
+    },
+    {
+      "name": "teams", "description": "售后服务团队", "aliases": ["团队", "服务组"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "团队ID", "primary_key": true},
+        {"name": "region_id", "data_type": "bigint", "description": "所属区域"},
+        {"name": "name", "data_type": "varchar", "description": "团队名称"}
+      ],
+      "foreign_keys": [{"column": "region_id", "referred_table": "regions", "referred_column": "id"}]
+    },
+    {
+      "name": "agents", "description": "售后服务人员", "aliases": ["客服", "工程师", "服务人员"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "人员ID", "primary_key": true},
+        {"name": "team_id", "data_type": "bigint", "description": "所属团队"},
+        {"name": "name", "data_type": "varchar", "description": "姓名"},
+        {"name": "status", "data_type": "varchar", "description": "在职状态", "examples": ["active", "inactive"]}
+      ],
+      "foreign_keys": [{"column": "team_id", "referred_table": "teams", "referred_column": "id"}]
+    },
+    {
+      "name": "customers", "description": "客户主数据", "aliases": ["用户", "客户", "会员"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "客户ID", "primary_key": true},
+        {"name": "region_id", "data_type": "bigint", "description": "所属区域"},
+        {"name": "name", "data_type": "varchar", "description": "客户姓名"},
+        {"name": "registered_at", "data_type": "timestamp", "description": "注册时间"}
+      ],
+      "foreign_keys": [{"column": "region_id", "referred_table": "regions", "referred_column": "id"}]
+    },
+    {
+      "name": "customer_addresses", "description": "客户收货与服务地址", "aliases": ["地址", "收货地址"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "地址ID", "primary_key": true},
+        {"name": "customer_id", "data_type": "bigint", "description": "客户ID"},
+        {"name": "region_id", "data_type": "bigint", "description": "区域ID"},
+        {"name": "city", "data_type": "varchar", "description": "城市"}
+      ],
+      "foreign_keys": [
+        {"column": "customer_id", "referred_table": "customers", "referred_column": "id"},
+        {"column": "region_id", "referred_table": "regions", "referred_column": "id"}
+      ]
+    },
+    {
+      "name": "product_categories", "description": "产品分类", "aliases": ["品类", "产品分类"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "分类ID", "primary_key": true},
+        {"name": "name", "data_type": "varchar", "description": "分类名称", "examples": ["智能门锁", "智能音箱"]}
+      ], "foreign_keys": []
+    },
+    {
+      "name": "products", "description": "产品与型号", "aliases": ["产品", "型号", "设备型号"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "产品ID", "primary_key": true},
+        {"name": "category_id", "data_type": "bigint", "description": "分类ID"},
+        {"name": "model_code", "data_type": "varchar", "description": "型号编码", "examples": ["LOCK-X1", "HUB-A2"]},
+        {"name": "name", "data_type": "varchar", "description": "产品名称"},
+        {"name": "list_price", "data_type": "numeric", "description": "标价"}
+      ],
+      "foreign_keys": [{"column": "category_id", "referred_table": "product_categories", "referred_column": "id"}]
+    },
+    {
+      "name": "firmware_versions", "description": "产品固件版本", "aliases": ["固件", "版本"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "固件ID", "primary_key": true},
+        {"name": "product_id", "data_type": "bigint", "description": "产品ID"},
+        {"name": "version", "data_type": "varchar", "description": "版本号", "examples": ["1.0.0", "1.2.0"]},
+        {"name": "released_at", "data_type": "timestamp", "description": "发布时间"}
+      ],
+      "foreign_keys": [{"column": "product_id", "referred_table": "products", "referred_column": "id"}]
+    },
+    {
+      "name": "devices", "description": "客户激活的智能设备", "aliases": ["设备", "机器"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "设备ID", "primary_key": true},
+        {"name": "customer_id", "data_type": "bigint", "description": "当前客户"},
+        {"name": "product_id", "data_type": "bigint", "description": "产品型号"},
+        {"name": "firmware_id", "data_type": "bigint", "description": "当前固件"},
+        {"name": "serial_number", "data_type": "varchar", "description": "序列号"},
+        {"name": "activated_at", "data_type": "timestamp", "description": "激活时间"}
+      ],
+      "foreign_keys": [
+        {"column": "customer_id", "referred_table": "customers", "referred_column": "id"},
+        {"column": "product_id", "referred_table": "products", "referred_column": "id"},
+        {"column": "firmware_id", "referred_table": "firmware_versions", "referred_column": "id"}
+      ]
+    },
+    {
+      "name": "device_upgrades", "description": "设备固件升级事件", "aliases": ["升级", "固件升级"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "升级事件ID", "primary_key": true},
+        {"name": "device_id", "data_type": "bigint", "description": "设备ID"},
+        {"name": "from_firmware_id", "data_type": "bigint", "description": "升级前固件"},
+        {"name": "to_firmware_id", "data_type": "bigint", "description": "升级后固件"},
+        {"name": "upgraded_at", "data_type": "timestamp", "description": "升级时间"},
+        {"name": "status", "data_type": "varchar", "description": "升级状态", "examples": ["success", "failed"]}
+      ],
+      "foreign_keys": [
+        {"column": "device_id", "referred_table": "devices", "referred_column": "id"},
+        {"column": "from_firmware_id", "referred_table": "firmware_versions", "referred_column": "id"},
+        {"column": "to_firmware_id", "referred_table": "firmware_versions", "referred_column": "id"}
+      ]
+    },
+    {
+      "name": "orders", "description": "销售订单", "aliases": ["订单", "下单"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "订单ID", "primary_key": true},
+        {"name": "customer_id", "data_type": "bigint", "description": "客户ID"},
+        {"name": "order_no", "data_type": "varchar", "description": "订单号"},
+        {"name": "status", "data_type": "varchar", "description": "订单状态", "examples": ["paid", "completed", "cancelled"]},
+        {"name": "ordered_at", "data_type": "timestamp", "description": "下单时间"},
+        {"name": "total_amount", "data_type": "numeric", "description": "订单金额"}
+      ],
+      "foreign_keys": [{"column": "customer_id", "referred_table": "customers", "referred_column": "id"}]
+    },
+    {
+      "name": "order_items", "description": "订单商品明细", "aliases": ["订单明细", "商品明细"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "明细ID", "primary_key": true},
+        {"name": "order_id", "data_type": "bigint", "description": "订单ID"},
+        {"name": "product_id", "data_type": "bigint", "description": "产品ID"},
+        {"name": "quantity", "data_type": "integer", "description": "数量"},
+        {"name": "unit_price", "data_type": "numeric", "description": "成交单价"}
+      ],
+      "foreign_keys": [
+        {"column": "order_id", "referred_table": "orders", "referred_column": "id"},
+        {"column": "product_id", "referred_table": "products", "referred_column": "id"}
+      ]
+    },
+    {
+      "name": "payments", "description": "订单支付记录", "aliases": ["支付", "付款"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "支付ID", "primary_key": true},
+        {"name": "order_id", "data_type": "bigint", "description": "订单ID"},
+        {"name": "amount", "data_type": "numeric", "description": "支付金额"},
+        {"name": "status", "data_type": "varchar", "description": "支付状态", "examples": ["succeeded", "failed"]},
+        {"name": "paid_at", "data_type": "timestamp", "description": "支付时间"}
+      ],
+      "foreign_keys": [{"column": "order_id", "referred_table": "orders", "referred_column": "id"}]
+    },
+    {
+      "name": "refunds", "description": "退款与退货记录", "aliases": ["退款", "退货", "换货", "退换货"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "退款ID", "primary_key": true},
+        {"name": "order_item_id", "data_type": "bigint", "description": "订单明细ID"},
+        {"name": "refund_type", "data_type": "varchar", "description": "退款类型", "examples": ["return", "exchange", "refund_only"]},
+        {"name": "status", "data_type": "varchar", "description": "处理状态", "examples": ["approved", "rejected"]},
+        {"name": "amount", "data_type": "numeric", "description": "退款金额"},
+        {"name": "created_at", "data_type": "timestamp", "description": "申请时间"}
+      ],
+      "foreign_keys": [{"column": "order_item_id", "referred_table": "order_items", "referred_column": "id"}]
+    },
+    {
+      "name": "fault_codes", "description": "故障码字典", "aliases": ["故障", "故障类型", "故障码"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "故障ID", "primary_key": true},
+        {"name": "code", "data_type": "varchar", "description": "故障码", "examples": ["NET-01", "PWR-02"]},
+        {"name": "category", "data_type": "varchar", "description": "故障类型"},
+        {"name": "description", "data_type": "text", "description": "故障说明"}
+      ], "foreign_keys": []
+    },
+    {
+      "name": "tickets", "description": "售后工单", "aliases": ["工单", "报修", "维修"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "工单ID", "primary_key": true},
+        {"name": "device_id", "data_type": "bigint", "description": "设备ID"},
+        {"name": "fault_code_id", "data_type": "bigint", "description": "故障类型"},
+        {"name": "assigned_agent_id", "data_type": "bigint", "description": "处理人员"},
+        {"name": "status", "data_type": "varchar", "description": "工单状态", "examples": ["open", "resolved", "cancelled"]},
+        {"name": "created_at", "data_type": "timestamp", "description": "报修时间"},
+        {"name": "resolved_at", "data_type": "timestamp", "description": "解决时间"}
+      ],
+      "foreign_keys": [
+        {"column": "device_id", "referred_table": "devices", "referred_column": "id"},
+        {"column": "fault_code_id", "referred_table": "fault_codes", "referred_column": "id"},
+        {"column": "assigned_agent_id", "referred_table": "agents", "referred_column": "id"}
+      ]
+    },
+    {
+      "name": "ticket_events", "description": "工单状态流转事件", "aliases": ["工单事件", "处理记录"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "事件ID", "primary_key": true},
+        {"name": "ticket_id", "data_type": "bigint", "description": "工单ID"},
+        {"name": "event_type", "data_type": "varchar", "description": "事件类型"},
+        {"name": "from_status", "data_type": "varchar", "description": "原状态"},
+        {"name": "to_status", "data_type": "varchar", "description": "新状态"},
+        {"name": "occurred_at", "data_type": "timestamp", "description": "发生时间"}
+      ],
+      "foreign_keys": [{"column": "ticket_id", "referred_table": "tickets", "referred_column": "id"}]
+    },
+    {
+      "name": "service_visits", "description": "上门服务记录", "aliases": ["上门", "服务记录"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "服务ID", "primary_key": true},
+        {"name": "ticket_id", "data_type": "bigint", "description": "工单ID"},
+        {"name": "agent_id", "data_type": "bigint", "description": "服务人员"},
+        {"name": "started_at", "data_type": "timestamp", "description": "开始时间"},
+        {"name": "finished_at", "data_type": "timestamp", "description": "完成时间"}
+      ],
+      "foreign_keys": [
+        {"column": "ticket_id", "referred_table": "tickets", "referred_column": "id"},
+        {"column": "agent_id", "referred_table": "agents", "referred_column": "id"}
+      ]
+    },
+    {
+      "name": "satisfaction_surveys", "description": "工单满意度评价", "aliases": ["满意度", "评价"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "评价ID", "primary_key": true},
+        {"name": "ticket_id", "data_type": "bigint", "description": "工单ID"},
+        {"name": "score", "data_type": "integer", "description": "1到5分", "examples": [1, 3, 5]},
+        {"name": "submitted_at", "data_type": "timestamp", "description": "提交时间"}
+      ],
+      "foreign_keys": [{"column": "ticket_id", "referred_table": "tickets", "referred_column": "id"}]
+    },
+    {
+      "name": "warranties", "description": "设备保修信息", "aliases": ["保修", "质保"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "保修ID", "primary_key": true},
+        {"name": "device_id", "data_type": "bigint", "description": "设备ID"},
+        {"name": "starts_at", "data_type": "date", "description": "保修开始"},
+        {"name": "ends_at", "data_type": "date", "description": "保修结束"}
+      ],
+      "foreign_keys": [{"column": "device_id", "referred_table": "devices", "referred_column": "id"}]
+    },
+    {
+      "name": "warehouses", "description": "备件仓库", "aliases": ["仓库", "库房"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "仓库ID", "primary_key": true},
+        {"name": "region_id", "data_type": "bigint", "description": "区域ID"},
+        {"name": "name", "data_type": "varchar", "description": "仓库名称"}
+      ],
+      "foreign_keys": [{"column": "region_id", "referred_table": "regions", "referred_column": "id"}]
+    },
+    {
+      "name": "inventory", "description": "产品与备件库存", "aliases": ["库存", "存货"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "库存ID", "primary_key": true},
+        {"name": "warehouse_id", "data_type": "bigint", "description": "仓库ID"},
+        {"name": "product_id", "data_type": "bigint", "description": "产品ID"},
+        {"name": "quantity", "data_type": "integer", "description": "库存数量"},
+        {"name": "updated_at", "data_type": "timestamp", "description": "更新时间"}
+      ],
+      "foreign_keys": [
+        {"column": "warehouse_id", "referred_table": "warehouses", "referred_column": "id"},
+        {"column": "product_id", "referred_table": "products", "referred_column": "id"}
+      ]
+    },
+    {
+      "name": "shipments", "description": "订单发货记录", "aliases": ["发货", "物流"],
+      "columns": [
+        {"name": "id", "data_type": "bigint", "description": "发货ID", "primary_key": true},
+        {"name": "order_id", "data_type": "bigint", "description": "订单ID"},
+        {"name": "address_id", "data_type": "bigint", "description": "收货地址"},
+        {"name": "status", "data_type": "varchar", "description": "物流状态", "examples": ["shipped", "delivered"]},
+        {"name": "shipped_at", "data_type": "timestamp", "description": "发货时间"},
+        {"name": "delivered_at", "data_type": "timestamp", "description": "送达时间"}
+      ],
+      "foreign_keys": [
+        {"column": "order_id", "referred_table": "orders", "referred_column": "id"},
+        {"column": "address_id", "referred_table": "customer_addresses", "referred_column": "id"}
+      ]
+    }
+  ]
+}
+

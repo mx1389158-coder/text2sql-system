@@ -1,0 +1,21 @@
+{
+  "models": [
+    {
+      "id": "qwen25-coder-1.5b-base",
+      "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "adapter": null,
+      "status": "configured",
+      "metrics": null,
+      "notes": "基座模型；尚未在本地固定盲测集上生成结果。"
+    },
+    {
+      "id": "qwen25-coder-1.5b-text2sql-v1",
+      "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "adapter": "training/outputs/qwen25-coder-1.5b/text2sql-v1",
+      "status": "not_trained",
+      "metrics": null,
+      "notes": "运行训练、开发集选择和盲测后才能改为 validated。"
+    }
+  ]
+}
+

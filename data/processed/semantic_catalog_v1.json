@@ -1,0 +1,45 @@
+{
+  "version": "v1.0.0",
+  "definitions": [
+    {
+      "key": "valid_order",
+      "name": "有效订单",
+      "definition": "订单状态为 paid 或 completed；取消订单不计入。时间口径必须明确使用下单时间或支付时间。",
+      "version": "1.0",
+      "aliases": ["有效订单", "订单量", "销售订单"],
+      "ambiguity_question": "订单时间按下单时间还是支付时间统计？",
+      "options": ["按下单时间", "按支付时间"]
+    },
+    {
+      "key": "return_exchange_rate",
+      "name": "退换货率",
+      "definition": "分子为 approved 的 return 或 exchange 明细数，分母为同期有效订单商品明细数。",
+      "version": "1.0",
+      "aliases": ["退换货率", "退货率", "换货率"],
+      "ambiguity_question": "退换货率的时间范围按订单时间还是退换货申请时间？退款未退货是否计入？",
+      "options": ["按订单时间，仅退货/换货", "按申请时间，仅退货/换货", "包含仅退款"]
+    },
+    {
+      "key": "repeat_ticket",
+      "name": "重复报修",
+      "definition": "同一设备前一张非取消工单创建后 7 天内再次创建非取消工单。",
+      "version": "1.0",
+      "aliases": ["重复报修", "再次报修", "二次报修"]
+    },
+    {
+      "key": "resolution_duration",
+      "name": "处理时长",
+      "definition": "resolved_at - created_at，仅统计 resolved 且未取消的工单。",
+      "version": "1.0",
+      "aliases": ["处理时长", "解决时长", "维修时长"]
+    },
+    {
+      "key": "satisfaction",
+      "name": "满意度",
+      "definition": "满意度使用 satisfaction_surveys.score 的算术平均值，并同时报告有效评价数。",
+      "version": "1.0",
+      "aliases": ["满意度", "评价分", "评分"]
+    }
+  ]
+}
+

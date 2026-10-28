@@ -1,0 +1,38 @@
+import pytest
+
+from packages.execution.guard import SQLSafetyError
+
+
+def test_select_is_limited(guard):
+    result = guard.validate_and_rewrite("SELECT id, model_code FROM products")
+    assert "LIMIT 200" in result.sql
+    assert result.referenced_tables == ["products"]
+
+
+def test_existing_limit_is_capped(guard):
+    result = guard.validate_and_rewrite("SELECT id FROM products LIMIT 9999")
+    assert "LIMIT 200" in result.sql
+
+
+@pytest.mark.parametrize(
+    "sql",
+    [
+        "DELETE FROM orders",
+        "SELECT 1; DROP TABLE orders",
+        "SELECT pg_sleep(10)",
+        "SELECT * FROM pg_catalog.pg_user",
+        "SELECT * FROM secret_table",
+        "SELECT * FROM orders FOR UPDATE",
+    ],
+)
+def test_dangerous_sql_is_rejected(guard, sql):
+    with pytest.raises(SQLSafetyError):
+        guard.validate_and_rewrite(sql)
+
+
+def test_cte_alias_is_not_treated_as_table(guard):
+    result = guard.validate_and_rewrite(
+        "WITH recent AS (SELECT id FROM orders) SELECT COUNT(*) FROM recent"
+    )
+    assert result.referenced_tables == ["orders"]
+

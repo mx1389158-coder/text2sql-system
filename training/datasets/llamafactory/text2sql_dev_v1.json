@@ -1,0 +1,1502 @@
+[
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nsatisfaction_surveys; tickets; devices; products\n\n问题：不同型号的平均满意度和评价数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score, COUNT(*) AS survey_count FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices d ON d.id=t.device_id JOIN products p ON p.id=d.product_id GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200\", \"used_tables\": [\"satisfaction_surveys\", \"tickets\", \"devices\", \"products\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-01以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-01' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-02以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-02' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-03以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-03' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-04以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-04' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-05以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-05' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-06以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-06' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-07以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-07' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-08以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-08' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-09以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-09' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-10以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-10' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-11以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-11' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-12以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-12' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-13以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-13' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-14以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-14' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-15以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-15' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-16以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-16' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-17以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-17' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-18以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-18' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-19以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-19' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-20以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-20' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-21以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-21' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-22以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-22' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-23以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-23' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-24以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-24' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-25以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-25' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-26以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-26' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-27以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-27' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-28以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-28' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-01-29以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-01-29' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-01-30以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-01-30' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-01-31以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-01-31' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-01以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-01' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-02以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-02' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-03以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-03' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-04以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-04' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-05以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-05' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-06以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-06' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-07以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-07' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-08以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-08' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-09以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-09' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-10以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-10' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-11以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-11' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-12以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-12' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-13以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-13' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-14以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-14' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-15以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-15' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-16以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-16' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-17以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-17' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-18以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-18' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-19以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-19' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-20以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-20' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-21以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-21' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-22以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-22' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-23以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-23' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-24以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-24' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-25以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-25' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-02-26以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-02-26' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-02-27以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-02-27' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-02-28以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-02-28' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-01以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-01' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-02以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-02' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-03以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-03' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-04以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-04' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-05以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-05' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-06以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-06' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-07以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-07' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-08以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-08' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-09以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-09' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-10以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-10' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-11以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-11' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-12以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-12' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-13以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-13' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-14以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-14' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-15以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-15' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-16以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-16' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-17以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-17' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-18以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-18' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-19以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-19' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-20以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-20' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-21以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-21' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-22以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-22' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-23以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-23' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-24以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-24' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-25以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-25' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-26以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-26' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-27以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-27' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-28以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-28' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-03-29以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-03-29' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-03-30以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-03-30' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-03-31以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-03-31' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-01以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-01' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-02以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-02' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-03以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-03' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-04以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-04' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-05以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-05' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-06以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-06' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-07以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-07' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-08以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-08' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-09以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-09' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-10以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-10' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-11以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-11' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-12以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-12' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-13以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-13' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-14以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-14' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-15以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-15' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-16以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-16' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-17以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-17' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-18以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-18' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-19以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-19' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-20以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-20' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-21以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-21' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-22以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-22' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-23以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-23' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-24以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-24' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-25以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-25' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-26以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-26' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-27以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-27' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-04-28以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-04-28' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-04-29以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-04-29' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-04-30以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-04-30' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-01以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-01' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-02以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-02' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-03以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-03' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-04以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-04' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-05以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-05' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-06以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-06' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-07以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-07' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-08以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-08' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-09以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-09' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-10以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-10' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-11以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-11' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-12以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-12' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-13以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-13' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-14以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-14' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-15以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-15' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-16以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-16' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-17以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-17' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-18以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-18' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-19以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-19' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-20以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-20' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-21以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-21' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-22以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-22' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-23以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-23' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-24以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-24' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-25以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-25' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-26以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-26' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-27以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-27' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-28以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-28' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-05-29以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-05-29' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-05-30以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-05-30' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-05-31以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-05-31' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-01以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-01' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-02以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-02' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-03以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-03' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-04以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-04' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-05以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-05' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-06以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-06' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-07以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-07' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-08以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-08' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-09以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-09' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-10以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-10' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-11以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-11' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-12以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-12' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-13以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-13' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-14以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-14' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-15以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-15' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-16以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-16' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-17以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-17' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-18以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-18' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-19以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-19' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-20以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-20' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-21以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-21' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-22以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-22' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-23以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-23' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-24以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-24' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-25以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-25' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-26以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-26' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-27以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-27' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-06-28以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-06-28' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-06-29以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-06-29' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-06-30以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-06-30' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-01以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-01' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-02以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-02' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-03以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-03' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-04以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-04' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-05以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-05' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-06以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-06' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-07以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-07' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-08以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-08' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-09以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-09' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-10以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-10' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-11以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-11' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-12以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-12' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-13以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-13' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-14以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-14' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-15以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-15' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-16以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-16' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-17以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-17' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-18以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-18' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-19以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-19' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-20以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-20' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-21以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-21' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-22以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-22' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-23以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-23' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-24以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-24' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-25以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-25' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-26以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-26' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-27以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-27' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-28以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-28' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-07-29以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-07-29' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-07-30以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-07-30' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-07-31以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-07-31' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-01以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-01' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-02以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-02' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-03以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-03' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-04以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-04' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-05以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-05' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-06以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-06' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-07以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-07' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-08以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-08' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-09以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-09' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-10以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-10' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-11以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-11' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-12以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-12' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-13以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-13' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-14以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-14' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-15以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-15' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-16以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-16' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-17以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-17' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-18以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-18' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-19以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-19' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-20以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-20' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-21以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-21' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-22以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-22' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-23以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-23' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-24以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-24' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-25以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-25' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-26以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-26' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-27以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-27' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-28以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-28' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-08-29以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-08-29' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-08-30以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-08-30' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-08-31以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-08-31' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-01以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-01' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-02以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-02' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-03以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-03' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-04以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-04' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-05以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-05' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-06以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-06' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-07以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-07' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-08以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-08' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-09以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-09' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-10以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-10' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-11以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-11' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-12以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-12' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-13以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-13' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-14以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-14' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-15以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-15' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-16以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-16' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-17以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-17' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-18以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-18' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-19以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-19' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-20以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-20' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-21以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-21' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-22以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-22' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-23以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-23' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-24以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-24' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-25以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-25' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-26以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-26' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-27以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-27' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-09-28以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-09-28' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-09-29以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-09-29' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-09-30以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-09-30' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-01以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-01' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-02以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-02' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-03以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-03' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-04以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-04' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-05以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-05' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-06以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-06' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-07以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-07' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-08以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-08' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-09以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-09' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-10以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-10' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-11以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-11' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-12以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-12' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-13以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-13' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-14以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-14' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-15以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-15' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-16以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-16' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-17以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-17' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-18以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-18' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-19以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-19' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-20以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-20' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-21以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-21' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-22以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-22' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-23以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-23' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nticket_events\n\n问题：统计2025-10-24以来工单事件类型分布",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT event_type, COUNT(*) AS event_count FROM ticket_events WHERE occurred_at >= '2025-10-24' GROUP BY event_type ORDER BY event_count DESC LIMIT 200\", \"used_tables\": [\"ticket_events\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\npayments\n\n问题：统计2025-10-25以来各支付状态的金额",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, ROUND(SUM(amount),2) AS payment_amount FROM payments WHERE paid_at >= '2025-10-25' GROUP BY status ORDER BY payment_amount DESC LIMIT 200\", \"used_tables\": [\"payments\"], \"assumptions\": []}"
+  },
+  {
+    "instruction": "根据给定的 PostgreSQL Schema 和中文问题生成 SQL。\n只输出 JSON：{\"intent\":\"QUERY\",\"sql\":\"...\",\"used_tables\":[],\"assumptions\":[]}。\n只允许单条 SELECT/WITH，不要猜字段。",
+    "input": "Schema:\nshipments\n\n问题：统计2025-10-26以来各配送状态订单数",
+    "output": "{\"intent\": \"QUERY\", \"sql\": \"SELECT status, COUNT(*) AS shipment_count FROM shipments WHERE shipped_at >= '2025-10-26' GROUP BY status ORDER BY shipment_count DESC LIMIT 200\", \"used_tables\": [\"shipments\"], \"assumptions\": []}"
+  }
+]

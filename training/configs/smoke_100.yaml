@@ -1,0 +1,31 @@
+### Extend the full config conceptually; kept explicit for reproducibility.
+model_name_or_path: Qwen/Qwen2.5-Coder-1.5B-Instruct
+trust_remote_code: true
+quantization_bit: 4
+quantization_method: bitsandbytes
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: q_proj,v_proj
+dataset_dir: training/datasets/llamafactory
+dataset: text2sql_smoke_v1
+template: qwen
+cutoff_len: 1024
+max_samples: 100
+output_dir: training/outputs/smoke-100
+logging_steps: 1
+save_steps: 25
+save_total_limit: 2
+plot_loss: true
+report_to: tensorboard
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+gradient_checkpointing: true
+learning_rate: 2.0e-4
+num_train_epochs: 8
+bf16: true
+seed: 42
+
