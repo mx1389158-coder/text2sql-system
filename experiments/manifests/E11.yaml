@@ -2,7 +2,7 @@ id: E11
 model: qwen25-coder-1.5b-text2sql-v1
 strategy: optimized
 dataset: data/evaluation/blind_v1.jsonl
-dataset_sha256: b145e16da36585ed86da0562557a5edb66eaad43ea23fdd793b9065710e027c7
+dataset_sha256: 55c5ab0f7cefbb5a76e7fd7c73492f6a64f111c2e5f574428a361b57a7740eac
 max_model_calls_per_sample: 5
 overrides:
   candidate_count: 3

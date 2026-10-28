@@ -5,6 +5,7 @@ import json
 import platform
 import shutil
 import subprocess
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -38,7 +39,38 @@ def main() -> None:
     version = tuple(int(item) for item in platform.python_version_tuple()[:2])
     add("python_3_11", version >= (3, 11), platform.python_version())
     docker = command_version(["docker", "--version"])
-    add("docker_available", bool(docker), docker or "not found")
+    isolated_vm = None
+    vbox_manage = Path(r"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe")
+    if not docker and vbox_manage.exists():
+        vm_info = command_version(
+            [str(vbox_manage), "showvminfo", "nebula-text2sql-docker", "--machinereadable"]
+        )
+        if vm_info:
+            state = next(
+                (
+                    line.split("=", 1)[1].strip('"')
+                    for line in vm_info.splitlines()
+                    if line.startswith("VMState=")
+                ),
+                "unknown",
+            )
+            isolated_vm = {"name": "nebula-text2sql-docker", "state": state}
+    deployed_health = None
+    try:
+        with urllib.request.urlopen("http://127.0.0.1:18000/health", timeout=3) as response:
+            deployed_health = {"url": response.url, "status": response.status}
+    except (OSError, TimeoutError):
+        pass
+    container_ready = (
+        bool(docker)
+        or bool(isolated_vm and isolated_vm["state"] == "running")
+        or bool(deployed_health and deployed_health["status"] == 200)
+    )
+    add(
+        "container_runtime_available",
+        container_ready,
+        docker or deployed_health or isolated_vm or "Docker and isolated VirtualBox VM not found",
+    )
     git = command_version(["git", "-C", str(ROOT), "rev-parse", "HEAD"])
     add("git_sha", bool(git), git or "repository has no commit")
 

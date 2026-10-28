@@ -93,3 +93,13 @@ export type Catalog = {
   }>
 }
 
+export type SystemInfo = {
+  environment: string
+  mode: 'demo' | 'production'
+  provider: 'demo' | 'openai-compatible'
+  model: string
+  database_engine: string
+  evaluation_dataset: string
+  security: { ast_guard: boolean; read_only: boolean; row_limit: number }
+}
+

@@ -13,6 +13,10 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$expectedVmName = "nebula-text2sql-docker"
+if ($VmName -ne $expectedVmName) {
+    throw "This project script may only create the isolated VM '$expectedVmName'."
+}
 $vbox = "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe"
 if (-not (Test-Path -LiteralPath $vbox)) { throw "VBoxManage not found: $vbox" }
 $iso = (Resolve-Path -LiteralPath $IsoPath).Path
@@ -38,6 +42,7 @@ New-Item -ItemType Directory -Path $root -Force | Out-Null
 & $vbox modifyvm $VmName --natpf1 "web,tcp,127.0.0.1,15173,,15173"
 & $vbox modifyvm $VmName --natpf1 "api,tcp,127.0.0.1,18000,,18000"
 & $vbox modifyvm $VmName --natpf1 "postgres,tcp,127.0.0.1,15432,,15432"
+& $vbox modifyvm $VmName --natpf1 "redis,tcp,127.0.0.1,16379,,16379"
 & $vbox createmedium disk --filename "$root\$VmName\$VmName.vdi" --size $DiskMb --format VDI
 & $vbox storagectl $VmName --name SATA --add sata --controller IntelAhci
 & $vbox storageattach $VmName --storagectl SATA --port 0 --device 0 --type hdd --medium "$root\$VmName\$VmName.vdi"
@@ -55,7 +60,10 @@ $postInstall = "apt-get update && apt-get install -y openssh-server docker.io do
     --time-zone="Asia/Shanghai" `
     --package-selection-adjustment=minimal `
     --post-install-command=$postInstall `
-    --start-vm=$startType
+    --start-vm=$startType *> $null
+if ($LASTEXITCODE -ne 0) {
+    throw "VirtualBox unattended installation setup failed for '$VmName'."
+}
 
 Write-Host "Created isolated VM '$VmName'. Existing VMs were not changed."
 if ($Start) {

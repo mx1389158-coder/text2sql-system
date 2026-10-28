@@ -9,6 +9,16 @@ def test_health_endpoint():
     assert response.json()["status"] == "ok"
 
 
+def test_system_endpoint_exposes_safe_runtime_metadata():
+    response = TestClient(app).get("/api/v1/system")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["mode"] == "demo"
+    assert payload["model"] == "demo"
+    assert payload["database_engine"] == "sqlite"
+    assert payload["security"] == {"ast_guard": True, "read_only": True, "row_limit": 200}
+
+
 def test_query_endpoint_runs_complete_pipeline():
     response = TestClient(app).post(
         "/api/v1/query", json={"question": "列出产品型号、名称和价格", "strategy": "optimized"}

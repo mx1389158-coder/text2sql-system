@@ -16,6 +16,10 @@
 5. 把本项目复制到虚拟机，复制 `.env.example` 为 `.env`，更换密码后运行
    `docker compose up --build -d`。
 
+也可以先制作排除 `.git`、`.conda`、`.downloads`、`node_modules` 和训练输出的 tar.gz，
+再用 `scripts/deploy_virtualbox.py` 等待 SSH、SFTP 上传并启动 Compose。脚本从密码文件读
+取凭据，不会打印密码，并会写出不含秘密的部署报告。
+
 宿主机端口使用 15173、18000、15432 和 16379，避开 Docker 常见默认端口，降低与其他
 项目冲突的风险。VirtualBox 不适合作为 NVIDIA CUDA 训练环境；QLoRA 应直接使用宿主机
 CUDA/WSL2 或另一台可透传 GPU 的 Linux 机器。

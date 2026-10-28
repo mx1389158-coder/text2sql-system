@@ -3,6 +3,8 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { api } from '../api/client'
 import type { EvalJob } from '../types'
 const running = ref(false); const message = ref(''); const jobs = ref<EvalJob[]>([])
+const evaluationDataset = ref('data/processed/smoke.jsonl')
+const evaluationModel = ref('demo')
 let timer: number | undefined
 const cells = [
   ['E00','原始模型','完整 Schema / 单候选 / 无修正'],
@@ -11,8 +13,18 @@ const cells = [
   ['E11','微调模型','Schema Linking / 候选 / 修正'],
 ]
 async function refresh() { try { jobs.value = (await api.evalJobs()).jobs } catch(e) { message.value = e instanceof Error ? e.message : String(e) } }
-async function run() { running.value = true; try { const job = await api.startEval('optimized'); message.value = `评测任务已提交：${job.job_id}`; await refresh() } catch(e) { message.value = e instanceof Error ? e.message : String(e) } finally { running.value=false } }
-onMounted(async () => { await refresh(); timer = window.setInterval(refresh, 1500) })
+async function run() { running.value = true; try { const job = await api.startEval('optimized', evaluationDataset.value, evaluationModel.value); message.value = `评测任务已提交：${job.job_id}`; await refresh() } catch(e) { message.value = e instanceof Error ? e.message : String(e) } finally { running.value=false } }
+onMounted(async () => {
+  try {
+    const system = await api.system()
+    evaluationDataset.value = system.evaluation_dataset
+    evaluationModel.value = system.model
+  } catch(e) {
+    message.value = e instanceof Error ? e.message : String(e)
+  }
+  await refresh()
+  timer = window.setInterval(refresh, 1500)
+})
 onUnmounted(() => { if (timer) window.clearInterval(timer) })
 const pct = (value?: number) => value === undefined ? '—' : `${(value * 100).toFixed(1)}%`
 </script>

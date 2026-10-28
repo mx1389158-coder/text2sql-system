@@ -49,6 +49,9 @@ npm run dev
 docker compose up --build -d
 ```
 
+也可以运行 `python scripts/generate_deployment_secrets.py` 生成不会打印到终端的随机数据库
+密码和独立虚拟机密码；脚本默认拒绝覆盖已有文件。
+
 默认宿主机端口为 Web 15173、API 18000、PostgreSQL 15432、Redis 16379，避免和其他
 项目的常见默认端口冲突。API 使用 `text2sql_readonly` 账户。
 首次初始化后若修改迁移，请创建新编号迁移；开发期要重建空卷时再显式删除卷。
@@ -57,8 +60,12 @@ docker compose up --build -d
 
 ```bash
 python scripts/generate_business_data.py \
-  --database-url postgresql://text2sql_admin:<password>@localhost:5432/text2sql \
+  --database-url postgresql://text2sql_admin:<password>@localhost:15432/text2sql \
   --customers 10000 --orders 50000 --devices 30000 --tickets 20000 --seed 42
+
+python scripts/verify_postgres.py \
+  --admin-url postgresql://text2sql_admin:<password>@localhost:15432/text2sql \
+  --readonly-url postgresql://text2sql_readonly:<password>@localhost:15432/text2sql
 ```
 
 ## 3. 连接本地模型

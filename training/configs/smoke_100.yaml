@@ -3,6 +3,7 @@ model_name_or_path: Qwen/Qwen2.5-Coder-1.5B-Instruct
 trust_remote_code: true
 quantization_bit: 4
 quantization_method: bitsandbytes
+upcast_layernorm: true
 stage: sft
 do_train: true
 finetuning_type: lora

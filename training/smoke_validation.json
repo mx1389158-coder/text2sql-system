@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "run_at": "2026-10-28T10:09:31+08:00",
+  "purpose": "100-example overfit and training-stack validation; not a model-quality claim",
+  "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "base_model_sha256": "c1b9b30e907950516ba3c646bdf570d8084c25a6410a0cdca80cf04b11bc13a8",
+  "config": "training/configs/smoke_100.yaml",
+  "config_sha256": "a900216cc833a9bb1889fb87631406ddd57943d2ca3663b9dec435fc79d9d4d3",
+  "dataset_sha256": "4621ce4708e49ef1a86f299a73cc50a9efe3a43da74f5f9f94360fb2b487d00e",
+  "adapter": "training/outputs/smoke-100",
+  "adapter_sha256": "543bc154c8f40f44177fd0a48d9088d89628c7b8d38426526b7cb117a5a382f3",
+  "environment": {
+    "python": "3.11.18",
+    "torch": "2.11.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "compute_capability": "12.0",
+    "bf16": true,
+    "llamafactory": "0.9.6.dev0",
+    "bitsandbytes": "0.50.2"
+  },
+  "training": {
+    "examples": 100,
+    "epochs": 8,
+    "optimizer_steps": 56,
+    "first_step_loss": 0.8183558583259583,
+    "last_step_loss": 0.013179220259189606,
+    "mean_train_loss": 0.18619100799384927,
+    "runtime_seconds": 166.2094,
+    "samples_per_second": 4.813
+  },
+  "overfit_inference": {
+    "json_valid": true,
+    "sql_parse_valid": true,
+    "used_tables": ["products"],
+    "sql": "SELECT model_code, name FROM products ORDER BY model_code LIMIT 200"
+  }
+}

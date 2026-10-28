@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .core.config import get_settings
-from .routers import catalog, evals, feedback, models, query
+from .routers import catalog, evals, feedback, models, query, system
 from .services.limits import SafetyLimitsMiddleware
 
 
@@ -27,7 +27,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-for api_router in (query.router, feedback.router, catalog.router, evals.router, models.router):
+for api_router in (
+    query.router,
+    feedback.router,
+    catalog.router,
+    evals.router,
+    models.router,
+    system.router,
+):
     app.include_router(api_router, prefix="/api/v1")
 
 

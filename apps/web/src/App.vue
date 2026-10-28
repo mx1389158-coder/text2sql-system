@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { api } from './api/client'
 import QueryView from './views/QueryView.vue'
 import SchemaView from './views/SchemaView.vue'
 import ExperimentsView from './views/ExperimentsView.vue'
@@ -7,6 +8,20 @@ import BadcaseView from './views/BadcaseView.vue'
 
 type Tab = 'query' | 'schema' | 'experiments' | 'badcases'
 const active = ref<Tab>('query')
+const runtimeMode = ref('连接中…')
+const runtimeHealthy = ref(false)
+
+onMounted(async () => {
+  try {
+    const info = await api.system()
+    runtimeMode.value = info.mode === 'demo'
+      ? '本地演示模式'
+      : `${info.model} · ${info.database_engine}`
+    runtimeHealthy.value = true
+  } catch {
+    runtimeMode.value = 'API 未连接'
+  }
+})
 </script>
 
 <template>
@@ -38,7 +53,7 @@ const active = ref<Tab>('query')
     <main>
       <header>
         <div><span class="eyebrow">NEBULA / DATA COPILOT</span><h1>智能问数工作台</h1></div>
-        <div class="mode"><i></i> 本地演示模式</div>
+        <div class="mode"><i :class="{ healthy: runtimeHealthy }"></i> {{ runtimeMode }}</div>
       </header>
       <QueryView v-if="active === 'query'" />
       <SchemaView v-else-if="active === 'schema'" />

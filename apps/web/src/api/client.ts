@@ -1,4 +1,4 @@
-import type { Badcase, Catalog, EvalJob, QueryRecord } from '../types'
+import type { Badcase, Catalog, EvalJob, QueryRecord, SystemInfo } from '../types'
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL || '/api/v1'
 
@@ -15,6 +15,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
+  system: () => request<SystemInfo>('/system'),
   query: (question: string, strategy = 'optimized') =>
     request<QueryRecord>('/query', {
       method: 'POST',
@@ -31,10 +32,10 @@ export const api = {
       body: JSON.stringify({ query_id: queryId, rating, comment }),
     }),
   catalog: () => request<Catalog>('/schema'),
-  startEval: (strategy: string) =>
+  startEval: (strategy: string, datasetPath: string, model: string) =>
     request<{ job_id: string; status: string }>('/evals/run', {
       method: 'POST',
-      body: JSON.stringify({ dataset_path: 'data/processed/smoke.jsonl', model: 'demo', strategy }),
+      body: JSON.stringify({ dataset_path: datasetPath, model, strategy }),
     }),
   evalJob: (id: string) => request<EvalJob>(`/evals/${id}`),
   evalJobs: () => request<{ jobs: EvalJob[] }>('/evals'),
