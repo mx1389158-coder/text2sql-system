@@ -13,11 +13,15 @@ class CandidateGenerator:
         self.provider = provider
 
     async def generate(self, request: GenerationRequest, count: int = 1) -> List[GeneratedCandidate]:
-        temperatures = [0.0] if count <= 1 else [0.0, 0.2, 0.2][:count]
-        # Serial by design: it makes the call budget and peak GPU memory explicit.
-        candidates = []
-        for temperature in temperatures:
-            candidates.append(await self.provider.generate(request, temperature=temperature))
+        candidates = [await self.provider.generate(request, temperature=0.0)]
+        if count > 1:
+            candidates.extend(
+                await self.provider.generate_many(
+                    request,
+                    temperature=0.2,
+                    count=count - 1,
+                )
+            )
         return self._deduplicate(candidates)
 
     @staticmethod

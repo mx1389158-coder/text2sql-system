@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import json
 import math
 import time
@@ -66,6 +67,7 @@ class EvaluationRunner:
         repairs_fixed = repairs_regressed = 0
         model_calls = prompt_tokens = completion_tokens = 0
         peak_vram_mb = self._reset_peak_vram()
+        evaluation_examples: List[Dict[str, Any]] = []
         for example in examples:
             if "should_allow" in example:
                 safety_cases.append(
@@ -76,11 +78,22 @@ class EvaluationRunner:
                     )
                 )
                 continue
-            started = time.perf_counter()
-            record = await self.orchestrator.submit(
-                example["question"], strategy=strategy, scope="evaluation"
-            )
-            latency_ms = (time.perf_counter() - started) * 1000
+            evaluation_examples.append(example)
+
+        semaphore = asyncio.Semaphore(self.orchestrator.settings.evaluation_concurrency)
+
+        async def submit_example(example: Dict[str, Any]):
+            async with semaphore:
+                started = time.perf_counter()
+                record = await self.orchestrator.submit(
+                    example["question"], strategy=strategy, scope="evaluation"
+                )
+                return example, record, (time.perf_counter() - started) * 1000
+
+        submitted = await asyncio.gather(
+            *(submit_example(example) for example in evaluation_examples)
+        )
+        for example, record, latency_ms in submitted:
             latencies.append(latency_ms)
             model_calls += record.model_calls
             prompt_tokens += record.prompt_tokens

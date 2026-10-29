@@ -24,6 +24,7 @@ class Settings(BaseModel):
     llm_api_key: str = "ollama"
     llm_model: str = "qwen2.5-coder:3b"
     model_timeout_seconds: float = 60
+    model_max_tokens: int = Field(default=256, ge=64, le=4096)
     statement_timeout_ms: int = 5000
     lock_timeout_ms: int = 1000
     max_rows: int = Field(default=200, ge=1, le=1000)
@@ -45,6 +46,7 @@ class Settings(BaseModel):
     rate_limit_requests: int = Field(default=60, ge=1, le=10000)
     rate_limit_window_seconds: int = Field(default=60, ge=1, le=3600)
     max_concurrent_requests: int = Field(default=8, ge=1, le=256)
+    evaluation_concurrency: int = Field(default=1, ge=1, le=8)
     evaluation_allowed_root: Path = Path("data")
     model_parse_retries: int = Field(default=1, ge=0, le=3)
     langfuse_host: Optional[str] = None

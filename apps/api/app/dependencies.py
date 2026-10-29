@@ -37,6 +37,7 @@ def get_orchestrator() -> Text2SQLOrchestrator:
             model=settings.llm_model,
             timeout_seconds=settings.model_timeout_seconds,
             parse_retries=settings.model_parse_retries,
+            max_tokens=settings.model_max_tokens,
         )
     if settings.database_url.startswith("sqlite:///"):
         raw_path = settings.database_url.removeprefix("sqlite:///")

@@ -17,6 +17,7 @@ from packages.generation.candidates import (
 from packages.generation.few_shot import FewShotRetriever
 from packages.generation.models import CandidateScore, GenerationRequest
 from packages.generation.prompts import build_repair_feedback
+from packages.generation.providers import ProviderGenerationError
 from packages.schema_linker.mschema import MSchemaFormatter
 from packages.schema_linker.models import DatabaseCatalog, SchemaEvidence
 from packages.schema_linker.retriever import SchemaRetriever
@@ -234,6 +235,25 @@ class Text2SQLOrchestrator:
         stage_started = time.perf_counter()
         try:
             candidates = await self.generator.generate(generation_request, count=count)
+        except ProviderGenerationError as error:
+            record.model_calls += error.provider_calls
+            record.prompt_tokens += error.prompt_tokens
+            record.completion_tokens += error.completion_tokens
+            record.status = QueryStatus.FAILED
+            record.error_code = "model_response_error"
+            record.error_message = str(error)[:500]
+            self._trace(
+                record,
+                "generation",
+                "failed",
+                stage_started,
+                {
+                    "error": record.error_message,
+                    "provider_calls": error.provider_calls,
+                },
+                trace_listener,
+            )
+            return self.repository.save(record)
         except Exception as error:
             record.status = QueryStatus.FAILED
             record.error_code = "model_error"

@@ -87,6 +87,9 @@ async def run_manifest(
             "wall_time_ms": (time.perf_counter() - started) * 1000,
             "configured_model": orchestrator.settings.llm_model,
             "provider": orchestrator.settings.llm_provider,
+            "model_max_tokens": orchestrator.settings.model_max_tokens,
+            "model_parse_retries": orchestrator.settings.model_parse_retries,
+            "evaluation_concurrency": orchestrator.settings.evaluation_concurrency,
         },
         "summary": asdict(summary),
     }

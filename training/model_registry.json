@@ -12,9 +12,14 @@
       "id": "qwen25-coder-1.5b-text2sql-v1",
       "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
       "adapter": "training/outputs/qwen25-coder-1.5b/text2sql-v1",
-      "status": "not_trained",
-      "metrics": null,
-      "notes": "运行训练、开发集选择和盲测后才能改为 validated。"
+      "status": "trained_unvalidated",
+      "metrics": {
+        "e10_execution_accuracy": 0.32,
+        "e11_execution_accuracy": 0.19666666666666666,
+        "e11_execution_success_rate": 0.8566666666666667,
+        "e11_repairs_fixed": 0
+      },
+      "notes": "已完成全量训练和冻结盲测；E11 低于 E10 且修复增益为 0，未通过 validated 注册门。"
     }
   ]
 }
