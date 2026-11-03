@@ -44,6 +44,13 @@ E00/E01 与 E20/E21 使用相同 `holdout_v2`、192 token 和每样本最多 5 �
 - 端到端系统 GPU 显存峰值：7240 MiB；该值包含 Windows WDDM 桌面进程。
 - GPU 利用率均值/峰值：56.55% / 100.00%。
 
+## 可观测性
+
+- Langfuse Cloud 日本区鉴权、写入和 API 读回验证通过。
+- 专用 VM 中的真实 Text2SQL 查询生成 5 个可读 observation：`intent`、
+  `schema_linking`、`generation`、`execution` 和 `explanation`。
+- 脱敏验收证据位于 `docs/qa/langfuse_cloud_report.json`，其中不包含 API 密钥。
+
 ## 结论边界
 
 - 主结论必须同时引用 300 条未见族 Holdout、81 条 17 模板族消融切片和三快照 Test-Suite。

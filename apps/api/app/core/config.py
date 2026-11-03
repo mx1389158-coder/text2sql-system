@@ -59,18 +59,33 @@ class Settings(BaseModel):
     @classmethod
     def from_environment(cls) -> "Settings":
         values = {}
+        langfuse_aliases = {
+            "LANGFUSE_BASE_URL": "langfuse_host",
+            "LANGFUSE_PUBLIC_KEY": "langfuse_public_key",
+            "LANGFUSE_SECRET_KEY": "langfuse_secret_key",
+        }
         env_file = Path(".env")
         if env_file.exists():
+            file_values = {}
             for raw_line in env_file.read_text(encoding="utf-8").splitlines():
                 line = raw_line.strip()
                 if not line or line.startswith("#") or "=" not in line:
                     continue
                 key, value = line.split("=", 1)
+                value = value.strip().strip('"').strip("'")
+                file_values[key] = value
                 if key.startswith("TEXT2SQL_"):
-                    values[key[len("TEXT2SQL_") :].lower()] = value.strip().strip('"').strip("'")
+                    values[key[len("TEXT2SQL_") :].lower()] = value
+            for key, field_name in langfuse_aliases.items():
+                if field_name not in values and file_values.get(key):
+                    values[field_name] = file_values[key]
         for field_name in cls.model_fields:
             key = f"TEXT2SQL_{field_name.upper()}"
-            if key in os.environ:
+            if os.environ.get(key):
+                values[field_name] = os.environ[key]
+        for key, field_name in langfuse_aliases.items():
+            project_key = f"TEXT2SQL_{field_name.upper()}"
+            if not os.environ.get(project_key) and os.environ.get(key):
                 values[field_name] = os.environ[key]
         return cls(**values)
 

@@ -22,6 +22,8 @@ Last verified: 2026-11-03 (Asia/Shanghai).
   clarification resolution is 10/10 execution-correct.
 - Browser acceptance is 8/8; dedicated VM backup/restore passed; v5 model-specific CUDA
   allocation peak is 1,151.16 MiB.
+- Langfuse Cloud Japan authentication, ingestion and API readback passed; a real Text2SQL request
+  produced five readable stage observations without storing credentials in Git or evidence files.
 - Long evaluations now checkpoint every completed sample and reuse matching completed reports.
   `--no-resume` is required to force a deliberate rerun.
 
@@ -31,12 +33,12 @@ The validated unit is v5 plus the optimized governed runtime and SQL safety cont
 holdout covers three unseen template families, so the 100% E21 result is not a claim of arbitrary-schema
 or cross-database generalization. The 17-family Badcase report remains the source for the next iteration.
 
-## External production follow-up
+## Observability deployment
 
-No code-completeness item remains for the documented P0–P5 scope. Live Langfuse backend ingestion is
-still an infrastructure decision: the SDK-to-OTLP transport is verified, but the current 1 CPU/6 GiB VM
-is not sized for the full self-hosted stack. Production TLS/domain and a larger VM or managed Langfuse
-credentials must be supplied by the deployment owner.
+Live Langfuse Cloud ingestion is complete. The dedicated `nebula-text2sql-docker` API uses managed
+Langfuse credentials supplied through its ignored `.env`; authentication, direct ingestion and
+readback of all five stages from a real Text2SQL request passed. Self-hosting is no longer required for
+this release. The redacted machine-readable evidence is `docs/qa/langfuse_cloud_report.json`.
 
 See `docs/experiments/final_report.md`, `docs/experiments/badcase_report.md` and
 `docs/qa/acceptance_checklist.md`.

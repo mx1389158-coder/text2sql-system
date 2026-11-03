@@ -9,6 +9,7 @@ Linking、候选生成、SQL AST 安全检查、只读执行、有限修正后�
   E20 33.33%、E21 100.00% 执行准确率；
 - E21 三快照 Test-Suite 为 300/300，安全集 120/120，歧义检测 80/80，澄清后执行 10/10；
 - A40–A48 九组消融全部完成，浏览器验收 8/8，备份恢复演练通过；
+- Langfuse Cloud 日本区鉴权、真实查询五阶段 trace 上报和 API 读回验证通过；
 - 完整结论见 `docs/experiments/final_report.md`，错误分类见
   `docs/experiments/badcase_report.md`，模型边界见
   `training/model_cards/qwen25-coder-1.5b-text2sql-v5.md`。
@@ -65,6 +66,10 @@ docker compose up --build -d
 默认宿主机端口为 Web 15173、API 18000、PostgreSQL 15432、Redis 16379，避免和其他
 项目的常见默认端口冲突。API 使用 `text2sql_readonly` 账户。
 首次初始化后若修改迁移，请创建新编号迁移；开发期要重建空卷时再显式删除卷。
+
+Langfuse Cloud 使用官方环境变量 `LANGFUSE_BASE_URL`、`LANGFUSE_PUBLIC_KEY` 和
+`LANGFUSE_SECRET_KEY`。真实凭据只写入被 Git 忽略的 `.env`，可运行
+`python scripts/verify_langfuse_live.py` 验证鉴权、上报和读回。
 
 按方案目标生成 5 万订单、3 万设备和 2 万工单的确定性数据：
 

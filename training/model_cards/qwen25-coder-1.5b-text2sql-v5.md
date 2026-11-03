@@ -74,8 +74,12 @@ controls, not the adapter in isolation.
   field ownership, grouping, service-region, shipment-city/status and ticket-event Badcases.
 - Spider/BIRD, cross-database transfer, multiple SQL dialects and production concurrency were not
   evaluated in this release.
-- Live Langfuse backend ingestion is not claimed; only the SDK-to-OTLP network transport was
-  verified locally. A full self-hosted stack requires a larger VM or managed credentials.
+
+## Observability
+
+Langfuse Cloud Japan authentication, ingestion and API readback were verified on 2026-11-03. A real
+Text2SQL request produced readable `intent`, `schema_linking`, `generation`, `execution` and
+`explanation` observations. The report contains no credentials.
 
 See `docs/experiments/final_report.md`, `docs/experiments/badcase_report.md` and
 `experiments/reports/final-summary.json` for the complete machine-readable evidence.

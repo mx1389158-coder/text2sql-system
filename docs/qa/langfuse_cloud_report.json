@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-03T06:34:10.8752909+00:00",
+  "status": "passed",
+  "region_host": "https://jp.cloud.langfuse.com",
+  "cloud_authentication_verified": true,
+  "direct_ingestion": {
+    "trace_id": "a6e73cfb00b007412a462b933d81f6a5",
+    "observation_id": "9d459b1d9d4be21a",
+    "observation_name": "cloud_ingestion_verification",
+    "readback_verified": true
+  },
+  "text2sql_api_ingestion": {
+    "query_id": "5c125401-c128-4cbb-8433-0311b0e14d79",
+    "application_trace_seed": "7671e6bb-da0e-42ff-9e98-9c7898354e8e",
+    "langfuse_trace_id": "504ad15294095616ecea062035e44709",
+    "query_status": "completed",
+    "row_count": 2,
+    "observation_count": 5,
+    "observation_names": [
+      "intent",
+      "schema_linking",
+      "generation",
+      "execution",
+      "explanation"
+    ],
+    "readback_verified": true
+  },
+  "secrets_recorded": false
+}

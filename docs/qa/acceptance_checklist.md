@@ -30,5 +30,5 @@
 
 - [x] 专用虚拟机数据库备份/恢复演练通过；临时恢复库已删除，备份保留。
 - [x] Langfuse SDK 5 的 OTLP 网络发送链路已验证。
-- [ ] 真实 Langfuse 后端尚未部署；当前 1 CPU/6 GiB 专用 VM 低于完整栈需求，需扩容或提供 Langfuse Cloud 项目凭据。
+- [x] Langfuse Cloud 日本区真实后端已接通；鉴权、直接上报以及真实 Text2SQL 查询的五阶段 trace 读回均通过，脱敏证据见 `langfuse_cloud_report.json`。
 - [x] 最终实验完成后清理临时状态、固化 commit/tag。
