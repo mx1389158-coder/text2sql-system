@@ -1,0 +1,9 @@
+id: A17_schema_top3
+model: qwen25-coder-1.5b-text2sql-v2
+dataset: data/evaluation/dev_v2.jsonl
+dataset_sha256: a114b2c202596ea1bcaf824cb45066ac2803dc3859478fdd78d70c7771bf3b39
+strategy: optimized
+model_max_tokens: 192
+max_model_calls_per_sample: 5
+overrides:
+  schema_top_k: 3

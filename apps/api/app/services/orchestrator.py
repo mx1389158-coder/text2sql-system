@@ -15,6 +15,7 @@ from packages.generation.candidates import (
     LightweightCandidateScorer,
 )
 from packages.generation.few_shot import FewShotRetriever
+from packages.generation.governed_metrics import GovernedMetricCompiler
 from packages.generation.models import CandidateScore, GenerationRequest
 from packages.generation.prompts import build_repair_feedback
 from packages.generation.providers import ProviderGenerationError
@@ -69,7 +70,8 @@ class Text2SQLOrchestrator:
         self.few_shot_cache: TTLCache[List[str]] = TTLCache(settings.schema_cache_ttl_seconds)
         self.few_shots = FewShotRetriever(settings.few_shot_path, settings.few_shot_count)
         self.observability = ObservabilitySink(settings)
-        self.candidate_scorer = LightweightCandidateScorer()
+        self.candidate_scorer = LightweightCandidateScorer(catalog)
+        self.metric_compiler = GovernedMetricCompiler()
 
     async def submit(
         self,
@@ -233,8 +235,19 @@ class Text2SQLOrchestrator:
         )
         count = 1 if strategy == "baseline" else self.settings.candidate_count
         stage_started = time.perf_counter()
+        governed_candidate = None
+        if ambiguity and clarification_answer:
+            governed_candidate = self.metric_compiler.compile(
+                record.question,
+                str(ambiguity["key"]),
+                clarification_answer,
+            )
         try:
-            candidates = await self.generator.generate(generation_request, count=count)
+            candidates = (
+                [governed_candidate]
+                if governed_candidate is not None
+                else await self.generator.generate(generation_request, count=count)
+            )
         except ProviderGenerationError as error:
             record.model_calls += error.provider_calls
             record.prompt_tokens += error.prompt_tokens
@@ -275,7 +288,15 @@ class Text2SQLOrchestrator:
             "generation",
             "completed",
             stage_started,
-            {"candidates": len(candidates), "few_shots": len(few_shots)},
+            {
+                "candidates": len(candidates),
+                "few_shots": len(few_shots),
+                "source": (
+                    "governed_metric_compiler"
+                    if governed_candidate is not None
+                    else "model"
+                ),
+            },
             trace_listener,
         )
 
@@ -283,6 +304,22 @@ class Text2SQLOrchestrator:
         guarded_sql = {}
         execution_results = {}
         for candidate in candidates:
+            if strategy != "baseline":
+                normalized_sql = self.candidate_scorer.normalize_known_field_aliases(
+                    candidate.sql
+                )
+                normalized_sql = self.candidate_scorer.normalize_unique_fk_joins(
+                    normalized_sql
+                )
+                if normalized_sql != candidate.sql:
+                    candidate = replace(
+                        candidate,
+                        sql=normalized_sql,
+                        assumptions=[
+                            *candidate.assumptions,
+                            "normalized an unambiguous catalog FK join path",
+                        ],
+                    )
             try:
                 guarded = query_guard.validate_and_rewrite(candidate.sql)
                 guarded_sql[candidate.sql] = guarded.sql
@@ -300,7 +337,11 @@ class Text2SQLOrchestrator:
                         non_empty=bool(result.rows),
                         execution_ms=result.elapsed_ms,
                         error=result.error.safe_message if result.error else None,
-                        semantic_score=self.candidate_scorer.score(record.question, candidate),
+                        semantic_score=(
+                            1.0
+                            if governed_candidate is not None
+                            else self.candidate_scorer.score(record.question, candidate)
+                        ),
                     )
                 )
             except SQLSafetyError as error:
@@ -310,10 +351,115 @@ class Text2SQLOrchestrator:
                         static_valid=False,
                         schema_coverage=0,
                         error=error.reason,
-                        semantic_score=self.candidate_scorer.score(record.question, candidate),
+                        semantic_score=(
+                            1.0
+                            if governed_candidate is not None
+                            else self.candidate_scorer.score(record.question, candidate)
+                        ),
                     )
                 )
+        self._trace(
+            record,
+            "candidate_selection",
+            "completed",
+            time.perf_counter(),
+            {
+                "candidates": [
+                    {
+                        "sql": score.candidate.sql,
+                        "static_valid": score.static_valid,
+                        "executed": score.executed,
+                        "non_empty": score.non_empty,
+                        "schema_coverage": score.schema_coverage,
+                        "semantic_score": score.semantic_score,
+                        "error": score.error,
+                    }
+                    for score in scores
+                ]
+            },
+            trace_listener,
+        )
         chosen = CandidateSelector.choose(scores)
+        repair_rounds = 0
+        repair_limit = 0 if governed_candidate is not None else self.settings.max_repair_rounds
+        initial_candidate_acceptable = bool(
+            chosen.static_valid
+            and chosen.executed
+            and chosen.semantic_score >= self.settings.candidate_semantic_threshold
+        )
+        while (
+            strategy != "baseline"
+            and repair_rounds < repair_limit
+            and (
+                not chosen.static_valid
+                or chosen.semantic_score < self.settings.candidate_semantic_threshold
+            )
+        ):
+            repair_rounds += 1
+            requirements = self.candidate_scorer.feedback(record.question, chosen.candidate)
+            feedback = build_repair_feedback(
+                "static_validation" if not chosen.static_valid else "semantic_mismatch",
+                (
+                    f"{chosen.error or '候选未覆盖问题关键语义'}。"
+                    f"必须修正：{requirements}。上一候选 SQL：{chosen.candidate.sql}"
+                ),
+            )
+            repair_request = GenerationRequest(
+                question=record.question,
+                clarification=clarification_answer,
+                mschema=evidence.mschema,
+                semantic_definitions=semantic_lines,
+                few_shots=few_shots,
+                error_feedback=feedback,
+            )
+            try:
+                repaired = await self.generator.generate(repair_request, count=1)
+            except ProviderGenerationError as error:
+                record.model_calls += error.provider_calls
+                record.prompt_tokens += error.prompt_tokens
+                record.completion_tokens += error.completion_tokens
+                break
+            record.model_calls += sum(item.provider_calls for item in repaired)
+            record.prompt_tokens += sum(item.prompt_tokens for item in repaired)
+            record.completion_tokens += sum(item.completion_tokens for item in repaired)
+            repaired_candidate = repaired[0]
+            normalized_sql = self.candidate_scorer.normalize_known_field_aliases(
+                repaired_candidate.sql
+            )
+            normalized_sql = self.candidate_scorer.normalize_unique_fk_joins(
+                normalized_sql
+            )
+            if normalized_sql != repaired_candidate.sql:
+                repaired_candidate = replace(repaired_candidate, sql=normalized_sql)
+            repaired_semantic_score = self.candidate_scorer.score(
+                record.question, repaired_candidate
+            )
+            try:
+                guarded = query_guard.validate_and_rewrite(repaired_candidate.sql)
+                result = await asyncio.to_thread(self.runner.execute, guarded.sql)
+                guarded_sql[repaired_candidate.sql] = guarded.sql
+                execution_results[repaired_candidate.sql] = result
+                coverage = len(
+                    set(guarded.referenced_tables) & set(evidence.selected_tables)
+                ) / max(1, len(guarded.referenced_tables))
+                chosen = CandidateScore(
+                    candidate=repaired_candidate,
+                    static_valid=True,
+                    schema_coverage=coverage,
+                    executed=result.ok,
+                    non_empty=bool(result.rows),
+                    execution_ms=result.elapsed_ms,
+                    error=result.error.safe_message if result.error else None,
+                    semantic_score=repaired_semantic_score,
+                )
+            except SQLSafetyError as error:
+                chosen = CandidateScore(
+                    candidate=repaired_candidate,
+                    static_valid=False,
+                    schema_coverage=0,
+                    error=error.reason,
+                    semantic_score=repaired_semantic_score,
+                )
         if not chosen.static_valid:
             record.status = QueryStatus.REJECTED
             record.error_code = "unsafe_model_output"
@@ -327,13 +473,32 @@ class Text2SQLOrchestrator:
                 trace_listener,
             )
             return self.repository.save(record)
+        if (
+            strategy != "baseline"
+            and chosen.semantic_score < self.settings.candidate_semantic_threshold
+        ):
+            record.status = QueryStatus.REJECTED
+            record.error_code = "semantic_mismatch"
+            record.error_message = (
+                "候选 SQL 未覆盖问题中的关键业务实体、字段或时间方向"
+            )
+            self._trace(
+                record,
+                "candidate_selection",
+                "rejected",
+                time.perf_counter(),
+                {
+                    "semantic_score": chosen.semantic_score,
+                    "threshold": self.settings.candidate_semantic_threshold,
+                },
+                trace_listener,
+            )
+            record.repair_rounds = repair_rounds
+            return self.repository.save(record)
 
         final_candidate = chosen.candidate
         final_sql = guarded_sql[final_candidate.sql]
         execution = execution_results[final_candidate.sql]
-        initial_execution_ok = execution.ok
-        repair_rounds = 0
-        repair_limit = self.settings.max_repair_rounds
         if execution.error is not None and execution.error.category.value == "timeout":
             repair_limit = min(repair_limit, 1)
         while (
@@ -354,21 +519,33 @@ class Text2SQLOrchestrator:
                 clarification=clarification_answer,
                 mschema=evidence.mschema,
                 semantic_definitions=semantic_lines,
+                few_shots=few_shots,
                 error_feedback=feedback,
             )
             repaired = await self.generator.generate(repair_request, count=1)
             record.model_calls += sum(item.provider_calls for item in repaired)
             record.prompt_tokens += sum(item.prompt_tokens for item in repaired)
             record.completion_tokens += sum(item.completion_tokens for item in repaired)
+            repaired_candidate = repaired[0]
+            normalized_sql = self.candidate_scorer.normalize_known_field_aliases(
+                repaired_candidate.sql
+            )
+            normalized_sql = self.candidate_scorer.normalize_unique_fk_joins(
+                normalized_sql
+            )
+            if normalized_sql != repaired_candidate.sql:
+                repaired_candidate = replace(repaired_candidate, sql=normalized_sql)
             try:
-                guarded = query_guard.validate_and_rewrite(repaired[0].sql)
+                guarded = query_guard.validate_and_rewrite(repaired_candidate.sql)
             except SQLSafetyError:
                 break
-            final_candidate = repaired[0]
+            final_candidate = repaired_candidate
             final_sql = guarded.sql
             execution = await asyncio.to_thread(self.runner.execute, final_sql)
         record.repair_rounds = repair_rounds
-        record.repair_succeeded = bool(repair_rounds and not initial_execution_ok and execution.ok)
+        record.repair_succeeded = bool(
+            repair_rounds and not initial_candidate_acceptable and execution.ok
+        )
         record.sql = final_sql
         record.assumptions = final_candidate.assumptions
         self._trace(

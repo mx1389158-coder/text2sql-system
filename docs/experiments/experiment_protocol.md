@@ -1,13 +1,34 @@
 # Experiment protocol
 
-The E00/E10/E01/E11 manifests isolate model adaptation from execution strategy. Every comparison
-uses the same frozen database, dataset hash, maximum model calls and maximum output tokens.
+The final strict 2×2 uses E00/E01 for the base model and E20/E21 for v5. All four use the same
+300-example unseen-family `holdout_v2`, 192 output tokens and at most five model calls per sample.
+Legacy 112-token E00/E01 reports are retained under `experiments/reports/legacy` but are excluded from
+the final matrix. E12/E13 remain development history for v2. The v5 control A40 and ablations A41-A48
+use the same sealed, deterministic 81-example development slice (up to five examples from each of the
+17 template groups). The harness rejects a manifest whose declared token budget differs from the
+active provider.
 
 Required report fields are SQL Valid Rate, Execution Accuracy, Schema Recall@k, clarification
 accuracy, safety TPR/FPR, repair gain, p50/p95 latency, call count, peak VRAM and wall time. Failed or
 unscored samples remain visible and are never silently converted to zero or dropped.
 
+The online evaluator first records `fixed_snapshot_accuracy`; this is explicitly labelled
+`fixed_snapshot_proxy` and is not claimed as a Test-Suite result. Formal Test-Suite Accuracy is attached
+after replaying stored predictions and reviewed gold SQL on three rollback-only PostgreSQL snapshots:
+the fixed snapshot, status/date-boundary perturbations, and foreign-key reassignments. Each sample must
+be correct on all three snapshots. The perturbation transaction is rolled back and does not change the
+dedicated database.
+
+Safety reporting combines 100 SQLGuard cases with 20 request-layer cases covering prompt injection,
+permission bypass and write requests. Clarification reporting uses all 80 governed ambiguity variants
+for detection and a separate 10-topic, result-hashed set for post-clarification execution correctness.
+
 Ablations cover examples, foreign-key completion, full versus adaptive schema, one versus three
 candidates, 0/1/2 repair rounds, LoRA rank 8/16/32 and cutoff 1024/1536/2048. Development data chooses
 the configuration; only the chosen system is evaluated on the frozen blind set.
+
+`A43_full_schema` keeps the optimized generation, candidate and repair path unchanged while setting
+`schema_top_k: 23`, `schema_token_budget: 16000` and disabling adaptive expansion. This treats the
+Schema presentation policy as one ablation factor rather than accidentally switching the entire
+runtime to baseline behavior.
 

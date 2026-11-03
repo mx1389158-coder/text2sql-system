@@ -49,3 +49,15 @@ def result_hash(rows: Iterable[Dict[str, Any]], order_sensitive: bool = False) -
     payload = "\n".join(encoded).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
 
+
+def result_value_hash(rows: Iterable[Dict[str, Any]], order_sensitive: bool = False) -> str:
+    """Hash result values while ignoring presentation-only output aliases."""
+    encoded = [
+        json.dumps(list(row.values()), ensure_ascii=False, default=str)
+        for row in rows
+    ]
+    if not order_sensitive:
+        encoded.sort()
+    payload = "\n".join(encoded).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+

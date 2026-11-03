@@ -11,6 +11,16 @@
       "options": ["按下单时间", "按支付时间"]
     },
     {
+      "key": "revenue",
+      "name": "销售额",
+      "definition": "销售额可按订单应收金额或成功支付金额统计；报表必须明确金额来源、订单状态与时间字段。",
+      "version": "1.0",
+      "retrieval_enabled": false,
+      "aliases": ["销售额", "营业额", "成交额"],
+      "ambiguity_question": "销售额按订单金额还是成功支付金额统计，时间按下单时间还是支付时间？",
+      "options": ["按成功支付金额和支付时间", "按有效订单金额和下单时间"]
+    },
+    {
       "key": "return_exchange_rate",
       "name": "退换货率",
       "definition": "分子为 approved 的 return 或 exchange 明细数，分母为同期有效订单商品明细数。",
@@ -18,6 +28,26 @@
       "aliases": ["退换货率", "退货率", "换货率"],
       "ambiguity_question": "退换货率的时间范围按订单时间还是退换货申请时间？退款未退货是否计入？",
       "options": ["按订单时间，仅退货/换货", "按申请时间，仅退货/换货", "包含仅退款"]
+    },
+    {
+      "key": "active_device",
+      "name": "活跃设备",
+      "definition": "活跃设备必须指定观察窗口及活跃事件；默认不把仅已激活但窗口内没有业务事件的设备视为活跃。",
+      "version": "1.0",
+      "retrieval_enabled": false,
+      "aliases": ["活跃设备", "设备活跃数"],
+      "ambiguity_question": "活跃设备按哪个时间窗口和哪类业务事件定义？",
+      "options": ["近30天有升级或报修", "近90天有升级或报修", "已激活设备均计入"]
+    },
+    {
+      "key": "failure_rate",
+      "name": "故障率",
+      "definition": "故障率的分子为窗口内发生故障工单的设备数或工单数，分母可为激活设备数或活跃设备数。",
+      "version": "1.0",
+      "retrieval_enabled": false,
+      "aliases": ["故障率", "设备故障率"],
+      "ambiguity_question": "故障率的分子按故障设备还是工单，分母按激活设备还是活跃设备？",
+      "options": ["故障设备数/激活设备数", "故障工单数/激活设备数", "故障设备数/活跃设备数"]
     },
     {
       "key": "repeat_ticket",
@@ -31,14 +61,48 @@
       "name": "处理时长",
       "definition": "resolved_at - created_at，仅统计 resolved 且未取消的工单。",
       "version": "1.0",
-      "aliases": ["处理时长", "解决时长", "维修时长"]
+      "aliases": ["处理时长", "解决时长", "维修时长"],
+      "ambiguity_question": "解决时长按工单创建到解决计算，还是按首次受理到解决计算？未解决工单是否计入？",
+      "options": ["创建到解决，仅已解决工单", "首次受理到解决，仅已解决工单", "包含未解决工单"]
     },
     {
       "key": "satisfaction",
       "name": "满意度",
       "definition": "满意度使用 satisfaction_surveys.score 的算术平均值，并同时报告有效评价数。",
       "version": "1.0",
-      "aliases": ["满意度", "评价分", "评分"]
+      "aliases": ["满意度", "评价分", "评分"],
+      "ambiguity_question": "满意度统计全部有效评价还是指定时间窗口，是否同时返回评价数？",
+      "options": ["全部有效评价并返回评价数", "近30天有效评价并返回评价数", "近90天有效评价并返回评价数"]
+    },
+    {
+      "key": "repurchase_rate",
+      "name": "复购率",
+      "definition": "复购率必须指定观察窗口；分子为窗口内至少有两笔有效订单的客户数，分母为窗口内至少有一笔有效订单的客户数。",
+      "version": "1.0",
+      "retrieval_enabled": false,
+      "aliases": ["复购率", "重复购买率"],
+      "ambiguity_question": "复购率采用多长观察窗口，按客户还是设备口径统计？",
+      "options": ["近90天按客户", "近180天按客户", "全部历史按客户"]
+    },
+    {
+      "key": "upgrade_success_rate",
+      "name": "升级成功率",
+      "definition": "升级成功率的分子为成功升级次数或设备数，分母为全部升级尝试次数或尝试升级设备数。",
+      "version": "1.0",
+      "retrieval_enabled": false,
+      "aliases": ["升级成功率", "固件升级成功率"],
+      "ambiguity_question": "升级成功率按升级次数还是设备数计算，时间窗口是什么？",
+      "options": ["全部历史按升级次数", "近30天按升级次数", "近30天按设备数"]
+    },
+    {
+      "key": "inventory_snapshot",
+      "name": "库存",
+      "definition": "库存为 inventory 当前快照中的 quantity 汇总；如需历史库存必须指定快照时点并使用历史快照数据。",
+      "version": "1.0",
+      "retrieval_enabled": false,
+      "aliases": ["库存", "库存量", "库存数量"],
+      "ambiguity_question": "库存按当前快照还是指定历史时点统计，是否按仓库拆分？",
+      "options": ["当前快照按型号汇总", "当前快照按仓库和型号", "指定历史时点"]
     }
   ]
 }

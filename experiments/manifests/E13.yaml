@@ -1,0 +1,13 @@
+id: E13
+model: qwen25-coder-1.5b-text2sql-v2
+strategy: optimized
+dataset: data/evaluation/blind_v1.jsonl
+dataset_sha256: 55c5ab0f7cefbb5a76e7fd7c73492f6a64f111c2e5f574428a361b57a7740eac
+model_max_tokens: 192
+max_model_calls_per_sample: 5
+overrides:
+  candidate_count: 3
+  max_repair_rounds: 2
+  enable_few_shots: true
+  enable_fk_completion: true
+  enable_adaptive_schema: true

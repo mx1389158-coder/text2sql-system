@@ -20,6 +20,18 @@
         "e11_repairs_fixed": 0
       },
       "notes": "已完成全量训练和冻结盲测；E11 低于 E10 且修复增益为 0，未通过 validated 注册门。"
+    },
+    {
+      "id": "qwen25-coder-1.5b-text2sql-v5",
+      "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "adapter": "training/outputs/qwen25-coder-1.5b/text2sql-v5",
+      "status": "evaluation_complete_pending_registration",
+      "metrics": {
+        "E21_execution_accuracy": 1.0,
+        "E21_test_suite_accuracy": 1.0,
+        "A40_execution_accuracy": 0.5802469135802469
+      },
+      "notes": "严格同预算 2x2、九组消融、安全/歧义、多快照与资源评测均已完成；等待固化 Git SHA 后执行注册。"
     }
   ]
 }

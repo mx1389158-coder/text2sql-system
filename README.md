@@ -3,6 +3,16 @@
 这是一个按 P0–P5 分层实现的中文 Text2SQL 工程：自然语言问题经过意图/澄清、Schema
 Linking、候选生成、SQL AST 安全检查、只读执行、有限修正后返回表格、解释和完整 trace。
 
+## 最终验收结果
+
+- 严格同预算 2×2（同一 300 条 Holdout、192 token）：E00 20.00%、E01 60.67%、
+  E20 33.33%、E21 100.00% 执行准确率；
+- E21 三快照 Test-Suite 为 300/300，安全集 120/120，歧义检测 80/80，澄清后执行 10/10；
+- A40–A48 九组消融全部完成，浏览器验收 8/8，备份恢复演练通过；
+- 完整结论见 `docs/experiments/final_report.md`，错误分类见
+  `docs/experiments/badcase_report.md`，模型边界见
+  `training/model_cards/qwen25-coder-1.5b-text2sql-v5.md`。
+
 ## 已实现
 
 - 23 张 PostgreSQL 业务表、固定种子、只读角色和超时配置；
@@ -12,11 +22,11 @@ Linking、候选生成、SQL AST 安全检查、只读执行、有限修正后�
 - PostgreSQL 只读事务与 SQLite 本地演示执行器、错误分类和最多两轮修正；
 - FastAPI 查询/澄清/实时 SSE/反馈/持久化评测/模型/Schema API；
 - Vue 3 问数、图表、Schema 关系图、2×2 实验和 Badcase 界面；
-- 2,500/300/300 语料、100 安全集、80 歧义集、QLoRA 配置和 E00–E11 manifests；
+- 4,100/620/300 训练、开发、冻结盲测语料（含纠正型 Badcase 与全表覆盖样本），另有 300 条未见业务族 holdout、100 安全集、80 歧义集及版本化实验 manifests；
 - 单元、集成、E2E 与安全攻击测试。
 
-真实 QLoRA adapter、训练曲线和实验分数不在仓库中预造。运行训练与冻结盲测后，再把
-模型注册状态从 `not_trained` 更新为 `validated`。
+训练产物保留在本地且不提交大文件；v5 已通过适配器校验、冻结集评测和质量门禁，按受治理
+Schema 与优化运行时范围注册。模型注册不代表任意 Schema 的通用准确率。
 
 ## 1. 本地快速演示（无需 Docker/GPU）
 
@@ -98,10 +108,10 @@ OpenAPI 文档位于 `http://localhost:8000/docs`。
 ```bash
 python -m training.scripts.build_governed_corpus --database-url postgresql://text2sql_admin:<password>@localhost:15432/text2sql
 python -m training.scripts.prepare_dataset --database-url postgresql://text2sql_readonly:<password>@localhost:15432/text2sql
-python -m scripts.seal_evaluation_set training/datasets/raw/dev.jsonl data/evaluation/dev_v1.jsonl --database-url postgresql://text2sql_readonly:<password>@localhost:15432/text2sql
-python -m scripts.seal_evaluation_set training/datasets/raw/blind.jsonl data/evaluation/blind_v1.jsonl --database-url postgresql://text2sql_readonly:<password>@localhost:15432/text2sql
+python -m scripts.seal_evaluation_set training/datasets/raw/dev.jsonl data/evaluation/dev_v5.jsonl --database-url postgresql://text2sql_readonly:<password>@localhost:15432/text2sql
+python -m scripts.seal_evaluation_set training/datasets/raw/holdout_v2.jsonl data/evaluation/holdout_v2.jsonl --database-url postgresql://text2sql_readonly:<password>@localhost:15432/text2sql
 llamafactory-cli train training/configs/smoke_100.yaml
-llamafactory-cli train training/configs/qwen25_coder_1_5b_qlora.yaml
+llamafactory-cli train training/configs/qwen25_coder_1_5b_qlora_v5.yaml
 ```
 
 先完成 100 条 overfit smoke test，再开始完整训练。训练前确认 `bf16` 支持；异常时改用
@@ -115,11 +125,41 @@ llamafactory-cli train training/configs/qwen25_coder_1_5b_qlora.yaml
 ```bash
 pytest
 text2sql-eval data/processed/smoke.jsonl --strategy optimized
+python scripts/run_acceptance_evaluations.py --skip-resolution
+python scripts/run_perturbed_test_suite.py experiments/reports/E21.json \
+  --database-url postgresql://text2sql_admin:<password>@localhost:15432/text2sql
 cd apps/web && npm run build
+npm run qa:browser
 ```
 
 冒烟数据只验证工程正确性。正式结论必须使用固定快照、冻结盲测集和
-`experiments/manifests/E00.yaml` 至 `E11.yaml`，同时报告失败样本、调用预算、延迟与资源。
+`experiments/manifests/E20.yaml`、`E21.yaml` 和 `experiments/ablations/v5/`，同时报告失败样本、调用预算、延迟与资源。
+
+最终严格 2×2 使用同一个 300 条 `holdout_v2`：E00/E01 为基座模型，E20/E21 为 v5，
+四组均使用 192 token 和每样本最多 5 次模型调用。固定快照结果与三快照
+Test-Suite 分开记录，状态/日期和 FK 扰动全部在事务内执行并回滚。
+
+`scripts/run_experiment.py` 默认启用样本级断点：每完成一个样本会原子写入
+`experiments/checkpoints/<实验ID>.json`，中断后再次执行相同命令只处理缺失样本；若匹配的
+正式报告已经存在，则直接复用。只有明确需要整组重跑时才使用 `--no-resume`。
+
+专用 VirtualBox 数据库的备份恢复演练：
+
+```bash
+python scripts/backup_restore_drill.py --password-file E:/test2/virtualbox-password.txt
+```
+
+脚本只解析 `nebula-text2sql` Compose 项目的 PostgreSQL 容器，恢复到
+`text2sql_restore_drill` 临时数据库，核对后删除临时库并保留备份文件。
+
+虚拟机冷启动后可运行：
+
+```bash
+python scripts/start_virtualbox_stack.py --password-file E:/test2/virtualbox-password.txt
+```
+
+脚本只接受部署报告中记录的 `nebula-text2sql-docker`，校验 SSH 主机指纹后启动本项目
+Compose 栈；当前 Compose 也配置了 `restart: unless-stopped`。
 
 ## 目录
 

@@ -1,0 +1,12 @@
+id: A33_full_schema
+model: qwen25-coder-1.5b-text2sql-v4
+dataset: data/evaluation/dev_v4.jsonl
+dataset_sha256: 7870196953c6606dcededa672bdd830735ab15a90aaea7c14b9b7bfb3db54643
+strategy: optimized
+model_max_tokens: 192
+max_model_calls_per_sample: 5
+overrides:
+  enable_adaptive_schema: false
+  schema_top_k: 23
+  schema_token_budget: 16000
+  candidate_semantic_threshold: 0.65

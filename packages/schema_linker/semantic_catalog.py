@@ -5,9 +5,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from .retriever import tokenize
-
-
 @dataclass(frozen=True)
 class SemanticDefinition:
     key: str
@@ -17,6 +14,7 @@ class SemanticDefinition:
     aliases: List[str]
     ambiguity_question: Optional[str] = None
     options: Optional[List[str]] = None
+    retrieval_enabled: bool = True
 
 
 class SemanticCatalog:
@@ -30,21 +28,38 @@ class SemanticCatalog:
         return cls([SemanticDefinition(**item) for item in raw["definitions"]])
 
     def retrieve(self, question: str, limit: int = 4) -> List[SemanticDefinition]:
-        question_terms = set(tokenize(question))
-        scored = []
+        normalized_question = question.lower()
+        matched = []
         for definition in self.definitions:
-            terms = set(tokenize(" ".join([definition.name, *definition.aliases])))
-            score = len(question_terms & terms)
-            if any(alias.lower() in question.lower() for alias in definition.aliases):
-                score += 3
-            if score:
-                scored.append((score, definition.key, definition))
-        scored.sort(key=lambda item: (-item[0], item[1]))
-        return [item[2] for item in scored[:limit]]
+            if not definition.retrieval_enabled:
+                continue
+            aliases = [definition.name, *definition.aliases]
+            hits = [alias for alias in aliases if alias.lower() in normalized_question]
+            if hits:
+                matched.append((max(len(alias) for alias in hits), definition.key, definition))
+        matched.sort(key=lambda item: (-item[0], item[1]))
+        return [item[2] for item in matched[:limit]]
 
     def ambiguity(self, question: str) -> Optional[Dict[str, object]]:
-        for definition in self.retrieve(question):
-            if definition.ambiguity_question:
+        normalized_question = question.lower()
+        for definition in self.definitions:
+            # Some governed questions already state enough of the disputed
+            # definition.  Do not turn those into false-positive blockers.
+            if (
+                definition.key == "satisfaction"
+                and "平均" in normalized_question
+                and "评价数" in normalized_question
+            ):
+                continue
+            if definition.key == "inventory_snapshot" and "仓库" in normalized_question:
+                continue
+            # Clarification is a blocking action, so loose character/n-gram
+            # overlap is not enough evidence.  Require a complete business
+            # alias to avoid matches such as 设备量 -> 订单量.
+            alias_matched = any(
+                alias.lower() in normalized_question for alias in definition.aliases
+            )
+            if definition.ambiguity_question and alias_matched:
                 return {
                     "key": definition.key,
                     "question": definition.ambiguity_question,

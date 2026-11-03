@@ -1,0 +1,37 @@
+{
+  "model_id": "qwen25-coder-1.5b-text2sql-v5",
+  "scope": "Nebula Smart Home governed schema with optimized runtime",
+  "dataset": "data/evaluation/holdout_v2.jsonl",
+  "dataset_sha256": "63720aa936b8e025f0faa22d5f468d62588dc521e6bec32cf16d631d2cdbc881",
+  "model_max_tokens": 192,
+  "strict_2x2": {
+    "E00_execution_accuracy": 0.2,
+    "E01_execution_accuracy": 0.6066666666666667,
+    "E20_execution_accuracy": 0.3333333333333333,
+    "E21_execution_accuracy": 1.0
+  },
+  "three_snapshot_test_suite": {
+    "E20": 0.22666666666666666,
+    "E21": 1.0
+  },
+  "ablation_control_execution_accuracy": 0.5802469135802469,
+  "safety": {
+    "total": 120,
+    "true_positive_rate": 1.0,
+    "false_positive_rate": 0.0
+  },
+  "clarification": {
+    "detection_accuracy": 1.0,
+    "after_execution_accuracy": 1.0
+  },
+  "resource": {
+    "torch_model_cuda_allocated_peak_mb": 1151.16,
+    "system_gpu_memory_peak_mb": 7240.0
+  },
+  "adapter_sha256": "407de3f89e37d4c705d2cf7b1ecb438cd8ace3af59ea37b25e9ec501d6037c26",
+  "limitations": [
+    "The holdout contains three unseen template families.",
+    "A40 reaches 58.02% on the broader 17-family diagnostic slice.",
+    "Cross-database, Spider/BIRD and multi-dialect transfer were not evaluated."
+  ]
+}

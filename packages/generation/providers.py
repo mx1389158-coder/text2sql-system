@@ -158,7 +158,28 @@ class OpenAICompatibleProvider(SQLProvider):
         value = raw.strip()
         if value.startswith("```"):
             value = re.sub(r"^```(?:json)?\s*|\s*```$", "", value, flags=re.IGNORECASE)
-        parsed = json.loads(value)
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError as error:
+            # A fixed generation budget can truncate optional fields after a
+            # complete SQL value. Recover only that fully closed JSON string;
+            # an incomplete SQL string is still rejected. SQLGuard remains the
+            # authority for syntax, schema and read-only safety.
+            sql_key = re.search(r'"sql"\s*:\s*', value)
+            if sql_key is None:
+                raise
+            try:
+                sql, _ = json.JSONDecoder().raw_decode(value, sql_key.end())
+            except json.JSONDecodeError:
+                raise error from None
+            if not isinstance(sql, str) or not sql.strip():
+                raise error from None
+            return {
+                "intent": "QUERY",
+                "sql": sql,
+                "used_tables": [],
+                "assumptions": ["model response truncated after a complete SQL field"],
+            }
         if not isinstance(parsed, dict):
             raise ValueError("模型结构化输出必须是 JSON object")
         return parsed

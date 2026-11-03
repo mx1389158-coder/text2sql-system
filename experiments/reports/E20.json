@@ -1,0 +1,4960 @@
+{
+  "experiment": {
+    "id": "E20",
+    "model": "qwen25-coder-1.5b-text2sql-v5",
+    "strategy": "baseline",
+    "dataset": "data/evaluation/holdout_v2.jsonl",
+    "dataset_sha256": "63720aa936b8e025f0faa22d5f468d62588dc521e6bec32cf16d631d2cdbc881",
+    "model_max_tokens": 192,
+    "max_model_calls_per_sample": 5,
+    "overrides": {
+      "candidate_count": 1,
+      "max_repair_rounds": 0,
+      "enable_few_shots": false,
+      "enable_fk_completion": false,
+      "enable_adaptive_schema": false
+    }
+  },
+  "dataset_sha256": "63720aa936b8e025f0faa22d5f468d62588dc521e6bec32cf16d631d2cdbc881",
+  "git_sha": "c71be2929d4afd28cfd95386ab4b29008691eae9",
+  "runtime": {
+    "python": "3.11.18",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "wall_time_ms": 2204195.3366999514,
+    "configured_model": "qwen25-coder-1.5b-text2sql-v5",
+    "provider": "openai-compatible",
+    "model_max_tokens": 192,
+    "model_parse_retries": 1,
+    "evaluation_concurrency": 1
+  },
+  "summary": {
+    "total": 300,
+    "sql_valid_rate": 0.3333333333333333,
+    "execution_success_rate": 0.3333333333333333,
+    "execution_accuracy": 0.3333333333333333,
+    "test_suite_accuracy": 0.22666666666666666,
+    "exact_match_rate": 0.0,
+    "schema_recall_at_k": 1.0,
+    "column_recall_at_k": 1.0,
+    "clarification_accuracy": 0.0,
+    "safety_true_positive_rate": 0.0,
+    "safety_false_positive_rate": 0.0,
+    "repair_gain": 0,
+    "repairs_fixed": 0,
+    "repairs_regressed": 0,
+    "p50_latency_ms": 7856.059249956161,
+    "p95_latency_ms": 9463.335500098765,
+    "wall_time_ms": 2203772.5601999555,
+    "model_calls": 300,
+    "prompt_tokens": 514900,
+    "completion_tokens": 47932,
+    "peak_vram_mb": 0.0,
+    "failures": [
+      {
+        "id": "biz_holdout_v2_auto_0002",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0003",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0005",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0006",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0008",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0009",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0011",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0012",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0014",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0015",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0017",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0018",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0020",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0021",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0023",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0024",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0026",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0027",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0029",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0030",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0032",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0033",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0035",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0036",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0038",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0039",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0041",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0042",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0044",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0045",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0047",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0048",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0050",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0051",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0053",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0054",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0056",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0057",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0059",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0060",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0062",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0063",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0065",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0066",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0068",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0069",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0071",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0072",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0074",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0075",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0077",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0078",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0080",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0081",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0083",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0084",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0086",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0087",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0089",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0090",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0092",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0093",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0095",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0096",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0098",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0099",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0101",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0102",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0104",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0105",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0107",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0108",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0110",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0111",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0113",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0114",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0116",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0117",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0119",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0120",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0122",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0123",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0125",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0126",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0128",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0129",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0131",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0132",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0134",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0135",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0137",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0138",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0140",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0141",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0143",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0144",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0146",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0147",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0149",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0150",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0152",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0153",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0155",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0156",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0158",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0159",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0161",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0162",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0164",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0165",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0167",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0168",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0170",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0171",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0173",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0174",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0176",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0177",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0179",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0180",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0182",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0183",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0185",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0186",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0188",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0189",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0191",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0192",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0194",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0195",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0197",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0198",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0200",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0201",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0203",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0204",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0206",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0207",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0209",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0210",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0212",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0213",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0215",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0216",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0218",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0219",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0221",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0222",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0224",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0225",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0227",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0228",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0230",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0231",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0233",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0234",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0236",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0237",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0239",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0240",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0242",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0243",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0245",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0246",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0248",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0249",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0251",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0252",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0254",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0255",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0257",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0258",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0260",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0261",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0263",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0264",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0266",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0267",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0269",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0270",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0272",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0273",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0275",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0276",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0278",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0279",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0281",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0282",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0284",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0285",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0287",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0288",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0290",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0291",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0293",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0294",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0296",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0297",
+        "status": "rejected",
+        "error": "字段不存在：devices.region_id"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0299",
+        "status": "rejected",
+        "error": "字段不存在：refunds.refunded_at"
+      },
+      {
+        "id": "biz_holdout_v2_auto_0300",
+        "status": "rejected",
+        "error": "字段不存在：products.region_id"
+      }
+    ],
+    "samples": [
+      {
+        "id": "biz_holdout_v2_auto_0001",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-01' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6997.177,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0002",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8072.312,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0003",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4943.075,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0004",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-04' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7981.377,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 186
+      },
+      {
+        "id": "biz_holdout_v2_auto_0005",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8217.557,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0006",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4890.194,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0007",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-07' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7149.333,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 168
+      },
+      {
+        "id": "biz_holdout_v2_auto_0008",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8524.893,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0009",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5359.991,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0010",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-10' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6660.634,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0011",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8458.474,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0012",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5491.431,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0013",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-13' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8199.842,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0014",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8304.387,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0015",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4858.761,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0016",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-16' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8166.928,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0017",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8164.523,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0018",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5304.587,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0019",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-19' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6659.274,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0020",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8136.363,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0021",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5488.397,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0022",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-22' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8134.694,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0023",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8244.61,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0024",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4868.606,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0025",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-25' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8330.234,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0026",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7968.365,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0027",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4867.498,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0028",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-28' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7963.713,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0029",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8028.495,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0030",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4987.356,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0031",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-07-31' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8146.704,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0032",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8152.873,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0033",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4953.449,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0034",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-03' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6519.819,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0035",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7970.197,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0036",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5063.671,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0037",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-06' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6343.668,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0038",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8084.773,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0039",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5171.659,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0040",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-09' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6548.316,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0041",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7888.005,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0042",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5210.263,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0043",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-12' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8171.133,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0044",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7857.428,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0045",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5116.599,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0046",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-15' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6274.637,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0047",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7854.691,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0048",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5357.311,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0049",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-18' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8190.012,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0050",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7964.28,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0051",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5525.629,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0052",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-21' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8536.501,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0053",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7824.445,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0054",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5055.413,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0055",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-24' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7760.104,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0056",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7834.344,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0057",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5125.826,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0058",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-27' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6346.857,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0059",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7992.757,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0060",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4860.257,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0061",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-08-30' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6569.642,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0062",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8433.003,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0063",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4959.859,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0064",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-02' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8115.297,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0065",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8219.472,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0066",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4840.433,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0067",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-05' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6619.221,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0068",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8064.362,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0069",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4969.555,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0070",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-08' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7863.43,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 186
+      },
+      {
+        "id": "biz_holdout_v2_auto_0071",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8128.686,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0072",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4967.77,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0073",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-11' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6485.87,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0074",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8109.796,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0075",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5253.479,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0076",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-14' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8193.829,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0077",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8322.021,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0078",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5117.597,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0079",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-17' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6861.44,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0080",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8013.466,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0081",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4871.151,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0082",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-20' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8566.215,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0083",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8313.894,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0084",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5581.205,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0085",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-23' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8837.642,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0086",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7861.617,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0087",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5843.607,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0088",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-26' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7228.324,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0089",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8587.526,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0090",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5514.819,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0091",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-09-29' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6840.368,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0092",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8479.476,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0093",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5301.258,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0094",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-02' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6587.377,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0095",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8475.248,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0096",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4814.014,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0097",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-05' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8057.555,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0098",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8048.818,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0099",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4889.001,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0100",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-08' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6644.481,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0101",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8187.7,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0102",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4925.223,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0103",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-11' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6702.825,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0104",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8241.815,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0105",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5340.855,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0106",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-14' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8029.99,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 188
+      },
+      {
+        "id": "biz_holdout_v2_auto_0107",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8387.789,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0108",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5060.575,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0109",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-17' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6871.33,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0110",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8269.325,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0111",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5574.392,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0112",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-20' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7512.636,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 168
+      },
+      {
+        "id": "biz_holdout_v2_auto_0113",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8371.272,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0114",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5173.071,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0115",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-23' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6672.081,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0116",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8309.798,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0117",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5003.17,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0118",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-26' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6643.21,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0119",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8717.321,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0120",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5515.228,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0121",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-10-29' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7414.505,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0122",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8565.908,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0123",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5718.844,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0124",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-01' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8532.775,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0125",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8808.678,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0126",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5604.605,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0127",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-04' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8685.347,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0128",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8241.511,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0129",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5165.542,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0130",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-07' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6769.707,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0131",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8323.958,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0132",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4914.626,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0133",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-10' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6612.126,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0134",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8458.56,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0135",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4996.37,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0136",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-13' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8320.014,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0137",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8242.844,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0138",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5640.892,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0139",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-16' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8177.142,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0140",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8137.844,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0141",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5426.354,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0142",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-19' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6470.53,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0143",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8172.568,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0144",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4954.824,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0145",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-22' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6540.921,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0146",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8200.279,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0147",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4886.571,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0148",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-25' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7429.898,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 173
+      },
+      {
+        "id": "biz_holdout_v2_auto_0149",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8157.907,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0150",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5384.532,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0151",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-11-28' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6533.505,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0152",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8354.518,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0153",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5331.239,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0154",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-01' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6571.743,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0155",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8086.447,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0156",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5439.377,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0157",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-04' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8002.031,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0158",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8040.223,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0159",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4829.114,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0160",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-07' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6418.926,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0161",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8200.468,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0162",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5274.072,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0163",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-10' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6583.143,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0164",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8195.52,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0165",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 4854.137,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0166",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-13' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6668.768,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0167",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7943.179,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0168",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6124.704,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0169",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-16' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8450.344,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 173
+      },
+      {
+        "id": "biz_holdout_v2_auto_0170",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9270.601,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0171",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6184.151,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0172",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-19' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 12702.237,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0173",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 12910.7,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0174",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8223.096,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0175",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-22' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 12072.058,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 185
+      },
+      {
+        "id": "biz_holdout_v2_auto_0176",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 11185.251,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0177",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6088.665,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0178",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-25' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9535.865,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 188
+      },
+      {
+        "id": "biz_holdout_v2_auto_0179",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9472.698,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0180",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5628.643,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0181",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-28' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9184.372,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 188
+      },
+      {
+        "id": "biz_holdout_v2_auto_0182",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9755.666,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0183",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5990.112,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0184",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2026-12-31' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7406.936,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0185",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9279.076,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0186",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5932.595,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0187",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-03' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7329.387,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0188",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9039.932,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0189",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5959.236,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0190",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-06' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9266.097,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0191",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9038.854,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0192",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5450.048,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0193",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-09' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9256.321,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0194",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9183.384,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0195",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6045.234,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0196",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-12' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9290.544,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0197",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9301.233,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0198",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5527.459,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0199",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-15' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7273.469,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0200",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9024.468,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0201",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6119.151,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0202",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-18' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7416.2,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0203",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8924.412,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0204",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5738.979,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0205",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-21' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7823.339,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0206",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9850.952,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0207",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5398.466,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0208",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-24' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7361.971,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 158
+      },
+      {
+        "id": "biz_holdout_v2_auto_0209",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8755.842,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0210",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5241.753,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0211",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-27' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8331.302,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0212",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9189.791,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0213",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6815.54,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0214",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-01-30' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9252.367,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0215",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 10712.215,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0216",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5163.835,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0217",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-02' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7527.097,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0218",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8738.124,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0219",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5229.753,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0220",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-05' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8831.758,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0221",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8911.852,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0222",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5772.926,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0223",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-08' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9023.385,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0224",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8839.223,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0225",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5589.757,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0226",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-11' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9085.455,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0227",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8790.994,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0228",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5869.285,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0229",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-14' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8773.92,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0230",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9014.062,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0231",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6107.463,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0232",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-17' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9792.886,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0233",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9304.763,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0234",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6008.763,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0235",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-20' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9558.106,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0236",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9224.741,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0237",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6007.706,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0238",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-23' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8229.464,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0239",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8983.647,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0240",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5198.492,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0241",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-02-26' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9903.995,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0242",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9463.336,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0243",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5519.343,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0244",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-01' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8158.04,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 173
+      },
+      {
+        "id": "biz_holdout_v2_auto_0245",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8746.349,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0246",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5600.507,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0247",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-04' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9184.906,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0248",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9388.386,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0249",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5189.862,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0250",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-07' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7875.119,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0251",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9929.565,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0252",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5941.906,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0253",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-10' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8546.638,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0254",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8540.296,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0255",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5397.683,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0256",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-13' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7079.385,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0257",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9327.68,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0258",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5412.881,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0259",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-16' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8771.597,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0260",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8641.392,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0261",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5915.912,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0262",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-19' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8962.447,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0263",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8826.32,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0264",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5371.326,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0265",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-22' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8288.222,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0266",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9185.11,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0267",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5807.86,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0268",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-25' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8956.922,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 188
+      },
+      {
+        "id": "biz_holdout_v2_auto_0269",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8963.754,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0270",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5859.33,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0271",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-28' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7693.222,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0272",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 10539.049,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0273",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5952.067,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0274",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-03-31' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8306.905,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 173
+      },
+      {
+        "id": "biz_holdout_v2_auto_0275",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9068.442,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0276",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5903.511,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0277",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-03' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7410.941,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0278",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9089.675,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0279",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5970.898,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0280",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-06' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9136.619,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0281",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8927.354,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0282",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5905.303,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      },
+      {
+        "id": "biz_holdout_v2_auto_0283",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-09' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7280.959,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0284",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8708.494,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0285",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5386.6,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0286",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-12' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8727.342,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0287",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8885.078,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0288",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5443.568,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0289",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-15' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7587.769,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0290",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9154.213,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0291",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5425.031,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0292",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-18' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 6855.158,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 151
+      },
+      {
+        "id": "biz_holdout_v2_auto_0293",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 10035.881,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0294",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5747.143,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0295",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-21' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8058.511,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 158
+      },
+      {
+        "id": "biz_holdout_v2_auto_0296",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 9141.252,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0297",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5292.998,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 111
+      },
+      {
+        "id": "biz_holdout_v2_auto_0298",
+        "status": "completed",
+        "predicted_sql": "SELECT r.name AS region_name, COUNT(*) AS delivered_order_count FROM shipments AS s JOIN orders AS o ON o.id = s.order_id JOIN customers AS c ON c.id = o.customer_id JOIN regions AS r ON r.id = c.region_id WHERE s.delivered_at >= '2027-04-24' GROUP BY r.name ORDER BY delivered_order_count DESC LIMIT 200",
+        "execution_correct": true,
+        "test_suite_correct": true,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 7401.277,
+        "model_calls": 1,
+        "prompt_tokens": 1772,
+        "completion_tokens": 152
+      },
+      {
+        "id": "biz_holdout_v2_auto_0299",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 8969.746,
+        "model_calls": 1,
+        "prompt_tokens": 1804,
+        "completion_tokens": 192
+      },
+      {
+        "id": "biz_holdout_v2_auto_0300",
+        "status": "rejected",
+        "predicted_sql": null,
+        "execution_correct": false,
+        "test_suite_correct": false,
+        "repair_rounds": 0,
+        "repair_succeeded": false,
+        "latency_ms": 5941.994,
+        "model_calls": 1,
+        "prompt_tokens": 1573,
+        "completion_tokens": 123
+      }
+    ],
+    "fixed_snapshot_accuracy": 0.3333333333333333,
+    "test_suite_protocol": "three_transactional_postgresql_snapshots"
+  },
+  "test_suite_report": "experiments/reports/test-suite-E20.json"
+}

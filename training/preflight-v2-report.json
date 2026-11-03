@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-10-29T06:38:32.227195+00:00",
+  "ready": true,
+  "checks": [
+    {
+      "name": "python_3_11",
+      "ok": true,
+      "detail": "3.11.18"
+    },
+    {
+      "name": "container_runtime_available",
+      "ok": true,
+      "detail": {
+        "url": "http://127.0.0.1:18000/health",
+        "status": 200
+      }
+    },
+    {
+      "name": "git_sha",
+      "ok": true,
+      "detail": "c71be2929d4afd28cfd95386ab4b29008691eae9"
+    },
+    {
+      "name": "cuda_available",
+      "ok": true,
+      "detail": {
+        "torch": "2.11.0+cu128",
+        "cuda": true
+      }
+    },
+    {
+      "name": "bf16_supported",
+      "ok": true,
+      "detail": true
+    },
+    {
+      "name": "disk_headroom_40gb",
+      "ok": true,
+      "detail": 91.76
+    },
+    {
+      "name": "training_count_2500_4000",
+      "ok": true,
+      "detail": 2800
+    },
+    {
+      "name": "development_count_300",
+      "ok": true,
+      "detail": 390
+    },
+    {
+      "name": "blind_count_300",
+      "ok": true,
+      "detail": 300
+    },
+    {
+      "name": "safety_count_100",
+      "ok": true,
+      "detail": 100
+    },
+    {
+      "name": "ambiguity_count_80",
+      "ok": true,
+      "detail": 80
+    },
+    {
+      "name": "smoke_training_count_100",
+      "ok": true,
+      "detail": 100
+    },
+    {
+      "name": "baseline_predictions_exist",
+      "ok": true,
+      "detail": "experiments/reports/E00*.json"
+    }
+  ]
+}

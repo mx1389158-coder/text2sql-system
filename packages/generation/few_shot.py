@@ -13,10 +13,26 @@ class FewShotExample:
     question: str
     sql: str
     tables: List[str]
+    template_group: str
     vector: List[float]
 
 
 class FewShotRetriever:
+    _QUESTION_TABLE_MARKERS = {
+        "退款": {"refunds"},
+        "分类": {"product_categories", "products"},
+        "品类": {"product_categories", "products"},
+        "配送": {"shipments", "customer_addresses"},
+        "送达": {"shipments"},
+        "地区": {"regions"},
+        "升级": {"device_upgrades"},
+        "团队": {"teams", "agents"},
+        "上门": {"service_visits"},
+        "保修": {"warranties"},
+        "质保": {"warranties"},
+        "型号": {"products"},
+    }
+
     def __init__(self, path: str | Path, limit: int = 3):
         self.path = Path(path)
         self.limit = max(0, limit)
@@ -42,6 +58,9 @@ class FewShotRetriever:
                             question=question,
                             sql=sql,
                             tables=list(row.get("tables") or []),
+                            template_group=str(
+                                row.get("template_group") or f"ungrouped:{row.get('id', question)}"
+                            ),
                             vector=self.encoder.encode(question),
                         )
                     )
@@ -52,18 +71,47 @@ class FewShotRetriever:
             return []
         query_vector = self.encoder.encode(question)
         allowed = set(allowed_tables)
-        ranked = sorted(
-            self.examples,
-            key=lambda item: self.encoder.cosine(query_vector, item.vector),
-            reverse=True,
-        )
+        intent_tables = {
+            table
+            for marker, tables in self._QUESTION_TABLE_MARKERS.items()
+            if marker in question
+            for table in tables
+        }
+        table_priority = {
+            table: 1.0 / (index + 1) for index, table in enumerate(allowed_tables)
+        }
+        candidates = [
+            item
+            for item in self.examples
+            if item.question.strip().lower() != question.strip().lower()
+            and (not item.tables or set(item.tables).issubset(allowed))
+        ]
         selected = []
-        for item in ranked:
-            if item.question.strip().lower() == question.strip().lower():
-                continue
-            if item.tables and not set(item.tables).issubset(allowed):
-                continue
-            selected.append(f"问题：{item.question}\nSQL：{item.sql}")
-            if len(selected) >= self.limit:
+        selected_groups = set()
+        covered_tables = set()
+        while candidates and len(selected) < self.limit:
+            eligible = [
+                item
+                for item in candidates
+                if item.template_group not in selected_groups
+            ]
+            if not eligible:
                 break
+
+            def relevance(item: FewShotExample) -> tuple[float, float]:
+                semantic = self.encoder.cosine(query_vector, item.vector)
+                tables = set(item.tables)
+                new_tables = tables - covered_tables
+                bridge_bonus = 0.35 if covered_tables & tables and new_tables else 0.0
+                coverage_bonus = 0.05 * sum(
+                    table_priority.get(table, 0.0) for table in new_tables
+                )
+                intent_bonus = 0.25 * len(tables & intent_tables)
+                return semantic + bridge_bonus + coverage_bonus + intent_bonus, semantic
+
+            item = max(eligible, key=relevance)
+            selected.append(f"问题：{item.question}\nSQL：{item.sql}")
+            selected_groups.add(item.template_group)
+            covered_tables.update(item.tables)
+            candidates.remove(item)
         return selected

@@ -1,0 +1,15 @@
+{
+  "adapter": "training/outputs/qwen25-coder-1.5b/text2sql-v5",
+  "sample": "text2sql_dev_v1.json",
+  "json_valid": true,
+  "sql_parse_valid": true,
+  "intent": "QUERY",
+  "used_tables": [
+    "satisfaction_surveys",
+    "tickets",
+    "devices",
+    "products"
+  ],
+  "sql": "SELECT p.model_code, ROUND(AVG(s.score),2) AS avg_score, ROUND(SUM(t.reviews),2), COUNT(*) AS review_count FROM satisfaction_surveys s JOIN tickets t ON t.id=s.ticket_id JOIN devices dv ON dv.id=t.device_id JOIN products p ON p.id=dv.product_id WHERE s.submitted_at >= '2023-01-01' AND s.status='completed' GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200",
+  "cuda_peak_mb": 1151.16
+}

@@ -1,0 +1,472 @@
+{
+  "generated_at": "2026-11-02T04:15:51.125540+00:00",
+  "workload": "A40-A48 v5 ablation inference using the same model endpoint as E21",
+  "measurement": {
+    "source": "nvidia-smi sampled at the host GPU during active inference",
+    "duration_seconds": 30.323152099968866,
+    "interval_seconds": 0.5,
+    "sample_count": 55,
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "gpu_memory_total_mb": 8151.0,
+    "system_gpu_memory_min_mb": 6959.0,
+    "system_gpu_memory_peak_mb": 7240.0,
+    "system_gpu_memory_observed_delta_mb": 281.0,
+    "gpu_utilization_mean_percent": 56.54545454545455,
+    "gpu_utilization_peak_percent": 100.0,
+    "power_mean_watts": 36.91727272727273,
+    "power_peak_watts": 40.26,
+    "torch_model_cuda_allocated_peak_mb": 1151.16,
+    "caveat": "Windows WDDM does not expose per-process VRAM through nvidia-smi; system memory includes desktop applications. The PyTorch allocation peak is the model-specific measurement and system peak is the end-to-end upper bound."
+  },
+  "experiment_reference": {
+    "id": "E21",
+    "model": "qwen25-coder-1.5b-text2sql-v5",
+    "p50_latency_ms": 17365.98204995971,
+    "p95_latency_ms": 28326.254700077698,
+    "model_calls": 627,
+    "prompt_tokens": 700955,
+    "completion_tokens": 147156
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 9.0012326836586e-07,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7166.0,
+      "utilization_percent": 64.0,
+      "power_watts": 39.82
+    },
+    {
+      "elapsed_seconds": 0.5608724001795053,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7168.0,
+      "utilization_percent": 70.0,
+      "power_watts": 39.92
+    },
+    {
+      "elapsed_seconds": 1.118189400061965,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7160.0,
+      "utilization_percent": 69.0,
+      "power_watts": 39.81
+    },
+    {
+      "elapsed_seconds": 1.668553899973631,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7160.0,
+      "utilization_percent": 69.0,
+      "power_watts": 39.91
+    },
+    {
+      "elapsed_seconds": 2.2255282001569867,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 6959.0,
+      "utilization_percent": 77.0,
+      "power_watts": 39.86
+    },
+    {
+      "elapsed_seconds": 2.786977600073442,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7013.0,
+      "utilization_percent": 77.0,
+      "power_watts": 39.89
+    },
+    {
+      "elapsed_seconds": 3.32124530011788,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7088.0,
+      "utilization_percent": 5.0,
+      "power_watts": 36.74
+    },
+    {
+      "elapsed_seconds": 3.8618463000748307,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7146.0,
+      "utilization_percent": 5.0,
+      "power_watts": 39.53
+    },
+    {
+      "elapsed_seconds": 4.425993900047615,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7152.0,
+      "utilization_percent": 60.0,
+      "power_watts": 39.04
+    },
+    {
+      "elapsed_seconds": 4.968804400181398,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7154.0,
+      "utilization_percent": 60.0,
+      "power_watts": 40.19
+    },
+    {
+      "elapsed_seconds": 5.530822700122371,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7194.0,
+      "utilization_percent": 48.0,
+      "power_watts": 40.21
+    },
+    {
+      "elapsed_seconds": 6.091421900084242,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7225.0,
+      "utilization_percent": 48.0,
+      "power_watts": 39.83
+    },
+    {
+      "elapsed_seconds": 6.634702900191769,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7219.0,
+      "utilization_percent": 45.0,
+      "power_watts": 40.01
+    },
+    {
+      "elapsed_seconds": 7.180226600030437,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7218.0,
+      "utilization_percent": 55.0,
+      "power_watts": 40.03
+    },
+    {
+      "elapsed_seconds": 7.726725700078532,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7217.0,
+      "utilization_percent": 55.0,
+      "power_watts": 40.15
+    },
+    {
+      "elapsed_seconds": 8.298037400003523,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7226.0,
+      "utilization_percent": 59.0,
+      "power_watts": 39.51
+    },
+    {
+      "elapsed_seconds": 8.85461000003852,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7234.0,
+      "utilization_percent": 59.0,
+      "power_watts": 40.02
+    },
+    {
+      "elapsed_seconds": 9.406505899969488,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7240.0,
+      "utilization_percent": 66.0,
+      "power_watts": 40.1
+    },
+    {
+      "elapsed_seconds": 9.95863450015895,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7042.0,
+      "utilization_percent": 66.0,
+      "power_watts": 39.89
+    },
+    {
+      "elapsed_seconds": 10.501715600024909,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7042.0,
+      "utilization_percent": 67.0,
+      "power_watts": 40.06
+    },
+    {
+      "elapsed_seconds": 11.049221500055864,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7042.0,
+      "utilization_percent": 67.0,
+      "power_watts": 39.95
+    },
+    {
+      "elapsed_seconds": 11.607454700162634,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7042.0,
+      "utilization_percent": 66.0,
+      "power_watts": 39.89
+    },
+    {
+      "elapsed_seconds": 12.175747600151226,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 69.0,
+      "power_watts": 40.01
+    },
+    {
+      "elapsed_seconds": 12.737642500083894,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 69.0,
+      "power_watts": 39.9
+    },
+    {
+      "elapsed_seconds": 13.296681800158694,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 64.0,
+      "power_watts": 39.94
+    },
+    {
+      "elapsed_seconds": 13.848521100124344,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 64.0,
+      "power_watts": 39.8
+    },
+    {
+      "elapsed_seconds": 14.387735900003463,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 0.0,
+      "power_watts": 30.27
+    },
+    {
+      "elapsed_seconds": 14.924654999980703,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 0.0,
+      "power_watts": 16.44
+    },
+    {
+      "elapsed_seconds": 15.4602783001028,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 1.0,
+      "power_watts": 12.25
+    },
+    {
+      "elapsed_seconds": 15.99638340016827,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 1.0,
+      "power_watts": 11.8
+    },
+    {
+      "elapsed_seconds": 16.532454000087455,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7041.0,
+      "utilization_percent": 5.0,
+      "power_watts": 13.15
+    },
+    {
+      "elapsed_seconds": 17.07205900014378,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7041.0,
+      "utilization_percent": 5.0,
+      "power_watts": 14.75
+    },
+    {
+      "elapsed_seconds": 17.609817899996415,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7041.0,
+      "utilization_percent": 100.0,
+      "power_watts": 19.96
+    },
+    {
+      "elapsed_seconds": 18.159499200060964,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7041.0,
+      "utilization_percent": 55.0,
+      "power_watts": 39.95
+    },
+    {
+      "elapsed_seconds": 18.7076080001425,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7041.0,
+      "utilization_percent": 55.0,
+      "power_watts": 40.26
+    },
+    {
+      "elapsed_seconds": 19.279613899998367,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 61.0,
+      "power_watts": 40.09
+    },
+    {
+      "elapsed_seconds": 19.850568399997428,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 61.0,
+      "power_watts": 39.62
+    },
+    {
+      "elapsed_seconds": 20.38824260002002,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7040.0,
+      "utilization_percent": 54.0,
+      "power_watts": 40.05
+    },
+    {
+      "elapsed_seconds": 20.937784800073132,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7041.0,
+      "utilization_percent": 54.0,
+      "power_watts": 39.92
+    },
+    {
+      "elapsed_seconds": 21.495070700068027,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 56.0,
+      "power_watts": 39.98
+    },
+    {
+      "elapsed_seconds": 22.05261979997158,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 56.0,
+      "power_watts": 39.71
+    },
+    {
+      "elapsed_seconds": 22.607735600089654,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 51.0,
+      "power_watts": 39.9
+    },
+    {
+      "elapsed_seconds": 23.154086700174958,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 60.0,
+      "power_watts": 40.06
+    },
+    {
+      "elapsed_seconds": 23.713265900034457,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 60.0,
+      "power_watts": 39.77
+    },
+    {
+      "elapsed_seconds": 24.283649099990726,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 100.0,
+      "power_watts": 39.92
+    },
+    {
+      "elapsed_seconds": 24.827192099997774,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 100.0,
+      "power_watts": 39.81
+    },
+    {
+      "elapsed_seconds": 25.370263500139117,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 76.0,
+      "power_watts": 39.85
+    },
+    {
+      "elapsed_seconds": 25.924621400190517,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 76.0,
+      "power_watts": 39.89
+    },
+    {
+      "elapsed_seconds": 26.47881770017557,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 73.0,
+      "power_watts": 39.93
+    },
+    {
+      "elapsed_seconds": 27.013904800172895,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7046.0,
+      "utilization_percent": 73.0,
+      "power_watts": 39.76
+    },
+    {
+      "elapsed_seconds": 27.572901600040495,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 69.0,
+      "power_watts": 39.88
+    },
+    {
+      "elapsed_seconds": 28.119772900128737,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7045.0,
+      "utilization_percent": 69.0,
+      "power_watts": 39.76
+    },
+    {
+      "elapsed_seconds": 28.664717100095004,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7047.0,
+      "utilization_percent": 68.0,
+      "power_watts": 39.96
+    },
+    {
+      "elapsed_seconds": 29.214601000072435,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7047.0,
+      "utilization_percent": 74.0,
+      "power_watts": 39.92
+    },
+    {
+      "elapsed_seconds": 29.768937200075015,
+      "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "memory_total_mb": 8151.0,
+      "memory_used_mb": 7047.0,
+      "utilization_percent": 74.0,
+      "power_watts": 39.83
+    }
+  ]
+}

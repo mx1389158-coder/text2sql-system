@@ -34,10 +34,13 @@ class Settings(BaseModel):
     schema_token_budget: int = Field(default=3000, ge=500, le=16000)
     max_repair_rounds: int = Field(default=2, ge=0, le=2)
     candidate_count: int = Field(default=3, ge=1, le=3)
+    candidate_semantic_threshold: float = Field(default=0.65, ge=0, le=1)
     cache_ttl_seconds: int = Field(default=300, ge=0, le=86400)
     schema_cache_ttl_seconds: int = Field(default=3600, ge=0, le=86400)
     few_shot_path: Path = Path("training/datasets/raw/train.jsonl")
-    few_shot_count: int = Field(default=3, ge=0, le=8)
+    # Two diverse examples were more reliable than three on multi-hop joins:
+    # the third example tended to introduce unrelated filters into the SQL.
+    few_shot_count: int = Field(default=2, ge=0, le=8)
     enable_few_shots: bool = True
     enable_fk_completion: bool = True
     enable_adaptive_schema: bool = True

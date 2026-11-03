@@ -58,6 +58,10 @@ def get_orchestrator() -> Text2SQLOrchestrator:
         GuardPolicy(
             max_rows=settings.max_rows,
             allowed_tables={table.name for table in catalog.tables},
+            allowed_columns={
+                table.name: {column.name for column in table.columns}
+                for table in catalog.tables
+            },
             allowed_schemas={catalog.schema},
         )
     )

@@ -12,8 +12,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run one frozen, reproducible experiment manifest")
     parser.add_argument("manifest")
     parser.add_argument("--output-dir", default="experiments/reports")
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="ignore a matching completed report and clear any sample checkpoint",
+    )
     args = parser.parse_args()
-    report = asyncio.run(run_manifest(get_orchestrator(), args.manifest, args.output_dir))
+    report = asyncio.run(
+        run_manifest(
+            get_orchestrator(),
+            args.manifest,
+            args.output_dir,
+            resume=not args.no_resume,
+        )
+    )
     summary = {
         key: value
         for key, value in report["summary"].items()

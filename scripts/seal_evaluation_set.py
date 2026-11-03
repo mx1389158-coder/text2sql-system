@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from packages.evaluation.metrics import result_hash
+from packages.evaluation.metrics import result_hash, result_value_hash
 from packages.execution.runner import PostgresRunner, SQLiteRunner
 
 
@@ -34,6 +34,9 @@ def main() -> None:
                 raise ValueError(f"execution failed: {row.get('id')}: {message}")
             public = {key: value for key, value in row.items() if key != "sql"}
             public["expected_result_hash"] = result_hash(
+                execution.rows, bool(row.get("order_sensitive", False))
+            )
+            public["expected_value_hash"] = result_value_hash(
                 execution.rows, bool(row.get("order_sensitive", False))
             )
             sealed.append(public)

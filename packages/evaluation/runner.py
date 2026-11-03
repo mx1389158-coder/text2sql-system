@@ -9,9 +9,17 @@ from pathlib import Path
 from statistics import median
 from typing import Any, Dict, List, Optional
 
+from apps.api.app.schemas.query import QueryRecord
 from apps.api.app.services.orchestrator import Text2SQLOrchestrator
 
-from .metrics import column_recall, execution_equal, exact_match, result_hash, schema_recall
+from .metrics import (
+    column_recall,
+    execution_equal,
+    exact_match,
+    result_hash,
+    result_value_hash,
+    schema_recall,
+)
 from .safety import SafetyCase, evaluate_safety
 
 
@@ -21,7 +29,9 @@ class EvaluationSummary:
     sql_valid_rate: float
     execution_success_rate: float
     execution_accuracy: float
+    fixed_snapshot_accuracy: float
     test_suite_accuracy: float
+    test_suite_protocol: str
     exact_match_rate: float
     schema_recall_at_k: float
     column_recall_at_k: float
@@ -51,6 +61,8 @@ class EvaluationRunner:
         dataset_path: str | Path,
         strategy: str = "optimized",
         max_model_calls_per_sample: Optional[int] = None,
+        checkpoint_path: str | Path | None = None,
+        checkpoint_context: Optional[Dict[str, Any]] = None,
     ) -> EvaluationSummary:
         examples = self._read_jsonl(dataset_path)
         run_started = time.perf_counter()
@@ -80,6 +92,27 @@ class EvaluationRunner:
                 continue
             evaluation_examples.append(example)
 
+        checkpoint = Path(checkpoint_path) if checkpoint_path else None
+        context = dict(checkpoint_context or {})
+        completed: Dict[str, Dict[str, Any]] = {}
+        previous_wall_time_ms = 0.0
+        checkpoint_peak_vram = peak_vram_mb
+        if checkpoint:
+            sample_ids = [str(example.get("id") or "") for example in evaluation_examples]
+            if not all(sample_ids) or len(sample_ids) != len(set(sample_ids)):
+                raise ValueError("checkpointed evaluation requires unique non-empty sample ids")
+            if checkpoint.exists():
+                payload = json.loads(checkpoint.read_text(encoding="utf-8"))
+                if payload.get("context") != context:
+                    raise ValueError(
+                        "evaluation checkpoint does not match the active manifest/model context"
+                    )
+                completed = dict(payload.get("completed") or {})
+                previous_wall_time_ms = float(payload.get("wall_time_ms") or 0.0)
+                stored_peak = payload.get("peak_vram_mb")
+                if stored_peak is not None:
+                    checkpoint_peak_vram = max(checkpoint_peak_vram or 0.0, float(stored_peak))
+
         semaphore = asyncio.Semaphore(self.orchestrator.settings.evaluation_concurrency)
 
         async def submit_example(example: Dict[str, Any]):
@@ -90,9 +123,41 @@ class EvaluationRunner:
                 )
                 return example, record, (time.perf_counter() - started) * 1000
 
-        submitted = await asyncio.gather(
-            *(submit_example(example) for example in evaluation_examples)
-        )
+        pending = [
+            example
+            for example in evaluation_examples
+            if str(example["id"]) not in completed
+        ]
+        tasks = [asyncio.create_task(submit_example(example)) for example in pending]
+        for future in asyncio.as_completed(tasks):
+            example, record, latency_ms = await future
+            completed[str(example["id"])] = {
+                "record": record.model_dump(mode="json"),
+                "latency_ms": latency_ms,
+            }
+            if checkpoint:
+                current_peak = self._peak_vram()
+                if current_peak is not None:
+                    checkpoint_peak_vram = max(checkpoint_peak_vram or 0.0, current_peak)
+                self._write_checkpoint(
+                    checkpoint,
+                    {
+                        "version": 1,
+                        "context": context,
+                        "wall_time_ms": previous_wall_time_ms
+                        + (time.perf_counter() - run_started) * 1000,
+                        "peak_vram_mb": checkpoint_peak_vram,
+                        "completed": completed,
+                    },
+                )
+        submitted = [
+            (
+                example,
+                QueryRecord.model_validate(completed[str(example["id"])]["record"]),
+                float(completed[str(example["id"])]["latency_ms"]),
+            )
+            for example in evaluation_examples
+        ]
         for example, record, latency_ms in submitted:
             latencies.append(latency_ms)
             model_calls += record.model_calls
@@ -152,8 +217,14 @@ class EvaluationRunner:
                             break
                     except Exception:
                         continue
+            expected_value_hash = example.get("expected_value_hash")
             expected_hash = example.get("expected_result_hash")
-            if expected_hash and record.result:
+            if expected_value_hash and record.result:
+                sample_execution_correct = result_value_hash(
+                    record.result.rows, bool(example.get("order_sensitive", False))
+                ) == str(expected_value_hash)
+                sample_test_suite_correct = sample_execution_correct
+            elif expected_hash and record.result:
                 sample_execution_correct = result_hash(
                     record.result.rows, bool(example.get("order_sensitive", False))
                 ) == str(expected_hash)
@@ -196,7 +267,9 @@ class EvaluationRunner:
             sql_valid_rate=valid / query_total,
             execution_success_rate=executed / query_total,
             execution_accuracy=execution_correct / query_total,
+            fixed_snapshot_accuracy=execution_correct / query_total,
             test_suite_accuracy=test_suite_correct / query_total,
+            test_suite_protocol="fixed_snapshot_proxy",
             exact_match_rate=exact / query_total,
             schema_recall_at_k=sum(table_recalls) / max(1, len(table_recalls)),
             column_recall_at_k=sum(column_recalls) / max(1, len(column_recalls)),
@@ -208,7 +281,7 @@ class EvaluationRunner:
             repairs_regressed=repairs_regressed,
             p50_latency_ms=median(latencies) if latencies else 0,
             p95_latency_ms=ordered[p95_index] if ordered else 0,
-            wall_time_ms=(time.perf_counter() - run_started) * 1000,
+            wall_time_ms=previous_wall_time_ms + (time.perf_counter() - run_started) * 1000,
             model_calls=model_calls,
             prompt_tokens=prompt_tokens,
             completion_tokens=completion_tokens,
@@ -244,6 +317,15 @@ class EvaluationRunner:
     def _read_jsonl(path: str | Path) -> List[Dict[str, Any]]:
         with Path(path).open("r", encoding="utf-8") as handle:
             return [json.loads(line) for line in handle if line.strip()]
+
+    @staticmethod
+    def _write_checkpoint(path: Path, payload: Dict[str, Any]) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = path.with_suffix(path.suffix + ".tmp")
+        temporary.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        temporary.replace(path)
 
     @staticmethod
     def write(summary: EvaluationSummary, path: str | Path) -> None:

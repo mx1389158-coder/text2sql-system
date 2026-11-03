@@ -1,0 +1,19 @@
+{
+  "completed_at": "2026-11-02T04:22:34.328489+00:00",
+  "status": "passed",
+  "vm": "nebula-text2sql-docker",
+  "source_database": "text2sql",
+  "temporary_restore_database": "text2sql_restore_drill",
+  "temporary_restore_database_removed": true,
+  "backup": {
+    "remote_path": "/home/text2sql/text2sql-backups/text2sql-20261102T042226Z.dump",
+    "sha256": "ef16746c649c6dc46e1a0ab30c61034994c0986d9ad44160026248b18c253cd6",
+    "size_bytes": 6577549,
+    "retained": true
+  },
+  "verification": {
+    "public_table_count": 23,
+    "source_orders": 50003,
+    "restored_orders": 50003
+  }
+}

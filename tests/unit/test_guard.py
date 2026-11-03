@@ -36,3 +36,24 @@ def test_cte_alias_is_not_treated_as_table(guard):
     )
     assert result.referenced_tables == ["orders"]
 
+
+@pytest.mark.parametrize(
+    "sql",
+    [
+        "SELECT p.not_a_column FROM products AS p",
+        "SELECT not_a_column FROM products",
+        "SELECT fw.model_code FROM firmware_versions AS fw",
+    ],
+)
+def test_unknown_columns_are_rejected_before_execution(guard, sql):
+    with pytest.raises(SQLSafetyError) as error:
+        guard.validate_and_rewrite(sql)
+    assert error.value.code == "column_denied"
+
+
+def test_output_alias_is_allowed_in_order_by(guard):
+    result = guard.validate_and_rewrite(
+        "SELECT COUNT(*) AS order_count FROM orders ORDER BY order_count DESC"
+    )
+    assert "ORDER BY order_count DESC" in result.sql
+

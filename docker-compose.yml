@@ -3,6 +3,7 @@ name: nebula-text2sql
 services:
   postgres:
     image: "${DOCKER_REGISTRY_PREFIX:-}postgres:17-alpine"
+    restart: unless-stopped
     environment:
       POSTGRES_DB: text2sql
       POSTGRES_USER: text2sql_admin
@@ -21,12 +22,14 @@ services:
 
   redis:
     image: "${DOCKER_REGISTRY_PREFIX:-}redis:7-alpine"
+    restart: unless-stopped
     command: ["redis-server", "--save", "60", "1"]
     ports:
       - "${TEXT2SQL_REDIS_PORT:-16379}:6379"
     profiles: ["cache"]
 
   api:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: apps/api/Dockerfile
@@ -69,6 +72,7 @@ services:
       retries: 12
 
   web:
+    restart: unless-stopped
     build:
       context: ./apps/web
       args:

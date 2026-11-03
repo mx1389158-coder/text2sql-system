@@ -1,0 +1,13 @@
+id: E20
+model: qwen25-coder-1.5b-text2sql-v5
+strategy: baseline
+dataset: data/evaluation/holdout_v2.jsonl
+dataset_sha256: 63720aa936b8e025f0faa22d5f468d62588dc521e6bec32cf16d631d2cdbc881
+model_max_tokens: 192
+max_model_calls_per_sample: 5
+overrides:
+  candidate_count: 1
+  max_repair_rounds: 0
+  enable_few_shots: false
+  enable_fk_completion: false
+  enable_adaptive_schema: false

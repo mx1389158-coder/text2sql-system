@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import List, Set
+from typing import Dict, List, Set
 
 import sqlglot
 from sqlglot import exp
@@ -19,6 +19,7 @@ class SQLSafetyError(ValueError):
 class GuardPolicy:
     max_rows: int = 200
     allowed_tables: Set[str] = field(default_factory=set)
+    allowed_columns: Dict[str, Set[str]] = field(default_factory=dict)
     allowed_functions: Set[str] = field(
         default_factory=lambda: {
             "abs", "avg", "coalesce", "concat", "count", "current_date", "date",
@@ -99,6 +100,7 @@ class SQLGuard:
             unknown = referenced - {name.lower() for name in self.policy.allowed_tables}
             if unknown:
                 raise SQLSafetyError(f"访问未授权表：{', '.join(sorted(unknown))}", "table_denied")
+        self._validate_columns(root, referenced, cte_names)
 
         for function in root.find_all(exp.Func):
             name = self._function_name(function)
@@ -121,6 +123,53 @@ class SQLGuard:
             referenced_tables=sorted(referenced),
             applied_limit=applied_limit,
         )
+
+    def _validate_columns(
+        self,
+        root: exp.Expression,
+        referenced_tables: Set[str],
+        cte_names: Set[str],
+    ) -> None:
+        if not self.policy.allowed_columns:
+            return
+        columns_by_table = {
+            table.lower(): {column.lower() for column in columns}
+            for table, columns in self.policy.allowed_columns.items()
+        }
+        aliases = {
+            table.alias_or_name.lower(): table.name.lower()
+            for table in root.find_all(exp.Table)
+            if table.name.lower() not in cte_names
+        }
+        output_aliases = {
+            alias.alias.lower()
+            for alias in root.find_all(exp.Alias)
+            if alias.alias
+        }
+        for column in root.find_all(exp.Column):
+            name = column.name.lower()
+            if not name or name == "*":
+                continue
+            qualifier = (column.table or "").lower()
+            if qualifier:
+                if qualifier in cte_names:
+                    continue
+                table_name = aliases.get(qualifier, qualifier)
+                allowed = columns_by_table.get(table_name)
+                if allowed is not None and name not in allowed:
+                    raise SQLSafetyError(
+                        f"字段不存在：{table_name}.{name}", "column_denied"
+                    )
+                continue
+            if name in output_aliases:
+                continue
+            matches = [
+                table
+                for table in referenced_tables
+                if name in columns_by_table.get(table, set())
+            ]
+            if referenced_tables and not matches:
+                raise SQLSafetyError(f"字段不存在：{name}", "column_denied")
 
     @staticmethod
     def _function_name(function: exp.Func) -> str:

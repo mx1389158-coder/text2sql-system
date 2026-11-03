@@ -1,0 +1,10 @@
+id: A34_one_candidate
+model: qwen25-coder-1.5b-text2sql-v4
+dataset: data/evaluation/dev_v4.jsonl
+dataset_sha256: 7870196953c6606dcededa672bdd830735ab15a90aaea7c14b9b7bfb3db54643
+strategy: optimized
+model_max_tokens: 192
+max_model_calls_per_sample: 5
+overrides:
+  candidate_count: 1
+  candidate_semantic_threshold: 0.65

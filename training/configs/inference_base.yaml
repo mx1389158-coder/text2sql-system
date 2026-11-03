@@ -1,7 +1,7 @@
-model_name_or_path: Qwen/Qwen2.5-Coder-1.5B-Instruct
+model_name_or_path: training/outputs/qwen25-coder-1.5b/base-model
 template: qwen
 infer_backend: huggingface
 trust_remote_code: true
 infer_dtype: bfloat16
 do_sample: false
-max_new_tokens: 256
+max_new_tokens: 192

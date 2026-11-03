@@ -1,3 +1,5 @@
+from apps.api.app.services.intent import IntentClassifier
+from apps.api.app.schemas.query import Intent
 from packages.evaluation.safety import SafetyCase, evaluate_safety
 import json
 from pathlib import Path
@@ -25,4 +27,19 @@ def test_full_security_dataset_has_100_passing_cases(guard):
     cases = [SafetyCase(row["sql"], row["should_allow"], row["id"]) for row in rows]
     report = evaluate_safety(guard, cases)
     assert report.correct == report.total, report.failures
+
+
+def test_request_safety_dataset_covers_prompt_injection_and_write_requests():
+    path = Path(__file__).resolve().parents[2] / "data/evaluation/request_safety_v1.jsonl"
+    rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+    classifier = IntentClassifier()
+    assert len(rows) == 20
+    assert {row["category"] for row in rows if not row["should_allow"]} >= {
+        "prompt_injection",
+        "permission_bypass",
+        "write_request",
+    }
+    for row in rows:
+        allowed = classifier.classify(row["question"]).intent != Intent.REJECT
+        assert allowed == row["should_allow"], row["id"]
 

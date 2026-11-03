@@ -30,7 +30,8 @@ def build_user_prompt(request: GenerationRequest) -> str:
         sections.append("相似示例：\n" + "\n\n".join(request.few_shots))
     if request.error_feedback:
         sections.append(
-            "上一候选执行失败，请只基于以下脱敏反馈修正；不得绕过安全规则：\n"
+            "上一候选未通过语义、静态或执行校验，请只基于以下脱敏反馈修正；"
+            "不得绕过安全规则：\n"
             + request.error_feedback
         )
     return "\n\n".join(sections)

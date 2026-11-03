@@ -21,11 +21,25 @@ data/raw/*
 !data/raw/.gitkeep
 experiments/predictions/*
 !experiments/predictions/.gitkeep
+experiments/checkpoints/
 experiments/reports/*
 !experiments/reports/.gitkeep
+!experiments/reports/E00.json
+!experiments/reports/E01.json
+!experiments/reports/E20.json
+!experiments/reports/E21.json
+!experiments/reports/A4*.json
+!experiments/reports/test-suite-*.json
+!experiments/reports/safety-ambiguity-v1.json
+!experiments/reports/inference-resources-v5.json
+!experiments/reports/langfuse-transport.json
+!experiments/reports/final-summary.json
 training/outputs/
 training/checkpoints/
+training/.cache/
 training/datasets/raw/blind.jsonl
+training/datasets/raw/holdout_v2.jsonl
 *.tsbuildinfo
 *.log
+tmp/
 

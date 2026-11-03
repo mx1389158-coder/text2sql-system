@@ -1,0 +1,10 @@
+id: A28_schema_budget1500
+model: qwen25-coder-1.5b-text2sql-v3
+dataset: data/evaluation/dev_v3.jsonl
+dataset_sha256: 8873d3ae85a3d14e0119c595549a99870d23180e7535781aca4444269903aec9
+strategy: optimized
+model_max_tokens: 192
+max_model_calls_per_sample: 5
+overrides:
+  schema_token_budget: 1500
+  candidate_semantic_threshold: 0.65

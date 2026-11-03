@@ -1,3 +1,7 @@
+import json
+from pathlib import Path
+
+from packages.schema_linker.semantic_catalog import SemanticCatalog
 from packages.schema_linker.mschema import MSchemaFormatter
 from packages.schema_linker.retriever import SchemaRetriever
 
@@ -16,4 +20,43 @@ def test_mschema_contains_columns_and_foreign_keys(catalog):
     assert "# Table:" in rendered.mschema
     assert "[Foreign keys]" in rendered.mschema
     assert rendered.estimated_tokens <= 3000
+
+
+def test_ambiguity_requires_complete_business_alias():
+    catalog = SemanticCatalog.from_json("data/processed/semantic_catalog_v1.json")
+
+    assert catalog.ambiguity("按型号统计结束保修的设备量") is None
+    assert catalog.ambiguity("统计有效订单") is not None
+
+
+def test_governed_ambiguity_set_matches_all_expected_keys():
+    root = Path(__file__).resolve().parents[2]
+    catalog = SemanticCatalog.from_json(root / "data/processed/semantic_catalog_v1.json")
+    rows = [
+        json.loads(line)
+        for line in (root / "data/evaluation/ambiguity_v1.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+        if line
+    ]
+    assert len(rows) == 80
+    for row in rows:
+        ambiguity = catalog.ambiguity(row["question"])
+        assert ambiguity is not None, row["id"]
+        assert ambiguity["key"] == row["clarification"], row["id"]
+
+
+def test_explicit_metric_scope_does_not_trigger_false_clarification():
+    catalog = SemanticCatalog.from_json("data/processed/semantic_catalog_v1.json")
+    assert catalog.ambiguity("不同型号的平均满意度和评价数") is None
+    assert catalog.ambiguity("各仓库所在地区总库存不超过 10 的型号") is None
+
+
+def test_semantic_definitions_do_not_match_single_chinese_character_overlap():
+    catalog = SemanticCatalog.from_json("data/processed/semantic_catalog_v1.json")
+
+    assert catalog.retrieve("按型号统计结束保修的设备量") == []
+    assert [item.key for item in catalog.retrieve("统计重复报修")] == [
+        "repeat_ticket"
+    ]
 

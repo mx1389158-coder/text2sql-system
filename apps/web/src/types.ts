@@ -42,7 +42,9 @@ export type EvalSummary = {
   total: number
   sql_valid_rate: number
   execution_accuracy: number
+  fixed_snapshot_accuracy?: number
   test_suite_accuracy: number
+  test_suite_protocol?: string
   schema_recall_at_k: number
   column_recall_at_k: number
   clarification_accuracy: number

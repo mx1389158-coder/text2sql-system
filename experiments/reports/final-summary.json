@@ -1,0 +1,1067 @@
+{
+  "generated_at": "2026-11-03T05:51:59.065888+00:00",
+  "experiments": {
+    "E00": {
+      "complete": true,
+      "model": "qwen25-coder-1.5b-base",
+      "strategy": "baseline",
+      "model_max_tokens": 192,
+      "sql_valid_rate": 0.3333333333333333,
+      "execution_accuracy": 0.2,
+      "p50_latency_ms": 7417.190200067125,
+      "p95_latency_ms": 8443.692800123245,
+      "model_calls": 300
+    },
+    "E01": {
+      "complete": true,
+      "model": "qwen25-coder-1.5b-base",
+      "strategy": "optimized",
+      "model_max_tokens": 192,
+      "sql_valid_rate": 0.94,
+      "execution_accuracy": 0.6066666666666667,
+      "p50_latency_ms": 20158.71889994014,
+      "p95_latency_ms": 30075.000300072134,
+      "model_calls": 755
+    },
+    "E20": {
+      "complete": true,
+      "model": "qwen25-coder-1.5b-text2sql-v5",
+      "strategy": "baseline",
+      "model_max_tokens": 192,
+      "sql_valid_rate": 0.3333333333333333,
+      "execution_accuracy": 0.3333333333333333,
+      "p50_latency_ms": 7856.059249956161,
+      "p95_latency_ms": 9463.335500098765,
+      "model_calls": 300
+    },
+    "E21": {
+      "complete": true,
+      "model": "qwen25-coder-1.5b-text2sql-v5",
+      "strategy": "optimized",
+      "model_max_tokens": 192,
+      "sql_valid_rate": 1.0,
+      "execution_accuracy": 1.0,
+      "p50_latency_ms": 17365.98204995971,
+      "p95_latency_ms": 28326.254700077698,
+      "model_calls": 627
+    }
+  },
+  "ablations": [
+    {
+      "id": "A40",
+      "name": "A40",
+      "complete": true,
+      "execution_accuracy": 0.5802469135802469,
+      "delta_vs_control": 0.0,
+      "sql_valid_rate": 0.8148148148148148,
+      "repair_gain": 10,
+      "p50_latency_ms": 12597.562700044364,
+      "model_calls": 202
+    },
+    {
+      "id": "A41",
+      "name": "A41",
+      "complete": true,
+      "execution_accuracy": 0.35802469135802467,
+      "delta_vs_control": -0.22222222222222227,
+      "sql_valid_rate": 0.6172839506172839,
+      "repair_gain": 0,
+      "p50_latency_ms": 15681.067800149322,
+      "model_calls": 202
+    },
+    {
+      "id": "A42",
+      "name": "A42",
+      "complete": true,
+      "execution_accuracy": 0.4074074074074074,
+      "delta_vs_control": -0.17283950617283955,
+      "sql_valid_rate": 0.7283950617283951,
+      "repair_gain": 12,
+      "p50_latency_ms": 11478.847599821165,
+      "model_calls": 199
+    },
+    {
+      "id": "A43",
+      "name": "A43",
+      "complete": true,
+      "execution_accuracy": 0.6172839506172839,
+      "delta_vs_control": 0.03703703703703698,
+      "sql_valid_rate": 0.8518518518518519,
+      "repair_gain": 4,
+      "p50_latency_ms": 12678.758600028232,
+      "model_calls": 190
+    },
+    {
+      "id": "A44",
+      "name": "A44",
+      "complete": true,
+      "execution_accuracy": 0.5555555555555556,
+      "delta_vs_control": -0.024691358024691357,
+      "sql_valid_rate": 0.8148148148148148,
+      "repair_gain": 10,
+      "p50_latency_ms": 5585.881399922073,
+      "model_calls": 121
+    },
+    {
+      "id": "A45",
+      "name": "A45",
+      "complete": true,
+      "execution_accuracy": 0.5185185185185185,
+      "delta_vs_control": -0.06172839506172845,
+      "sql_valid_rate": 0.7530864197530864,
+      "repair_gain": 0,
+      "p50_latency_ms": 11108.881100080907,
+      "model_calls": 162
+    },
+    {
+      "id": "A46",
+      "name": "A46",
+      "complete": true,
+      "execution_accuracy": 0.5802469135802469,
+      "delta_vs_control": 0.0,
+      "sql_valid_rate": 0.8148148148148148,
+      "repair_gain": 10,
+      "p50_latency_ms": 12130.73640014045,
+      "model_calls": 187
+    },
+    {
+      "id": "A47",
+      "name": "A47",
+      "complete": true,
+      "execution_accuracy": 0.5432098765432098,
+      "delta_vs_control": -0.03703703703703709,
+      "sql_valid_rate": 0.8641975308641975,
+      "repair_gain": 22,
+      "p50_latency_ms": 15573.811600217596,
+      "model_calls": 206
+    },
+    {
+      "id": "A48",
+      "name": "A48",
+      "complete": true,
+      "execution_accuracy": 0.5679012345679012,
+      "delta_vs_control": -0.012345679012345734,
+      "sql_valid_rate": 0.8148148148148148,
+      "repair_gain": 10,
+      "p50_latency_ms": 11781.381899956614,
+      "model_calls": 202
+    }
+  ],
+  "safety": {
+    "combined": {
+      "total": 120,
+      "normal": 50,
+      "attacks": 70,
+      "correct": 120,
+      "accuracy": 1.0,
+      "true_positive_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "failures": []
+    },
+    "sql_guard": {
+      "total": 100,
+      "normal": 40,
+      "attacks": 60,
+      "correct": 100,
+      "accuracy": 1.0,
+      "true_positive_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "failures": []
+    },
+    "request_intent": {
+      "total": 20,
+      "normal": 10,
+      "attacks": 10,
+      "correct": 20,
+      "accuracy": 1.0,
+      "true_positive_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "failures": []
+    },
+    "by_category": {
+      "catalog_exfiltration": {
+        "total": 6,
+        "normal": 0,
+        "attacks": 6,
+        "correct": 6,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "dangerous_function": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "ddl": {
+        "total": 9,
+        "normal": 0,
+        "attacks": 9,
+        "correct": 9,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "file_copy": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "locking_read": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "metadata_question": {
+        "total": 1,
+        "normal": 1,
+        "attacks": 0,
+        "correct": 1,
+        "accuracy": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "normal_question": {
+        "total": 9,
+        "normal": 9,
+        "attacks": 0,
+        "correct": 9,
+        "accuracy": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "normal_select": {
+        "total": 40,
+        "normal": 40,
+        "attacks": 0,
+        "correct": 40,
+        "accuracy": 1.0,
+        "true_positive_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "permission_bypass": {
+        "total": 2,
+        "normal": 0,
+        "attacks": 2,
+        "correct": 2,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "privilege_change": {
+        "total": 6,
+        "normal": 0,
+        "attacks": 6,
+        "correct": 6,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "procedural_sql": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "procedure_call": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "prompt_injection": {
+        "total": 4,
+        "normal": 0,
+        "attacks": 4,
+        "correct": 4,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "resource_abuse": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "session_control": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "stacked_sql_injection": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "unauthorized_schema": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "unauthorized_table": {
+        "total": 3,
+        "normal": 0,
+        "attacks": 3,
+        "correct": 3,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "write_dml": {
+        "total": 9,
+        "normal": 0,
+        "attacks": 9,
+        "correct": 9,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      },
+      "write_request": {
+        "total": 4,
+        "normal": 0,
+        "attacks": 4,
+        "correct": 4,
+        "accuracy": 1.0,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "failures": []
+      }
+    }
+  },
+  "clarification": {
+    "detection": {
+      "total": 80,
+      "correct": 80,
+      "accuracy": 1.0,
+      "failures": [],
+      "by_key": {
+        "active_device": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "failure_rate": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "inventory_snapshot": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "repurchase_rate": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "resolution_duration": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "return_exchange_rate": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "revenue": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "satisfaction": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "upgrade_success_rate": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        },
+        "valid_order": {
+          "total": 8,
+          "correct": 8,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "resolution": {
+      "status": "completed",
+      "total": 10,
+      "before_clarification_accuracy": 1.0,
+      "after_execution_success_rate": 1.0,
+      "after_execution_accuracy": 1.0,
+      "samples": [
+        {
+          "id": "clarify_resolve_001",
+          "expected_key": "return_exchange_rate",
+          "before_status": "clarification_required",
+          "before_key": "return_exchange_rate",
+          "after_status": "completed",
+          "predicted_sql": "WITH valid_items AS (SELECT oi.id, oi.product_id FROM order_items AS oi JOIN orders AS o ON o.id = oi.order_id WHERE o.status IN ('paid', 'completed')), approved_returns AS (SELECT DISTINCT r.order_item_id FROM refunds AS r WHERE r.status = 'approved' AND r.refund_type IN ('return', 'exchange')) SELECT p.model_code, ROUND(CAST(COUNT(ar.order_item_id) AS DECIMAL) / NULLIF(COUNT(vi.id), 0), 4) AS return_exchange_rate FROM valid_items AS vi JOIN products AS p ON p.id = vi.product_id LEFT JOIN approved_returns AS ar ON ar.order_item_id = vi.id GROUP BY p.model_code ORDER BY return_exchange_rate ASC, p.model_code LIMIT 200",
+          "expected_value_hash": "481ef246e47121bd5b62995c36d5d9d5a56903663b0b224a65d176b9abfc530d",
+          "actual_value_hash": "481ef246e47121bd5b62995c36d5d9d5a56903663b0b224a65d176b9abfc530d",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_002",
+          "expected_key": "revenue",
+          "before_status": "clarification_required",
+          "before_key": "revenue",
+          "after_status": "completed",
+          "predicted_sql": "SELECT ROUND(SUM(amount), 2) AS revenue FROM payments WHERE status = 'succeeded' LIMIT 200",
+          "expected_value_hash": "7ea8114a133933fa67de8a6f46e0d59d7d7a0ea257927be7c279e522d29ffc2d",
+          "actual_value_hash": "7ea8114a133933fa67de8a6f46e0d59d7d7a0ea257927be7c279e522d29ffc2d",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_003",
+          "expected_key": "valid_order",
+          "before_status": "clarification_required",
+          "before_key": "valid_order",
+          "after_status": "completed",
+          "predicted_sql": "SELECT COUNT(*) AS valid_order_count FROM orders WHERE status IN ('paid', 'completed') LIMIT 200",
+          "expected_value_hash": "82ab569aebe79cce37307131452098e8ae3156a4a1878a9691f1a4e326ef0f96",
+          "actual_value_hash": "82ab569aebe79cce37307131452098e8ae3156a4a1878a9691f1a4e326ef0f96",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_004",
+          "expected_key": "active_device",
+          "before_status": "clarification_required",
+          "before_key": "active_device",
+          "after_status": "completed",
+          "predicted_sql": "SELECT COUNT(DISTINCT device_id) AS active_device_count FROM (SELECT du.device_id FROM device_upgrades AS du WHERE du.upgraded_at >= CAST('2026-10-01' AS TIMESTAMP) - INTERVAL '30 DAYS' AND du.upgraded_at < CAST('2026-10-01' AS TIMESTAMP) + INTERVAL '1 DAY' UNION SELECT t.device_id FROM tickets AS t WHERE t.created_at >= CAST('2026-10-01' AS TIMESTAMP) - INTERVAL '30 DAYS' AND t.created_at < CAST('2026-10-01' AS TIMESTAMP) + INTERVAL '1 DAY') AS activity LIMIT 200",
+          "expected_value_hash": "613f0f4553b2fc244d713c1d2005c6b830277011307affd68d8963d39b6b24eb",
+          "actual_value_hash": "613f0f4553b2fc244d713c1d2005c6b830277011307affd68d8963d39b6b24eb",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_005",
+          "expected_key": "failure_rate",
+          "before_status": "clarification_required",
+          "before_key": "failure_rate",
+          "after_status": "completed",
+          "predicted_sql": "SELECT ROUND(CAST(COUNT(DISTINCT t.device_id) AS DECIMAL) / NULLIF(COUNT(DISTINCT d.id), 0), 4) AS failure_rate FROM devices AS d LEFT JOIN tickets AS t ON d.id = t.device_id LIMIT 200",
+          "expected_value_hash": "546d347fd117d5bd97ca3a9fc0b7db98a4f09479f807d0ce69b4040f8c6c4f05",
+          "actual_value_hash": "546d347fd117d5bd97ca3a9fc0b7db98a4f09479f807d0ce69b4040f8c6c4f05",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_006",
+          "expected_key": "resolution_duration",
+          "before_status": "clarification_required",
+          "before_key": "resolution_duration",
+          "after_status": "completed",
+          "predicted_sql": "SELECT ROUND(CAST(AVG(EXTRACT(EPOCH FROM (resolved_at - created_at)) / 3600.0) AS DECIMAL), 2) AS avg_resolution_hours FROM tickets WHERE status = 'resolved' AND NOT resolved_at IS NULL LIMIT 200",
+          "expected_value_hash": "77d1a1a6e879d2a91ebb151074ed68d829ec46441f90c4df5d1e234721ebe3ec",
+          "actual_value_hash": "77d1a1a6e879d2a91ebb151074ed68d829ec46441f90c4df5d1e234721ebe3ec",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_007",
+          "expected_key": "satisfaction",
+          "before_status": "clarification_required",
+          "before_key": "satisfaction",
+          "after_status": "completed",
+          "predicted_sql": "SELECT ROUND(CAST(AVG(score) AS DECIMAL), 2) AS avg_satisfaction, COUNT(*) AS survey_count FROM satisfaction_surveys WHERE NOT score IS NULL LIMIT 200",
+          "expected_value_hash": "b09b0b295a05e5e9b04f641b9947e07dfe88929a267c5205d4ad292800312906",
+          "actual_value_hash": "b09b0b295a05e5e9b04f641b9947e07dfe88929a267c5205d4ad292800312906",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_008",
+          "expected_key": "repurchase_rate",
+          "before_status": "clarification_required",
+          "before_key": "repurchase_rate",
+          "after_status": "completed",
+          "predicted_sql": "WITH customer_orders AS (SELECT customer_id, COUNT(*) AS order_count FROM orders WHERE status IN ('paid', 'completed') GROUP BY customer_id) SELECT ROUND(CAST(COUNT(*) FILTER(WHERE order_count >= 2) AS DECIMAL) / NULLIF(COUNT(*), 0), 4) AS repurchase_rate FROM customer_orders LIMIT 200",
+          "expected_value_hash": "f84485dab1bdd6e15eac26f5d18217493a97c5d9b36860f9219136ad8e1b655f",
+          "actual_value_hash": "f84485dab1bdd6e15eac26f5d18217493a97c5d9b36860f9219136ad8e1b655f",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_009",
+          "expected_key": "upgrade_success_rate",
+          "before_status": "clarification_required",
+          "before_key": "upgrade_success_rate",
+          "after_status": "completed",
+          "predicted_sql": "SELECT ROUND(CAST(COUNT(*) FILTER(WHERE status = 'success') AS DECIMAL) / NULLIF(COUNT(*), 0), 4) AS upgrade_success_rate FROM device_upgrades LIMIT 200",
+          "expected_value_hash": "6742b1dab25d7e43acbe9871f07e7f63bf78fc1f3533f3531e8255b48b9251df",
+          "actual_value_hash": "6742b1dab25d7e43acbe9871f07e7f63bf78fc1f3533f3531e8255b48b9251df",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        },
+        {
+          "id": "clarify_resolve_010",
+          "expected_key": "inventory_snapshot",
+          "before_status": "clarification_required",
+          "before_key": "inventory_snapshot",
+          "after_status": "completed",
+          "predicted_sql": "SELECT p.model_code, SUM(i.quantity) AS inventory_quantity FROM inventory AS i JOIN products AS p ON i.product_id = p.id GROUP BY p.model_code ORDER BY inventory_quantity DESC, p.model_code LIMIT 200",
+          "expected_value_hash": "8a2f39fb2b544e31e0b6ffdf5944d327a38868503b59b1772944dd91654e4cbe",
+          "actual_value_hash": "8a2f39fb2b544e31e0b6ffdf5944d327a38868503b59b1772944dd91654e4cbe",
+          "execution_correct": true,
+          "model_calls": 0,
+          "repair_rounds": 0,
+          "error": null
+        }
+      ]
+    }
+  },
+  "test_suites": {
+    "E00": {
+      "total": 300,
+      "snapshots": 3,
+      "correct_on_all_snapshots": 60,
+      "test_suite_accuracy": 0.2,
+      "per_snapshot": [
+        {
+          "snapshot": "fixed_snapshot",
+          "correct": 60,
+          "total": 300,
+          "accuracy": 0.2
+        },
+        {
+          "snapshot": "status_and_boundary_shift",
+          "correct": 60,
+          "total": 300,
+          "accuracy": 0.2
+        },
+        {
+          "snapshot": "foreign_key_reassignment",
+          "correct": 60,
+          "total": 300,
+          "accuracy": 0.2
+        }
+      ]
+    },
+    "E01": {
+      "total": 300,
+      "snapshots": 3,
+      "correct_on_all_snapshots": 182,
+      "test_suite_accuracy": 0.6066666666666667,
+      "per_snapshot": [
+        {
+          "snapshot": "fixed_snapshot",
+          "correct": 182,
+          "total": 300,
+          "accuracy": 0.6066666666666667
+        },
+        {
+          "snapshot": "status_and_boundary_shift",
+          "correct": 182,
+          "total": 300,
+          "accuracy": 0.6066666666666667
+        },
+        {
+          "snapshot": "foreign_key_reassignment",
+          "correct": 182,
+          "total": 300,
+          "accuracy": 0.6066666666666667
+        }
+      ]
+    },
+    "E20": {
+      "total": 300,
+      "snapshots": 3,
+      "correct_on_all_snapshots": 68,
+      "test_suite_accuracy": 0.22666666666666666,
+      "per_snapshot": [
+        {
+          "snapshot": "fixed_snapshot",
+          "correct": 100,
+          "total": 300,
+          "accuracy": 0.3333333333333333
+        },
+        {
+          "snapshot": "status_and_boundary_shift",
+          "correct": 68,
+          "total": 300,
+          "accuracy": 0.22666666666666666
+        },
+        {
+          "snapshot": "foreign_key_reassignment",
+          "correct": 68,
+          "total": 300,
+          "accuracy": 0.22666666666666666
+        }
+      ]
+    },
+    "E21": {
+      "total": 300,
+      "snapshots": 3,
+      "correct_on_all_snapshots": 300,
+      "test_suite_accuracy": 1.0,
+      "per_snapshot": [
+        {
+          "snapshot": "fixed_snapshot",
+          "correct": 300,
+          "total": 300,
+          "accuracy": 1.0
+        },
+        {
+          "snapshot": "status_and_boundary_shift",
+          "correct": 300,
+          "total": 300,
+          "accuracy": 1.0
+        },
+        {
+          "snapshot": "foreign_key_reassignment",
+          "correct": 300,
+          "total": 300,
+          "accuracy": 1.0
+        }
+      ]
+    }
+  },
+  "resources": {
+    "source": "nvidia-smi sampled at the host GPU during active inference",
+    "duration_seconds": 30.323152099968866,
+    "interval_seconds": 0.5,
+    "sample_count": 55,
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "gpu_memory_total_mb": 8151.0,
+    "system_gpu_memory_min_mb": 6959.0,
+    "system_gpu_memory_peak_mb": 7240.0,
+    "system_gpu_memory_observed_delta_mb": 281.0,
+    "gpu_utilization_mean_percent": 56.54545454545455,
+    "gpu_utilization_peak_percent": 100.0,
+    "power_mean_watts": 36.91727272727273,
+    "power_peak_watts": 40.26,
+    "torch_model_cuda_allocated_peak_mb": 1151.16,
+    "caveat": "Windows WDDM does not expose per-process VRAM through nvidia-smi; system memory includes desktop applications. The PyTorch allocation peak is the model-specific measurement and system peak is the end-to-end upper bound."
+  },
+  "badcases": {
+    "source": "A40",
+    "buckets": {
+      "other_execution_or_result_mismatch": 16,
+      "wrong_field_or_grouping": 18
+    },
+    "template_groups": {
+      "satisfaction_by_model": {
+        "total": 1,
+        "correct": 0
+      },
+      "dev_payments_status_since": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_shipments_status_since": {
+        "total": 5,
+        "correct": 0
+      },
+      "dev_ticket_events_since": {
+        "total": 5,
+        "correct": 0
+      },
+      "dev_badcase_firmware_category": {
+        "total": 5,
+        "correct": 2
+      },
+      "dev_badcase_warranty_region_on_date": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_badcase_service_visits_region": {
+        "total": 5,
+        "correct": 0
+      },
+      "dev_badcase_completed_visits_team": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_badcase_ended_warranty_model": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_badcase_released_firmware_model": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_coverage_shipments_city": {
+        "total": 5,
+        "correct": 0
+      },
+      "dev_coverage_shipments_region": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_coverage_addresses_region": {
+        "total": 5,
+        "correct": 0
+      },
+      "dev_coverage_payment_orders": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_coverage_fault_code": {
+        "total": 5,
+        "correct": 5
+      },
+      "dev_coverage_ticket_transitions": {
+        "total": 5,
+        "correct": 0
+      },
+      "dev_coverage_inventory_region": {
+        "total": 5,
+        "correct": 5
+      }
+    },
+    "samples": [
+      {
+        "id": "biz_dev_0001",
+        "template_group": "satisfaction_by_model",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT p.model_code, ROUND(CAST(AVG(s.score) AS DECIMAL), 2) AS avg_score, COUNT(*) AS survey_count FROM satisfaction_surveys AS s JOIN tickets AS t ON s.ticket_id = t.id JOIN devices AS dv ON dv.id = t.device_id JOIN products AS p ON dv.product_id = p.id WHERE s.submitted_at >= '2024-01-10' GROUP BY p.model_code ORDER BY avg_score DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0002",
+        "template_group": "dev_shipments_status_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT s.status, COUNT(*) AS order_count FROM orders AS o JOIN shipments AS s ON o.id = s.order_id WHERE o.ordered_at >= '2025-01-02' AND s.delivered_at >= '2025-01-02' GROUP BY s.status ORDER BY order_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0003",
+        "template_group": "dev_ticket_events_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.event_type, COUNT(*) AS event_count FROM ticket_events AS te WHERE te.occurred_at >= '2025-01-03' AND te.ticket_id IN (SELECT id FROM tickets WHERE status = 'open') GROUP BY te.event_type ORDER BY event_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0005",
+        "template_group": "dev_shipments_status_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT s.status, COUNT(*) AS order_count FROM orders AS o JOIN shipments AS s ON o.id = s.order_id WHERE o.ordered_at >= '2025-01-05' AND s.delivered_at >= '2025-01-05' AND s.status IN ('shipped', 'delivered') GROUP BY s.status ORDER BY order_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0006",
+        "template_group": "dev_ticket_events_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.event_type, COUNT(*) AS event_count FROM ticket_events AS te WHERE te.occurred_at >= '2025-01-06' AND te.ticket_id IN (SELECT id FROM tickets WHERE status = 'open') GROUP BY te.event_type ORDER BY event_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0008",
+        "template_group": "dev_shipments_status_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT s.status, COUNT(*) AS order_count FROM orders AS o JOIN shipments AS s ON o.id = s.order_id WHERE o.ordered_at >= '2025-01-08' AND s.delivered_at >= '2025-01-08' GROUP BY s.status ORDER BY order_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0009",
+        "template_group": "dev_ticket_events_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.event_type, COUNT(*) AS event_count FROM ticket_events AS te WHERE te.occurred_at >= '2025-01-09' AND te.ticket_id IN (SELECT id FROM tickets WHERE status = 'open') GROUP BY te.event_type ORDER BY event_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0011",
+        "template_group": "dev_shipments_status_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT s.status, COUNT(*) AS order_count FROM orders AS o JOIN shipments AS s ON o.id = s.order_id WHERE o.ordered_at >= '2025-01-11' AND s.delivered_at >= '2025-01-11' GROUP BY s.status ORDER BY order_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0012",
+        "template_group": "dev_ticket_events_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.event_type, COUNT(*) AS event_count FROM ticket_events AS te WHERE te.occurred_at >= '2025-01-12' AND te.ticket_id IN (SELECT id FROM tickets WHERE status = 'open') GROUP BY te.event_type ORDER BY event_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0014",
+        "template_group": "dev_shipments_status_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT s.status, COUNT(*) AS order_count FROM orders AS o JOIN shipments AS s ON o.id = s.order_id WHERE o.ordered_at >= '2025-01-14' AND s.delivered_at >= '2025-01-14' GROUP BY s.status ORDER BY order_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_auto_0015",
+        "template_group": "dev_ticket_events_since",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.event_type, COUNT(*) AS event_count FROM ticket_events AS te WHERE te.occurred_at >= '2025-01-15' AND te.ticket_id IN (SELECT id FROM tickets WHERE status = 'open') GROUP BY te.event_type ORDER BY event_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_badcase_0003",
+        "template_group": "dev_badcase_service_visits_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：service_visits.customer_id",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_badcase_0007",
+        "template_group": "dev_badcase_firmware_category",
+        "bucket": "wrong_field_or_grouping",
+        "status": "failed",
+        "error": "column \"p.name\" must appear in the GROUP BY clause or be used in an aggregate function LINE 1: SELECT p.name AS category_name, COUNT(*) AS firmware_count F...                ^",
+        "predicted_sql": "SELECT p.name AS category_name, COUNT(*) AS firmware_count FROM firmware_versions AS f JOIN products AS p ON f.product_id = p.id JOIN product_categories AS pc ON pc.id = p.category_id WHERE f.released_at >= '2025-07-07' GROUP BY pc.name ORDER BY firmware_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_badcase_0009",
+        "template_group": "dev_badcase_service_visits_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：service_visits.customer_id",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_badcase_0013",
+        "template_group": "dev_badcase_firmware_category",
+        "bucket": "wrong_field_or_grouping",
+        "status": "failed",
+        "error": "column \"p.name\" must appear in the GROUP BY clause or be used in an aggregate function LINE 1: SELECT p.name AS category_name, COUNT(*) AS firmware_count F...                ^",
+        "predicted_sql": "SELECT p.name AS category_name, COUNT(*) AS firmware_count FROM firmware_versions AS f JOIN products AS p ON f.product_id = p.id JOIN product_categories AS pc ON pc.id = p.category_id WHERE f.released_at >= '2025-07-13' GROUP BY pc.name ORDER BY firmware_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_badcase_0015",
+        "template_group": "dev_badcase_service_visits_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：service_visits.customer_id",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_badcase_0019",
+        "template_group": "dev_badcase_firmware_category",
+        "bucket": "wrong_field_or_grouping",
+        "status": "failed",
+        "error": "column \"p.name\" must appear in the GROUP BY clause or be used in an aggregate function LINE 1: SELECT p.name AS category_name, COUNT(*) AS firmware_count F...                ^",
+        "predicted_sql": "SELECT p.name AS category_name, COUNT(*) AS firmware_count FROM firmware_versions AS f JOIN products AS p ON f.product_id = p.id JOIN product_categories AS pc ON pc.id = p.category_id WHERE f.released_at >= '2025-07-19' GROUP BY pc.name ORDER BY firmware_count DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_badcase_0021",
+        "template_group": "dev_badcase_service_visits_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：service_visits.customer_id",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_badcase_0027",
+        "template_group": "dev_badcase_service_visits_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：service_visits.customer_id",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0001",
+        "template_group": "dev_coverage_shipments_city",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customers.city",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0003",
+        "template_group": "dev_coverage_addresses_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customer_addresses.activated_at",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0006",
+        "template_group": "dev_coverage_ticket_transitions",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.ticket_id, te.from_status, te.to_status, te.occurred_at FROM ticket_events AS te JOIN tickets AS t ON te.ticket_id = t.id WHERE t.status IN ('open', 'resolved') AND te.occurred_at >= '2025-10-06' GROUP BY te.ticket_id, te.from_status, te.to_status, te.occurred_at ORDER BY COUNT(*) DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_coverage_0008",
+        "template_group": "dev_coverage_shipments_city",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customers.city",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0010",
+        "template_group": "dev_coverage_addresses_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customer_addresses.activated_at",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0013",
+        "template_group": "dev_coverage_ticket_transitions",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.ticket_id, te.from_status, te.to_status, te.occurred_at FROM ticket_events AS te JOIN tickets AS t ON te.ticket_id = t.id WHERE t.status IN ('open', 'resolved') AND te.occurred_at >= '2025-10-13' GROUP BY te.ticket_id, te.from_status, te.to_status, te.occurred_at ORDER BY COUNT(*) DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_coverage_0015",
+        "template_group": "dev_coverage_shipments_city",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customers.city",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0017",
+        "template_group": "dev_coverage_addresses_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customer_addresses.activated_at",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0020",
+        "template_group": "dev_coverage_ticket_transitions",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.ticket_id, te.from_status, te.to_status, te.occurred_at FROM ticket_events AS te JOIN tickets AS t ON te.ticket_id = t.id WHERE t.status IN ('open', 'resolved') AND te.occurred_at >= '2025-10-20' GROUP BY te.ticket_id, te.from_status, te.to_status, te.occurred_at ORDER BY COUNT(*) DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_coverage_0022",
+        "template_group": "dev_coverage_shipments_city",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customers.city",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0024",
+        "template_group": "dev_coverage_addresses_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customer_addresses.activated_at",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0027",
+        "template_group": "dev_coverage_ticket_transitions",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.ticket_id, te.from_status, te.to_status, te.occurred_at FROM ticket_events AS te JOIN tickets AS t ON te.ticket_id = t.id WHERE t.status IN ('open', 'resolved') AND te.occurred_at >= '2025-10-27' GROUP BY te.ticket_id, te.from_status, te.to_status, te.occurred_at ORDER BY COUNT(*) DESC LIMIT 200"
+      },
+      {
+        "id": "biz_dev_coverage_0029",
+        "template_group": "dev_coverage_shipments_city",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customers.city",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0031",
+        "template_group": "dev_coverage_addresses_region",
+        "bucket": "wrong_field_or_grouping",
+        "status": "rejected",
+        "error": "字段不存在：customer_addresses.activated_at",
+        "predicted_sql": null
+      },
+      {
+        "id": "biz_dev_coverage_0034",
+        "template_group": "dev_coverage_ticket_transitions",
+        "bucket": "other_execution_or_result_mismatch",
+        "status": "completed",
+        "error": null,
+        "predicted_sql": "SELECT te.ticket_id, te.from_status, te.to_status, te.occurred_at FROM ticket_events AS te JOIN tickets AS t ON te.ticket_id = t.id WHERE t.status IN ('open', 'resolved') AND te.occurred_at >= '2025-11-03' GROUP BY te.ticket_id, te.from_status, te.to_status, te.occurred_at ORDER BY COUNT(*) DESC LIMIT 200"
+      }
+    ]
+  }
+}

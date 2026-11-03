@@ -40,7 +40,7 @@ const pct = (value?: number) => value === undefined ? '—' : `${(value * 100).t
         <p v-if="job.error" class="error">{{ job.error }}</p>
         <div v-if="job.summary" class="metric-strip">
           <span><small>EX</small><b>{{ pct(job.summary.execution_accuracy) }}</b></span>
-          <span><small>TEST SUITE</small><b>{{ pct(job.summary.test_suite_accuracy) }}</b></span>
+          <span><small>{{ job.summary.test_suite_protocol === 'fixed_snapshot_proxy' ? 'FIXED SNAPSHOT' : 'TEST SUITE' }}</small><b>{{ pct(job.summary.test_suite_accuracy) }}</b></span>
           <span><small>TABLE R@K</small><b>{{ pct(job.summary.schema_recall_at_k) }}</b></span>
           <span><small>COLUMN R@K</small><b>{{ pct(job.summary.column_recall_at_k) }}</b></span>
           <span><small>P95</small><b>{{ job.summary.p95_latency_ms.toFixed(1) }} ms</b></span>

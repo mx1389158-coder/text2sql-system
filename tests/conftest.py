@@ -30,6 +30,10 @@ def guard(catalog):
         GuardPolicy(
             max_rows=200,
             allowed_tables={table.name for table in catalog.tables},
+            allowed_columns={
+                table.name: {column.name for column in table.columns}
+                for table in catalog.tables
+            },
             allowed_schemas={"public", "main"},
         )
     )

@@ -39,12 +39,20 @@ def classify_database_error(error: Exception) -> ClassifiedError:
         category = ErrorCategory.UNKNOWN_COLUMN
     elif sqlstate in {"42804", "42883"} or "type" in lowered and "mismatch" in lowered:
         category = ErrorCategory.TYPE_MISMATCH
+    # Connection failures may themselves contain the word "timeout". They are
+    # infrastructure errors, not SQL defects, and must not consume a model
+    # repair round.
+    elif (
+        "connect" in lowered
+        or "connection" in lowered
+        or sqlstate is not None
+        and str(sqlstate).startswith("08")
+    ):
+        category = ErrorCategory.CONNECTION
     elif sqlstate in {"57014", "55P03"} or "timeout" in lowered or "interrupted" in lowered:
         category = ErrorCategory.TIMEOUT
     elif sqlstate == "42501" or "permission" in lowered or "read-only" in lowered:
         category = ErrorCategory.PERMISSION
-    elif "connect" in lowered:
-        category = ErrorCategory.CONNECTION
     else:
         category = ErrorCategory.UNKNOWN
     safe = re.sub(r"(password|token|secret)\s*[=:]\s*\S+", r"\1=[REDACTED]", message, flags=re.I)

@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-11-02T04:24:40.745948+00:00",
+  "status": "passed",
+  "sdk_transport_verified": true,
+  "live_langfuse_backend_verified": false,
+  "reason_live_backend_not_started": "The dedicated VM has 1 CPU and 6 GiB RAM. The official Langfuse stack requires web, worker, PostgreSQL, Redis, ClickHouse and object storage; starting it during model/database acceptance would exceed the isolated VM allocation.",
+  "captured_requests": [
+    {
+      "method": "POST",
+      "path": "/api/public/otel/v1/traces",
+      "content_type": "application/x-protobuf",
+      "authorization_present": true,
+      "body_bytes": 542
+    }
+  ]
+}

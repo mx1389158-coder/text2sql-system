@@ -1,0 +1,10 @@
+id: A41_no_few_shot
+model: qwen25-coder-1.5b-text2sql-v5
+dataset: data/evaluation/dev_v5_ablation81.jsonl
+dataset_sha256: b16ccf2e8c4e1328b0ed2b4dc1c5d50cbf3f7407d9cfd07fb8e7eb610d886e1b
+strategy: optimized
+model_max_tokens: 192
+max_model_calls_per_sample: 5
+overrides:
+  enable_few_shots: false
+  candidate_semantic_threshold: 0.65
