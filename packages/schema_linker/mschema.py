@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import replace
-from typing import Dict, List, Set
+from typing import Callable, Dict, List, Optional, Set
 
 from .models import DatabaseCatalog, SchemaEvidence
 
@@ -17,6 +17,8 @@ class MSchemaFormatter:
         evidence: SchemaEvidence,
         token_budget: int = 3000,
         examples_per_column: int = 2,
+        allowed_columns: Optional[Dict[str, Set[str]]] = None,
+        sample_value_allowed: Optional[Callable[[str, str], bool]] = None,
     ) -> SchemaEvidence:
         selected_columns: Dict[str, Set[str]] = {}
         for column in evidence.selected_columns:
@@ -36,6 +38,10 @@ class MSchemaFormatter:
             block = [header, "["]
             chosen = selected_columns.get(table_name, set())
             for column in table.columns:
+                if allowed_columns is not None and column.name not in allowed_columns.get(
+                    table_name, set()
+                ):
+                    continue
                 if chosen and column.name not in chosen and not column.primary_key:
                     continue
                 attributes = [f"{column.name}:{column.data_type.upper()}"]
@@ -43,7 +49,12 @@ class MSchemaFormatter:
                     attributes.append(column.description)
                 if column.primary_key:
                     attributes.append("Primary Key")
-                examples = [str(value)[:40] for value in column.examples[:examples_per_column]]
+                examples = (
+                    [str(value)[:40] for value in column.examples[:examples_per_column]]
+                    if sample_value_allowed is None
+                    or sample_value_allowed(table_name, column.name)
+                    else []
+                )
                 if examples:
                     attributes.append(f"Examples: [{', '.join(examples)}]")
                 block.append(f"  ({', '.join(attributes)}),")

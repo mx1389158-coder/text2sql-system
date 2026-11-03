@@ -13,6 +13,9 @@
 
 E00/E01 与 E20/E21 使用相同 `holdout_v2`、192 token 和每样本最多 5 次模型调用。
 该 Holdout 只有 3 个未见模板族，因此不能把结果外推为任意 Text2SQL 问题的通用准确率。
+原计划 E10/E11 表示“最终微调模型的基础/优化策略”角色；历史 v1 的同名 manifest 保持不可变，
+因此最终 v5 实际运行 E20/E21 分别映射到计划角色 E10/E11。映射与同预算校验见
+`experiments/canonical_2x2.json` 和 `docs/experiments/canonical_2x2_validation.json`。
 
 ## 消融实验
 

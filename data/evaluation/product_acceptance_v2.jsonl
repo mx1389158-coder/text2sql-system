@@ -1,0 +1,4 @@
+{"id":"accept_simple","category":"single_table_aggregation","question":"列出产品型号、名称和价格","expected_status":"completed","expected_tables":["products"]}
+{"id":"accept_join","category":"multi_table_join","question":"统计不同型号的平均满意度和评价数","expected_status":"completed","expected_tables":["satisfaction_surveys","tickets","devices","products"]}
+{"id":"accept_time_window","category":"complex_time_window","question":"哪些设备型号在首次报修后7天内再次报修？","expected_status":"completed","expected_tables":["tickets","devices","products"]}
+{"id":"accept_clarification","category":"metric_clarification","question":"各型号的退换货率是多少？","expected_status":"clarification_required","clarification_answer":"按申请时间，仅退货/换货"}

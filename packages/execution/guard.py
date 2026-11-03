@@ -18,6 +18,7 @@ class SQLSafetyError(ValueError):
 @dataclass(frozen=True)
 class GuardPolicy:
     max_rows: int = 200
+    deny_select_star: bool = False
     allowed_tables: Set[str] = field(default_factory=set)
     allowed_columns: Dict[str, Set[str]] = field(default_factory=dict)
     allowed_functions: Set[str] = field(
@@ -100,6 +101,8 @@ class SQLGuard:
             unknown = referenced - {name.lower() for name in self.policy.allowed_tables}
             if unknown:
                 raise SQLSafetyError(f"访问未授权表：{', '.join(sorted(unknown))}", "table_denied")
+        if self.policy.deny_select_star and root.find(exp.Star):
+            raise SQLSafetyError("受限权限不允许 SELECT *", "column_denied")
         self._validate_columns(root, referenced, cte_names)
 
         for function in root.find_all(exp.Func):

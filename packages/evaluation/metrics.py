@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import math
 from typing import Any, Dict, Iterable, List
 
 import sqlglot
@@ -22,9 +23,26 @@ def execution_equal(
     predicted_rows: Iterable[Dict[str, Any]],
     expected_rows: Iterable[Dict[str, Any]],
     order_sensitive: bool = False,
+    float_precision: int = 6,
 ) -> bool:
+    def normalize(value: Any) -> Any:
+        if isinstance(value, float):
+            if math.isnan(value):
+                return "__NaN__"
+            if math.isinf(value):
+                return "__Infinity__" if value > 0 else "__-Infinity__"
+            return round(value, float_precision)
+        if isinstance(value, dict):
+            return {str(key): normalize(item) for key, item in value.items()}
+        if isinstance(value, (list, tuple)):
+            return [normalize(item) for item in value]
+        return value
+
     def encode(rows: Iterable[Dict[str, Any]]) -> List[str]:
-        values = [json.dumps(row, sort_keys=True, ensure_ascii=False, default=str) for row in rows]
+        values = [
+            json.dumps(normalize(row), sort_keys=True, ensure_ascii=False, default=str)
+            for row in rows
+        ]
         return values if order_sensitive else sorted(values)
 
     return encode(predicted_rows) == encode(expected_rows)

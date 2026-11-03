@@ -26,6 +26,7 @@ def test_query_endpoint_runs_complete_pipeline():
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "completed"
+    assert payload["prompt_version"] == "text2sql-system-v1.0.0"
     assert len(payload["result"]["rows"]) == 2
     assert "products" in payload["schema_evidence"]["selected_tables"]
 

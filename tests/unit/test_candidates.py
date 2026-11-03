@@ -144,6 +144,28 @@ def test_semantic_scorer_does_not_guess_ambiguous_fk_join(catalog) -> None:
     assert scorer.normalize_unique_fk_joins(sql) == sql
 
 
+def test_semantic_scorer_preserves_cte_lineage_joins(catalog) -> None:
+    scorer = LightweightCandidateScorer(catalog)
+    sql = (
+        "WITH ordered_tickets AS ("
+        "SELECT device_id, fault_code_id, created_at, "
+        "LAG(created_at) OVER (PARTITION BY device_id ORDER BY created_at) previous_at "
+        "FROM tickets WHERE status <> 'cancelled') "
+        "SELECT p.model_code, f.category, COUNT(*) FROM ordered_tickets ot "
+        "JOIN devices d ON d.id=ot.device_id "
+        "JOIN products p ON p.id=d.product_id "
+        "LEFT JOIN fault_codes f ON f.id=ot.fault_code_id "
+        "WHERE ot.previous_at IS NOT NULL "
+        "AND ot.created_at <= ot.previous_at + INTERVAL '7 days' "
+        "GROUP BY p.model_code, f.category"
+    )
+
+    normalized = scorer.normalize_unique_fk_joins(sql)
+    assert "JOIN tickets ON" not in normalized
+    assert "f.id = ot.fault_code_id" in normalized
+    assert scorer.score("哪些设备型号在首次报修后7天内再次报修？", GeneratedCandidate(sql=sql)) >= 0.65
+
+
 def test_semantic_scorer_normalizes_reviewed_refund_field_aliases(catalog) -> None:
     scorer = LightweightCandidateScorer(catalog)
     sql = (

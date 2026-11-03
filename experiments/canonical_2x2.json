@@ -1,0 +1,34 @@
+{
+  "version": "v2-final",
+  "dataset": "data/evaluation/holdout_v2.jsonl",
+  "dataset_sha256": "63720aa936b8e025f0faa22d5f468d62588dc521e6bec32cf16d631d2cdbc881",
+  "model_max_tokens": 192,
+  "max_model_calls_per_sample": 5,
+  "id_policy": "Original E10/E11 v1 history is immutable. Final tuned cells use E20/E21 and are mapped to the plan's E10/E11 roles without rerunning or relabeling evidence.",
+  "cells": {
+    "E00": {
+      "role": "base model + baseline strategy",
+      "actual_run": "E00",
+      "model": "qwen25-coder-1.5b-base",
+      "strategy": "baseline"
+    },
+    "E01": {
+      "role": "base model + optimized strategy",
+      "actual_run": "E01",
+      "model": "qwen25-coder-1.5b-base",
+      "strategy": "optimized"
+    },
+    "E10": {
+      "role": "final tuned model + baseline strategy",
+      "actual_run": "E20",
+      "model": "qwen25-coder-1.5b-text2sql-v5",
+      "strategy": "baseline"
+    },
+    "E11": {
+      "role": "final tuned model + optimized strategy",
+      "actual_run": "E21",
+      "model": "qwen25-coder-1.5b-text2sql-v5",
+      "strategy": "optimized"
+    }
+  }
+}

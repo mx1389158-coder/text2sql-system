@@ -32,3 +32,13 @@
 - [x] Langfuse SDK 5 的 OTLP 网络发送链路已验证。
 - [x] Langfuse Cloud 日本区真实后端已接通；鉴权、直接上报以及真实 Text2SQL 查询的五阶段 trace 读回均通过，脱敏证据见 `langfuse_cloud_report.json`。
 - [x] 最终实验完成后清理临时状态、固化 commit/tag。
+
+## v2 逐章节修订
+
+- [x] CUDA、BF16、NF4 算子和依赖锁实际预检通过；训练/推理配置分离。
+- [x] checkpoint-257 恢复状态完整，恢复入口默认 dry-run，未重跑训练。
+- [x] 单表、多表 JOIN、复杂时间窗口、口径澄清四类产品验收 4/4。
+- [x] 数据 split 按 ID、问题、template_group 零泄漏，并记录模板/表组合/难度分层。
+- [x] 23 表、32 条外键、只读、超时恢复和空结果验证通过。
+- [x] 角色权限扩展到字段与 Schema 样例值，受限角色禁止 `SELECT *`。
+- [x] 计划 E10/E11 角色映射到不可变最终运行 E20/E21，同预算校验通过且不伪造重跑。

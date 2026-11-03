@@ -11,6 +11,14 @@ Last verified: 2026-11-03 (Asia/Shanghai).
 | P4 strategy | Complete | Candidate semantic scoring, batched generation, execution-grounded selection, bounded repair and governed clarification compiler implemented and measured |
 | P5 evaluation/full stack | Complete | Strict 2x2, nine ablations, three-snapshot Test-Suite, safety/ambiguity, resource measurement, browser QA and final reports complete |
 
+## v2 chapter revision
+
+The 15-chapter revision is implemented in `docs/PROJECT_PLAN_V2.md`. New verified evidence includes
+CUDA/BF16/NF4 operator preflight, dry-run checkpoint recovery, zero-leak split stratification,
+32-FK snapshot validation, role-level column/sample-value filtering, Prompt version tracing, explicit
+result-equivalence rules, four product scenarios (4/4), and the canonical E00/E01/E10/E11 role map.
+No model training or frozen experiment was rerun for this documentation and reliability revision.
+
 ## Release result
 
 - Strict equal-budget 2x2 on the same 300-example holdout and 192-token budget:

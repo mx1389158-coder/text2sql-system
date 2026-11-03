@@ -42,3 +42,12 @@ and holdout Gold SQL is git-ignored; formal manifests reference SQL-free sealed 
 SHA-256 values.
 Each preparation run stores split hashes, per-example result hashes and row counts.
 
+## v2 governance verification
+
+- `dataset_governance_report.json` verifies zero cross-split ID, normalized-question or
+  `template_group` leakage and records difficulty, semantic-template and table-combination strata.
+- `snapshot_validation_report.json` verifies 23 tables, target-scale counts, all 32 foreign keys,
+  read-only write denial, statement timeout, post-timeout connection recovery and valid empty results.
+- Business definitions are versioned in `semantic_catalog_v1.json`; the human-readable contract is
+  `business_metrics_v1.md`.
+

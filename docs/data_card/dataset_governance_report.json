@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-11-03T07:07:12.665735+00:00",
+  "status": "passed",
+  "rules": {
+    "cross_split_id_leakage": "forbidden",
+    "cross_split_normalized_question_leakage": "forbidden",
+    "cross_split_template_group_leakage": "forbidden",
+    "stratification_dimensions": [
+      "business semantic template",
+      "table combination",
+      "difficulty"
+    ]
+  },
+  "leaks": [],
+  "missing_metadata": [],
+  "distributions": {
+    "train": {
+      "count": 4100,
+      "difficulty": {
+        "easy": 1,
+        "hard": 2249,
+        "medium": 1850
+      },
+      "template_family_count": 32,
+      "table_combination_count": 27,
+      "template_groups": {
+        "product_list": 1,
+        "sales_by_model": 1,
+        "tickets_by_team": 1,
+        "train_badcase_active_warranty_category": 75,
+        "train_badcase_completed_visits_active_agent": 75,
+        "train_badcase_completed_visits_team": 75,
+        "train_badcase_ended_warranty_model": 75,
+        "train_badcase_ended_warranty_region": 75,
+        "train_badcase_firmware_device_adoption": 75,
+        "train_badcase_firmware_latest_by_model": 75,
+        "train_badcase_latest_firmware_category": 75,
+        "train_badcase_released_firmware_model": 75,
+        "train_badcase_resolved_tickets_team": 75,
+        "train_badcase_service_visits_agent": 75,
+        "train_badcase_warranty_region_started": 75,
+        "train_coverage_addresses_region": 100,
+        "train_coverage_delivered_shipments_city": 100,
+        "train_coverage_fault_category": 100,
+        "train_coverage_inventory_warehouse": 100,
+        "train_coverage_payments_order_status": 100,
+        "train_coverage_shipments_region": 100,
+        "train_coverage_ticket_events": 100,
+        "train_customers_region_since": 250,
+        "train_devices_model_since": 250,
+        "train_inventory_threshold": 249,
+        "train_orders_status_since": 250,
+        "train_refunds_type_since": 250,
+        "train_revenue_region_since": 250,
+        "train_satisfaction_model_since": 249,
+        "train_tickets_status_since": 250,
+        "train_units_model_since": 250,
+        "train_upgrades_status_since": 249
+      },
+      "table_combinations": {
+        "agents+service_visits": 150,
+        "agents+service_visits+teams": 75,
+        "agents+teams+tickets": 76,
+        "customer_addresses+regions": 100,
+        "customer_addresses+regions+shipments": 100,
+        "customer_addresses+shipments": 100,
+        "customers+devices+regions+warranties": 150,
+        "customers+orders+regions": 250,
+        "customers+regions": 250,
+        "device_upgrades": 249,
+        "devices+firmware_versions": 75,
+        "devices+product_categories+products+warranties": 75,
+        "devices+products": 250,
+        "devices+products+satisfaction_surveys+tickets": 249,
+        "devices+products+warranties": 75,
+        "fault_codes+tickets": 100,
+        "firmware_versions+product_categories+products": 75,
+        "firmware_versions+products": 150,
+        "inventory+products": 249,
+        "inventory+warehouses": 100,
+        "order_items+orders+products": 251,
+        "orders": 250,
+        "orders+payments": 100,
+        "products": 1,
+        "refunds": 250,
+        "ticket_events": 100,
+        "tickets": 250
+      },
+      "sources": {
+        "corrected_badcase": 1600,
+        "governed_template_verified": 2497,
+        "manual_verified": 3
+      }
+    },
+    "dev": {
+      "count": 620,
+      "difficulty": {
+        "hard": 281,
+        "medium": 339
+      },
+      "template_family_count": 17,
+      "table_combination_count": 15,
+      "template_groups": {
+        "dev_badcase_completed_visits_team": 30,
+        "dev_badcase_ended_warranty_model": 30,
+        "dev_badcase_firmware_category": 30,
+        "dev_badcase_released_firmware_model": 30,
+        "dev_badcase_service_visits_region": 30,
+        "dev_badcase_warranty_region_on_date": 30,
+        "dev_coverage_addresses_region": 20,
+        "dev_coverage_fault_code": 20,
+        "dev_coverage_inventory_region": 20,
+        "dev_coverage_payment_orders": 20,
+        "dev_coverage_shipments_city": 20,
+        "dev_coverage_shipments_region": 20,
+        "dev_coverage_ticket_transitions": 20,
+        "dev_payments_status_since": 100,
+        "dev_shipments_status_since": 100,
+        "dev_ticket_events_since": 99,
+        "satisfaction_by_model": 1
+      },
+      "table_combinations": {
+        "agents+regions+service_visits+teams": 30,
+        "agents+service_visits+teams": 30,
+        "customer_addresses+regions": 20,
+        "customer_addresses+regions+shipments": 20,
+        "customer_addresses+shipments": 20,
+        "customers+devices+regions+warranties": 30,
+        "devices+products+satisfaction_surveys+tickets": 1,
+        "devices+products+warranties": 30,
+        "fault_codes+tickets": 20,
+        "firmware_versions+product_categories+products": 30,
+        "firmware_versions+products": 30,
+        "inventory+regions+warehouses": 20,
+        "payments": 120,
+        "shipments": 100,
+        "ticket_events": 119
+      },
+      "sources": {
+        "governed_template_verified": 619,
+        "manual_verified": 1
+      }
+    },
+    "blind": {
+      "count": 300,
+      "difficulty": {
+        "hard": 299,
+        "medium": 1
+      },
+      "template_family_count": 4,
+      "table_combination_count": 4,
+      "template_groups": {
+        "blind_firmware_release": 99,
+        "blind_service_visits_team": 100,
+        "blind_warranty_expiry": 100,
+        "inventory_by_model": 1
+      },
+      "table_combinations": {
+        "agents+service_visits+teams": 100,
+        "devices+products+warranties": 100,
+        "firmware_versions+products": 99,
+        "inventory+products": 1
+      },
+      "sources": {
+        "governed_template_verified": 299,
+        "manual_verified": 1
+      }
+    }
+  }
+}

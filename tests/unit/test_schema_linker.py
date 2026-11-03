@@ -22,6 +22,20 @@ def test_mschema_contains_columns_and_foreign_keys(catalog):
     assert rendered.estimated_tokens <= 3000
 
 
+def test_mschema_filters_hidden_columns_and_sample_values(catalog):
+    evidence = SchemaRetriever(catalog).retrieve("产品型号和名称", top_k=2)
+    rendered = MSchemaFormatter(catalog).format(
+        evidence,
+        token_budget=3000,
+        allowed_columns={"products": {"model_code"}},
+        sample_value_allowed=lambda _table, _column: False,
+    )
+
+    assert "model_code:" in rendered.mschema
+    assert "list_price:" not in rendered.mschema
+    assert "Examples:" not in rendered.mschema
+
+
 def test_ambiguity_requires_complete_business_alias():
     catalog = SemanticCatalog.from_json("data/processed/semantic_catalog_v1.json")
 
@@ -50,6 +64,14 @@ def test_explicit_metric_scope_does_not_trigger_false_clarification():
     catalog = SemanticCatalog.from_json("data/processed/semantic_catalog_v1.json")
     assert catalog.ambiguity("不同型号的平均满意度和评价数") is None
     assert catalog.ambiguity("各仓库所在地区总库存不超过 10 的型号") is None
+
+
+def test_repeat_ticket_rate_has_a_versioned_clarification_policy():
+    catalog = SemanticCatalog.from_json("data/processed/semantic_catalog_v1.json")
+    ambiguity = catalog.ambiguity("各型号重复报修率是多少？")
+
+    assert ambiguity is not None
+    assert ambiguity["key"] == "repeat_ticket_rate"
 
 
 def test_semantic_definitions_do_not_match_single_chinese_character_overlap():

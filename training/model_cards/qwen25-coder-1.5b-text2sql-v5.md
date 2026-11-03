@@ -5,6 +5,8 @@ Status: validated for the governed Nebula Smart Home schema with the optimized r
 ## Provenance
 
 - Base model: `Qwen/Qwen2.5-Coder-1.5B-Instruct`.
+- Base revision: `2e1fd397ee46e1388853d2af2c993145b0f1098a` (the locally cached immutable revision used by this release).
+- Base license: Apache-2.0.
 - Initialization adapter: v4 checkpoint 300; optimizer and scheduler restarted for v5.
 - Config: `training/configs/qwen25_coder_1_5b_qlora_v5.yaml`.
 - Config SHA-256: `f0c411c37e7fd522dbaa2814e1e78bf7592e4b7b30c0b609564bc7a87e4cdf97`.

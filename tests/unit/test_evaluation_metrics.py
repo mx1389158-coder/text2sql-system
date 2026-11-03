@@ -1,4 +1,9 @@
-from packages.evaluation.metrics import column_recall, result_hash, result_value_hash
+from packages.evaluation.metrics import (
+    column_recall,
+    execution_equal,
+    result_hash,
+    result_value_hash,
+)
 
 
 def test_column_recall_is_case_insensitive():
@@ -18,3 +23,25 @@ def test_result_value_hash_ignores_output_aliases_but_preserves_value_order():
     reordered = [{"product_model": "LOCK-X1", "version_count": 2}]
     assert result_value_hash(expected) == result_value_hash(renamed)
     assert result_value_hash(expected) != result_value_hash(reordered)
+
+
+def test_execution_equal_normalizes_float_noise_and_nulls():
+    predicted = [{"rate": 0.3000000001, "note": None}]
+    expected = [{"rate": 0.3, "note": None}]
+
+    assert execution_equal(predicted, expected)
+
+
+def test_execution_equal_preserves_duplicate_row_multiplicity():
+    duplicated = [{"id": 1}, {"id": 1}]
+    single = [{"id": 1}]
+
+    assert not execution_equal(duplicated, single)
+
+
+def test_execution_equal_only_honors_order_when_requested():
+    left = [{"id": 1}, {"id": 2}]
+    right = list(reversed(left))
+
+    assert execution_equal(left, right)
+    assert not execution_equal(left, right, order_sensitive=True)

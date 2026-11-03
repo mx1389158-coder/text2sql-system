@@ -217,6 +217,12 @@ class LightweightCandidateScorer:
             table.alias_or_name.lower(): table.name.lower()
             for table in root.find_all(exp.Table)
         }
+        cte_names = {cte.alias_or_name.lower() for cte in root.find_all(exp.CTE)}
+        cte_aliases = {
+            table.alias_or_name.lower()
+            for table in root.find_all(exp.Table)
+            if table.name.lower() in cte_names
+        }
         joins = list(root.find_all(exp.Join))
         if not joins:
             return 1.0
@@ -224,6 +230,15 @@ class LightweightCandidateScorer:
         for join in joins:
             on_expression = join.args.get("on")
             if on_expression is None:
+                continue
+            if any(
+                column.table and column.table.lower() in cte_aliases
+                for column in on_expression.find_all(exp.Column)
+            ):
+                # The CTE output lineage has already been checked by SQLGuard,
+                # but it is not a physical catalog FK endpoint. Treat it as
+                # neutral-valid instead of inventing a replacement join.
+                valid += 1
                 continue
             if any(
                 self._is_foreign_key_equality(equality, aliases)
@@ -290,6 +305,12 @@ class LightweightCandidateScorer:
         if len(base_tables) != 1:
             return sql
         base = base_tables[0]
+        cte_names = {cte.alias_or_name.lower() for cte in root.find_all(exp.CTE)}
+        cte_aliases = {
+            table.alias_or_name.lower()
+            for table in root.find_all(exp.Table)
+            if table.name.lower() in cte_names
+        }
         introduced: Dict[str, str] = {base.name.lower(): base.alias_or_name.lower()}
         all_aliases = {
             table.alias_or_name.lower() for table in root.find_all(exp.Table)
@@ -305,6 +326,17 @@ class LightweightCandidateScorer:
             joined_alias = join.this.alias_or_name.lower()
             aliases = {**introduced, joined_table: joined_alias}
             on_expression = join.args.get("on")
+            references_cte = bool(
+                on_expression
+                and any(
+                    column.table and column.table.lower() in cte_aliases
+                    for column in on_expression.find_all(exp.Column)
+                )
+            )
+            if references_cte:
+                rewritten.append(join)
+                introduced[joined_table] = joined_alias
+                continue
             already_valid = bool(
                 on_expression
                 and any(

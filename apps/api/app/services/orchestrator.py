@@ -17,7 +17,7 @@ from packages.generation.candidates import (
 from packages.generation.few_shot import FewShotRetriever
 from packages.generation.governed_metrics import GovernedMetricCompiler
 from packages.generation.models import CandidateScore, GenerationRequest
-from packages.generation.prompts import build_repair_feedback
+from packages.generation.prompts import SYSTEM_PROMPT_VERSION, build_repair_feedback
 from packages.generation.providers import ProviderGenerationError
 from packages.schema_linker.mschema import MSchemaFormatter
 from packages.schema_linker.models import DatabaseCatalog, SchemaEvidence
@@ -91,6 +91,7 @@ class Text2SQLOrchestrator:
             clarification_answer=clarification_answer,
             strategy=strategy,
             model=self.settings.llm_model if self.settings.llm_provider != "demo" else "demo-rules",
+            prompt_version=SYSTEM_PROMPT_VERSION,
         )
         self.repository.save(record)
         stage_started = time.perf_counter()
@@ -150,11 +151,20 @@ class Text2SQLOrchestrator:
 
         stage_started = time.perf_counter()
         scope_policy = self.access_policy.resolve(scope)
+        scoped_columns = {
+            table: scope_policy.allowed_columns(
+                table,
+                set(self.guard.policy.allowed_columns.get(table, set())),
+            )
+            for table in scope_policy.tables
+        }
         query_guard = SQLGuard(
             replace(
                 self.guard.policy,
                 allowed_tables=set(scope_policy.tables),
+                allowed_columns=scoped_columns,
                 allowed_schemas=set(scope_policy.schemas),
+                deny_select_star=bool(scope_policy.columns),
             )
         )
         top_k = len(self.catalog.tables) if strategy == "baseline" else self.settings.schema_top_k
@@ -182,7 +192,12 @@ class Text2SQLOrchestrator:
             evidence = replace(
                 evidence,
                 selected_tables=[name for name in evidence.selected_tables if name in allowed],
-                selected_columns=[item for item in evidence.selected_columns if item.table in allowed],
+                selected_columns=[
+                    item
+                    for item in evidence.selected_columns
+                    if item.table in allowed
+                    and item.column in scoped_columns.get(item.table, set())
+                ],
                 join_path_tables=[name for name in evidence.join_path_tables if name in allowed],
                 table_scores={
                     name: score for name, score in evidence.table_scores.items() if name in allowed
@@ -193,6 +208,8 @@ class Text2SQLOrchestrator:
                 token_budget=(
                     16000 if strategy == "baseline" else self.settings.schema_token_budget
                 ),
+                allowed_columns=scoped_columns,
+                sample_value_allowed=scope_policy.allows_sample_value,
             )
             self.schema_cache.set(schema_key, evidence)
         record.schema_evidence = self._schema_response(evidence, semantic_lines)
@@ -296,6 +313,7 @@ class Text2SQLOrchestrator:
                     if governed_candidate is not None
                     else "model"
                 ),
+                "prompt_version": record.prompt_version,
             },
             trace_listener,
         )

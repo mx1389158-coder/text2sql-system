@@ -9,6 +9,10 @@ therefore untrusted. Four controls are independent:
 3. A dedicated PostgreSQL login with SELECT-only grants and default read-only transactions.
 4. Per-transaction statement/lock timeouts and a hard row cap.
 
+Scope policies may restrict schemas, tables and columns independently. M-Schema sample values are
+only emitted for explicitly permitted table/column pairs. A column-restricted scope rejects
+`SELECT *`, preventing execution from bypassing prompt-time field filtering.
+
 Prompt instructions are not a security boundary. Safety rejection is deterministic and is not fed
 back to the model for a bypass attempt. Production should add network isolation, secret rotation,
 request rate limiting and database audit logs.

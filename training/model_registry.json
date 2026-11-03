@@ -3,6 +3,8 @@
     {
       "id": "qwen25-coder-1.5b-base",
       "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "base_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+      "base_license": "Apache-2.0",
       "adapter": null,
       "status": "configured",
       "metrics": null,
@@ -11,6 +13,8 @@
     {
       "id": "qwen25-coder-1.5b-text2sql-v1",
       "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "base_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+      "base_license": "Apache-2.0",
       "adapter": "training/outputs/qwen25-coder-1.5b/text2sql-v1",
       "status": "trained_unvalidated",
       "metrics": {
@@ -24,6 +28,8 @@
     {
       "id": "qwen25-coder-1.5b-text2sql-v5",
       "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "base_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+      "base_license": "Apache-2.0",
       "adapter": "training/outputs/qwen25-coder-1.5b/text2sql-v5",
       "status": "validated",
       "metrics": {
@@ -63,7 +69,7 @@
           "Cross-database, Spider/BIRD and multi-dialect transfer were not evaluated."
         ]
       },
-      "notes": "严格同预算 2x2、九组消融、安全/歧义、多快照与资源评测均已完成；等待固化 Git SHA 后执行注册。",
+      "notes": "严格同预算 2x2、九组消融、安全/歧义、多快照与资源评测均已完成，模型已通过注册门禁。",
       "git_sha": "7039642f65f64615483612cc98475d4421743c51",
       "data_manifest_sha256": "1f94e7c4a180b7556256c4c9e2531a555da785e887c2477f8df943d94df6430f",
       "registered_at": "2026-11-03T05:54:02.116939+00:00"

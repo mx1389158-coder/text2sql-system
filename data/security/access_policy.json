@@ -2,11 +2,22 @@
   "scopes": {
     "default": {
       "schemas": ["public", "main"],
-      "tables": ["*"]
+      "tables": ["*"],
+      "sample_values": {"*": ["*"]}
     },
     "evaluation": {
       "schemas": ["public", "main"],
-      "tables": ["*"]
+      "tables": ["*"],
+      "sample_values": {"*": ["*"]}
+    },
+    "restricted_analyst": {
+      "schemas": ["public", "main"],
+      "tables": ["products", "orders"],
+      "columns": {
+        "products": ["id", "model_code", "name", "list_price"],
+        "orders": ["id", "ordered_at", "status", "total_amount"]
+      },
+      "sample_values": {}
     }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "config": "training\\configs\\qwen25_coder_1_5b_qlora_v5.yaml",
+  "output_dir": "training\\outputs\\qwen25-coder-1.5b\\text2sql-v5",
+  "checkpoint": "training\\outputs\\qwen25-coder-1.5b\\text2sql-v5\\checkpoint-257",
+  "checkpoint_state_complete": true,
+  "execute": false,
+  "command": [
+    ".conda\\Scripts\\llamafactory-cli.exe",
+    "train",
+    "training\\configs\\qwen25_coder_1_5b_qlora_v5.yaml",
+    "--resume_from_checkpoint",
+    "training\\outputs\\qwen25-coder-1.5b\\text2sql-v5\\checkpoint-257"
+  ]
+}

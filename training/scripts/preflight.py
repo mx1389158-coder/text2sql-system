@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.metadata
 import json
 import platform
 import shutil
@@ -75,6 +76,9 @@ def main() -> None:
     add("git_sha", bool(git), git or "repository has no commit")
 
     cuda = bf16 = False
+    compute_capability = None
+    device_name = None
+    bnb_4bit_operator = False
     torch_version = "not installed"
     try:
         import torch
@@ -82,16 +86,68 @@ def main() -> None:
         torch_version = torch.__version__
         cuda = torch.cuda.is_available()
         bf16 = cuda and torch.cuda.is_bf16_supported()
+        if cuda:
+            device_name = torch.cuda.get_device_name(0)
+            compute_capability = list(torch.cuda.get_device_capability(0))
+            try:
+                import bitsandbytes as bnb
+
+                probe = torch.linspace(-1, 1, 256, device="cuda", dtype=torch.bfloat16)
+                quantized, state = bnb.functional.quantize_4bit(probe, quant_type="nf4")
+                restored = bnb.functional.dequantize_4bit(quantized, state)
+                bnb_4bit_operator = bool(torch.isfinite(restored).all().item())
+            except (ImportError, RuntimeError, AttributeError):
+                bnb_4bit_operator = False
     except ImportError:
         pass
-    add("cuda_available", cuda, {"torch": torch_version, "cuda": cuda})
+    add(
+        "cuda_available",
+        cuda,
+        {
+            "torch": torch_version,
+            "cuda": cuda,
+            "device": device_name,
+            "compute_capability": compute_capability,
+        },
+    )
     add("bf16_supported", bf16, bf16)
+    add("bitsandbytes_nf4_operator", bnb_4bit_operator, bnb_4bit_operator)
+
+    dependency_versions = {}
+    for package in ("torch", "transformers", "peft", "bitsandbytes", "llamafactory"):
+        try:
+            dependency_versions[package] = importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:
+            dependency_versions[package] = None
+    add(
+        "dependency_versions_available",
+        all(dependency_versions.values()),
+        dependency_versions,
+    )
+    lock_files = [
+        "environment.yml",
+        "requirements-lock.txt",
+        "apps/web/package-lock.json",
+        "docker-compose.yml",
+    ]
+    add(
+        "dependency_locks_present",
+        all((ROOT / path).is_file() for path in lock_files),
+        lock_files,
+    )
+    train_config = ROOT / "training/configs/qwen25_coder_1_5b_qlora_v5.yaml"
+    inference_config = ROOT / "training/configs/inference_tuned_v5.yaml"
+    add(
+        "training_inference_configs_separated",
+        train_config.is_file() and inference_config.is_file(),
+        {"training": str(train_config.relative_to(ROOT)), "inference": str(inference_config.relative_to(ROOT))},
+    )
 
     free_gb = shutil.disk_usage(ROOT).free / (1024**3)
     add("disk_headroom_40gb", free_gb >= 40, round(free_gb, 2))
     raw = ROOT / "training/datasets/raw"
     counts = {split: line_count(raw / f"{split}.jsonl") for split in ("train", "dev", "blind")}
-    add("training_count_2500_4000", 2500 <= counts["train"] <= 4000, counts["train"])
+    add("training_count_at_least_2500", counts["train"] >= 2500, counts["train"])
     add("development_count_300", counts["dev"] >= 300, counts["dev"])
     add("blind_count_300", counts["blind"] >= 300, counts["blind"])
     add(

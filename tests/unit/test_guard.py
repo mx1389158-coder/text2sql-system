@@ -23,6 +23,8 @@ def test_existing_limit_is_capped(guard):
         "SELECT * FROM pg_catalog.pg_user",
         "SELECT * FROM secret_table",
         "SELECT * FROM orders FOR UPDATE",
+        "WITH changed AS (DELETE FROM orders RETURNING id) SELECT id FROM changed",
+        "WITH changed AS (UPDATE orders SET status='paid' RETURNING id) SELECT id FROM changed",
     ],
 )
 def test_dangerous_sql_is_rejected(guard, sql):

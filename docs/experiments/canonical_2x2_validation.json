@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-11-03T07:09:22.011994+00:00",
+  "status": "passed",
+  "matrix": "experiments\\canonical_2x2.json",
+  "historical_ids_preserved": true,
+  "failures": [],
+  "cells": {
+    "E00": {
+      "actual_run": "E00",
+      "checks": {
+        "dataset_sha256": true,
+        "model_max_tokens": true,
+        "max_model_calls_per_sample": true,
+        "model": true,
+        "strategy": true
+      },
+      "sql_valid_rate": 0.3333333333333333,
+      "execution_accuracy": 0.2,
+      "p50_latency_ms": 7417.190200067125,
+      "p95_latency_ms": 8443.692800123245,
+      "model_calls": 300,
+      "prompt_tokens": 514900,
+      "completion_tokens": 51595
+    },
+    "E01": {
+      "actual_run": "E01",
+      "checks": {
+        "dataset_sha256": true,
+        "model_max_tokens": true,
+        "max_model_calls_per_sample": true,
+        "model": true,
+        "strategy": true
+      },
+      "sql_valid_rate": 0.94,
+      "execution_accuracy": 0.6066666666666667,
+      "p50_latency_ms": 20158.71889994014,
+      "p95_latency_ms": 30075.000300072134,
+      "model_calls": 755,
+      "prompt_tokens": 862311,
+      "completion_tokens": 187584
+    },
+    "E10": {
+      "actual_run": "E20",
+      "checks": {
+        "dataset_sha256": true,
+        "model_max_tokens": true,
+        "max_model_calls_per_sample": true,
+        "model": true,
+        "strategy": true
+      },
+      "sql_valid_rate": 0.3333333333333333,
+      "execution_accuracy": 0.3333333333333333,
+      "p50_latency_ms": 7856.059249956161,
+      "p95_latency_ms": 9463.335500098765,
+      "model_calls": 300,
+      "prompt_tokens": 514900,
+      "completion_tokens": 47932
+    },
+    "E11": {
+      "actual_run": "E21",
+      "checks": {
+        "dataset_sha256": true,
+        "model_max_tokens": true,
+        "max_model_calls_per_sample": true,
+        "model": true,
+        "strategy": true
+      },
+      "sql_valid_rate": 1.0,
+      "execution_accuracy": 1.0,
+      "p50_latency_ms": 17365.98204995971,
+      "p95_latency_ms": 28326.254700077698,
+      "model_calls": 627,
+      "prompt_tokens": 700955,
+      "completion_tokens": 147156
+    }
+  }
+}

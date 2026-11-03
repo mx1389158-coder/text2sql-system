@@ -1,0 +1,116 @@
+{
+  "generated_at": "2026-11-03T07:05:28.960654+00:00",
+  "ready": true,
+  "checks": [
+    {
+      "name": "python_3_11",
+      "ok": true,
+      "detail": "3.11.18"
+    },
+    {
+      "name": "container_runtime_available",
+      "ok": true,
+      "detail": {
+        "url": "http://127.0.0.1:18000/health",
+        "status": 200
+      }
+    },
+    {
+      "name": "git_sha",
+      "ok": true,
+      "detail": "38cabc15a8fd9cab0331e82e3489c119156419ec"
+    },
+    {
+      "name": "cuda_available",
+      "ok": true,
+      "detail": {
+        "torch": "2.11.0+cu128",
+        "cuda": true,
+        "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+        "compute_capability": [
+          12,
+          0
+        ]
+      }
+    },
+    {
+      "name": "bf16_supported",
+      "ok": true,
+      "detail": true
+    },
+    {
+      "name": "bitsandbytes_nf4_operator",
+      "ok": true,
+      "detail": true
+    },
+    {
+      "name": "dependency_versions_available",
+      "ok": true,
+      "detail": {
+        "torch": "2.11.0+cu128",
+        "transformers": "5.8.0",
+        "peft": "0.18.1",
+        "bitsandbytes": "0.50.2",
+        "llamafactory": "0.9.6.dev0"
+      }
+    },
+    {
+      "name": "dependency_locks_present",
+      "ok": true,
+      "detail": [
+        "environment.yml",
+        "requirements-lock.txt",
+        "apps/web/package-lock.json",
+        "docker-compose.yml"
+      ]
+    },
+    {
+      "name": "training_inference_configs_separated",
+      "ok": true,
+      "detail": {
+        "training": "training\\configs\\qwen25_coder_1_5b_qlora_v5.yaml",
+        "inference": "training\\configs\\inference_tuned_v5.yaml"
+      }
+    },
+    {
+      "name": "disk_headroom_40gb",
+      "ok": true,
+      "detail": 87.0
+    },
+    {
+      "name": "training_count_at_least_2500",
+      "ok": true,
+      "detail": 4100
+    },
+    {
+      "name": "development_count_300",
+      "ok": true,
+      "detail": 620
+    },
+    {
+      "name": "blind_count_300",
+      "ok": true,
+      "detail": 300
+    },
+    {
+      "name": "safety_count_100",
+      "ok": true,
+      "detail": 100
+    },
+    {
+      "name": "ambiguity_count_80",
+      "ok": true,
+      "detail": 80
+    },
+    {
+      "name": "smoke_training_count_100",
+      "ok": true,
+      "detail": 100
+    },
+    {
+      "name": "baseline_predictions_exist",
+      "ok": true,
+      "detail": "experiments/reports/E00*.json"
+    }
+  ]
+}

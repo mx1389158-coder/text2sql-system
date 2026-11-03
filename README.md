@@ -3,6 +3,9 @@
 这是一个按 P0–P5 分层实现的中文 Text2SQL 工程：自然语言问题经过意图/澄清、Schema
 Linking、候选生成、SQL AST 安全检查、只读执行、有限修正后返回表格、解释和完整 trace。
 
+按最新逐章节修订后的执行方案见 `docs/PROJECT_PLAN_V2.md`，最终勾选证据见
+`docs/qa/revised_acceptance_matrix.md`。
+
 ## 最终验收结果
 
 - 严格同预算 2×2（同一 300 条 Holdout、192 token）：E00 20.00%、E01 60.67%、
@@ -81,6 +84,15 @@ python scripts/generate_business_data.py \
 python scripts/verify_postgres.py \
   --admin-url postgresql://text2sql_admin:<password>@localhost:15432/text2sql \
   --readonly-url postgresql://text2sql_readonly:<password>@localhost:15432/text2sql
+```
+
+也可以避免把密码放入命令行，直接生成脱敏验收报告：
+
+```powershell
+.\.conda\python.exe scripts\verify_postgres.py --env-file .env `
+  --output docs\data_card\snapshot_validation_report.json
+.\.conda\python.exe scripts\audit_dataset_governance.py
+.\.conda\python.exe scripts\validate_experiment_matrix.py
 ```
 
 ## 3. 连接本地模型

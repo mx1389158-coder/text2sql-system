@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-11-03T07:08:01.031646+00:00",
+  "ok": true,
+  "table_count": 23,
+  "missing_tables": [],
+  "scale": {
+    "orders": 50003,
+    "order_items": 150003,
+    "devices": 30002,
+    "device_upgrades": 100001,
+    "tickets": 20003,
+    "ticket_events": 100001
+  },
+  "undersized": {},
+  "foreign_keys": {
+    "constraint_count": 32,
+    "orphan_counts": {
+      "agents_team_id_fkey": 0,
+      "customer_addresses_customer_id_fkey": 0,
+      "customer_addresses_region_id_fkey": 0,
+      "customers_region_id_fkey": 0,
+      "device_upgrades_device_id_fkey": 0,
+      "device_upgrades_from_firmware_id_fkey": 0,
+      "device_upgrades_to_firmware_id_fkey": 0,
+      "devices_customer_id_fkey": 0,
+      "devices_firmware_id_fkey": 0,
+      "devices_product_id_fkey": 0,
+      "firmware_versions_product_id_fkey": 0,
+      "inventory_product_id_fkey": 0,
+      "inventory_warehouse_id_fkey": 0,
+      "order_items_order_id_fkey": 0,
+      "order_items_product_id_fkey": 0,
+      "orders_customer_id_fkey": 0,
+      "payments_order_id_fkey": 0,
+      "products_category_id_fkey": 0,
+      "refunds_order_item_id_fkey": 0,
+      "regions_parent_id_fkey": 0,
+      "satisfaction_surveys_ticket_id_fkey": 0,
+      "service_visits_agent_id_fkey": 0,
+      "service_visits_ticket_id_fkey": 0,
+      "shipments_address_id_fkey": 0,
+      "shipments_order_id_fkey": 0,
+      "teams_region_id_fkey": 0,
+      "ticket_events_ticket_id_fkey": 0,
+      "tickets_assigned_agent_id_fkey": 0,
+      "tickets_device_id_fkey": 0,
+      "tickets_fault_code_id_fkey": 0,
+      "warehouses_region_id_fkey": 0,
+      "warranties_device_id_fkey": 0
+    },
+    "all_consistent": true
+  },
+  "readonly": {
+    "default_transaction_read_only": "on",
+    "select_succeeded": true,
+    "write_denied": true,
+    "empty_result_completed": true,
+    "statement_timeout_enforced": true,
+    "connection_recovered_after_timeout": true
+  }
+}
