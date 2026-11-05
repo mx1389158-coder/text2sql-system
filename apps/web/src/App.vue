@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { api } from './api/client'
+import { api, apiKeyAuth } from './api/client'
 import QueryView from './views/QueryView.vue'
 import SchemaView from './views/SchemaView.vue'
 import ExperimentsView from './views/ExperimentsView.vue'
@@ -10,6 +10,22 @@ type Tab = 'query' | 'schema' | 'experiments' | 'badcases'
 const active = ref<Tab>('query')
 const runtimeMode = ref('连接中…')
 const runtimeHealthy = ref(false)
+const apiKey = ref(apiKeyAuth.get())
+const authStatus = ref(apiKey.value ? '密钥已保存，尚未验证' : '未配置 API Key')
+
+async function verifyAndSaveApiKey() {
+  apiKeyAuth.set(apiKey.value)
+  if (!apiKey.value.trim()) {
+    authStatus.value = '已清除 API Key'
+    return
+  }
+  try {
+    await api.catalog()
+    authStatus.value = 'API Key 已验证'
+  } catch {
+    authStatus.value = 'API Key 验证失败'
+  }
+}
 
 onMounted(async () => {
   try {
@@ -53,7 +69,20 @@ onMounted(async () => {
     <main>
       <header>
         <div><span class="eyebrow">NEBULA / DATA COPILOT</span><h1>智能问数工作台</h1></div>
-        <div class="mode"><i :class="{ healthy: runtimeHealthy }"></i> {{ runtimeMode }}</div>
+        <div class="header-actions">
+          <form class="api-key-control" @submit.prevent="verifyAndSaveApiKey">
+            <input
+              v-model="apiKey"
+              type="password"
+              autocomplete="current-password"
+              placeholder="输入 API Key"
+              aria-label="API Key"
+            />
+            <button type="submit">验证</button>
+            <small>{{ authStatus }}</small>
+          </form>
+          <div class="mode"><i :class="{ healthy: runtimeHealthy }"></i> {{ runtimeMode }}</div>
+        </div>
       </header>
       <QueryView v-if="active === 'query'" />
       <SchemaView v-else-if="active === 'schema'" />

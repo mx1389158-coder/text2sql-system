@@ -39,6 +39,7 @@ services:
     environment:
       TEXT2SQL_ENV: ${TEXT2SQL_ENV:-production}
       TEXT2SQL_API_KEY: ${TEXT2SQL_API_KEY:-}
+      TEXT2SQL_API_KEYS_JSON: ${TEXT2SQL_API_KEYS_JSON:-}
       TEXT2SQL_DATABASE_URL: postgresql://text2sql_readonly:${TEXT2SQL_READONLY_PASSWORD:-local_readonly_change_me}@postgres:5432/text2sql
       TEXT2SQL_DATABASE_SCHEMA: public
       TEXT2SQL_CATALOG_PATH: /app/data/processed/catalog_v1.json

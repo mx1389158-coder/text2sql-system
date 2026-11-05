@@ -87,7 +87,19 @@ class Settings(BaseModel):
             project_key = f"TEXT2SQL_{field_name.upper()}"
             if not os.environ.get(project_key) and os.environ.get(key):
                 values[field_name] = os.environ[key]
-        return cls(**values)
+        settings = cls(**values)
+        settings.validate_runtime()
+        return settings
+
+    def validate_runtime(self) -> None:
+        single_key_configured = bool(self.api_key.strip())
+        scoped_keys = self.api_key_scopes() if self.api_keys_json.strip() else {}
+        if self.env.strip().lower() == "production" and not (
+            single_key_configured or scoped_keys
+        ):
+            raise RuntimeError(
+                "生产环境必须配置 TEXT2SQL_API_KEY 或 TEXT2SQL_API_KEYS_JSON"
+            )
 
     def api_key_scopes(self) -> dict[str, str]:
         if not self.api_keys_json:
@@ -95,7 +107,12 @@ class Settings(BaseModel):
         value = json.loads(self.api_keys_json)
         if not isinstance(value, dict):
             raise ValueError("TEXT2SQL_API_KEYS_JSON 必须是 API Key 到 scope 的 JSON object")
-        return {str(key): str(scope) for key, scope in value.items()}
+        result = {
+            str(key).strip(): str(scope).strip() for key, scope in value.items()
+        }
+        if any(not key or not scope for key, scope in result.items()):
+            raise ValueError("TEXT2SQL_API_KEYS_JSON 的 API Key 和 scope 不能为空")
+        return result
 
 
 @lru_cache

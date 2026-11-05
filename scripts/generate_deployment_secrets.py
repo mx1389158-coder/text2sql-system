@@ -29,10 +29,12 @@ def main() -> None:
     admin_password = secret()
     readonly_password = secret()
     vm_password = secret(24)
+    api_key = secret(40)
     env = "\n".join(
         [
             "TEXT2SQL_ENV=production",
-            "TEXT2SQL_API_KEY=",
+            f"TEXT2SQL_API_KEY={api_key}",
+            "TEXT2SQL_API_KEYS_JSON=",
             "TEXT2SQL_LLM_PROVIDER=demo",
             "TEXT2SQL_POSTGRES_PORT=15432",
             "TEXT2SQL_REDIS_PORT=16379",

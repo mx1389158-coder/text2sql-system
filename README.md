@@ -34,12 +34,20 @@ v1.1.1 安全收尾进一步保证：查询记录在 SQLite 和 API 层按 scope
 结果缓存键包含 scope、权限策略、strategy、模型、Prompt、Schema、Few-shot、语义目录和
 运行参数版本，缓存值不复用旧请求的 session、trace、调用量、token 和耗时元数据。
 
+v1.1.2 增加生产启动门禁：`TEXT2SQL_ENV=production` 时必须配置
+`TEXT2SQL_API_KEY` 或非空 `TEXT2SQL_API_KEYS_JSON`，否则 API 在启动阶段失败。Compose 已透传
+两种鉴权配置；Web 顶部可输入并验证 API Key，值仅保存在当前浏览器 sessionStorage。
+
 训练产物保留在本地且不提交大文件；v5 已通过适配器校验、冻结集评测和质量门禁，按受治理
 Schema 与优化运行时范围注册。模型注册不代表任意 Schema 的通用准确率。
 
 ## 1. 本地快速演示（无需 Docker/GPU）
 
 要求 Python 3.11、Node 22+。
+
+本地无鉴权演示应使用 `TEXT2SQL_ENV=development`。生产环境不可通过清空密钥回退到匿名
+`default` scope；可运行 `python scripts/ensure_api_auth.py --env-file .env` 安全生成单 Key，
+脚本不会打印密钥或覆盖已有单/多 Key 配置。
 
 ```bash
 conda create -p .conda python=3.11 pip -y

@@ -38,6 +38,9 @@ No model training or frozen experiment was rerun for this documentation and reli
 - v1.1.1 closes historical-query authorization and cache-isolation gaps: query ownership is
   persisted and filtered by scope, cross-scope reads return 404, unknown policies deny all, and
   cached values contain no prior request/session/trace/usage metadata.
+- v1.1.2 fails startup when production has neither single-key nor scoped multi-key authentication.
+  Compose forwards both settings, deployment-secret generation creates a non-empty key, and the Web
+  UI can submit a session-only API key without embedding it in the frontend bundle.
 
 ## Release boundary
 

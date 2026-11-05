@@ -74,6 +74,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Deploy the project archive to the isolated Docker VM")
     parser.add_argument("archive", type=Path)
     parser.add_argument("--password-file", type=Path, required=True)
+    parser.add_argument(
+        "--env-file",
+        type=Path,
+        help="Optional ignored .env to upload atomically without logging its contents",
+    )
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=22222)
     parser.add_argument("--username", default="text2sql")
@@ -95,6 +100,9 @@ def main() -> None:
     password = args.password_file.read_text(encoding="utf-8").strip()
     if not password:
         raise ValueError("password file is empty")
+    env_file = args.env_file.resolve() if args.env_file else None
+    if env_file is not None and not env_file.is_file():
+        raise FileNotFoundError(env_file)
     registry_prefix = args.registry_prefix.strip()
     if registry_prefix and not re.fullmatch(r"[A-Za-z0-9._:/-]+/", registry_prefix):
         raise ValueError("registry prefix contains unsupported characters or lacks a trailing slash")
@@ -120,10 +128,19 @@ def main() -> None:
         fingerprint = hashlib.sha256(key.asbytes()).hexdigest()
         remote_archive = f"/home/{args.username}/text2sql-system.tar.gz"
         remote_root = f"/home/{args.username}/text2sql-system"
+        remote_env_upload = f"/home/{args.username}/.text2sql-env-upload"
         with client.open_sftp() as sftp:
             sftp.put(str(archive), remote_archive)
+            if env_file is not None:
+                sftp.put(str(env_file), remote_env_upload)
         run(client, f"mkdir -p {remote_root}")
         run(client, f"tar -xzf {remote_archive} -C {remote_root}")
+        if env_file is not None:
+            run(
+                client,
+                f"chmod 600 {remote_env_upload} && "
+                f"mv {remote_env_upload} {remote_root}/.env",
+            )
         run(client, f"cd {remote_root} && {compose_env}docker compose config --quiet")
         run(
             client,
@@ -150,6 +167,7 @@ def main() -> None:
         "registry_prefix": registry_prefix or None,
         "pip_index_url": args.pip_index_url,
         "npm_registry": args.npm_registry,
+        "env_uploaded": env_file is not None,
         "compose_status": [
             json.loads(line) for line in compose_status.splitlines() if line.strip()
         ],

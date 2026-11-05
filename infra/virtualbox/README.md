@@ -20,6 +20,11 @@
 再用 `scripts/deploy_virtualbox.py` 等待 SSH、SFTP 上传并启动 Compose。脚本从密码文件读
 取凭据，不会打印密码，并会写出不含秘密的部署报告。
 
+production 部署必须配置 API 鉴权。已有 `.env` 可通过 `--env-file .env` 由部署脚本使用
+SFTP 上传到临时路径，再以 `0600` 权限原子替换目标文件；部署报告只记录
+`env_uploaded: true`，不会保存任何环境变量值。未传该参数时继续保留虚拟机上的现有
+`.env`。
+
 宿主机端口使用 15173、18000、15432 和 16379，避开 Docker 常见默认端口，降低与其他
 项目冲突的风险。VirtualBox 不适合作为 NVIDIA CUDA 训练环境；QLoRA 应直接使用宿主机
 CUDA/WSL2 或另一台可透传 GPU 的 Linux 机器。

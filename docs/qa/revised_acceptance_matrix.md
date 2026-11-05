@@ -14,3 +14,4 @@
 补充门禁：四类产品验收 4/4；完整 Python 回归、Ruff、Web typecheck/build 必须通过后才能发布。
 
 v1.1.1 权限与缓存收尾证据见 `docs/qa/security_cache_hardening_v1.1.1.md`。
+v1.1.2 生产鉴权启动门禁见 `docs/qa/production_auth_hardening_v1.1.2.md`。
