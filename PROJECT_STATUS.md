@@ -1,6 +1,6 @@
 # Project status
 
-Last verified: 2026-11-03 (Asia/Shanghai).
+Last verified: 2026-11-05 (Asia/Shanghai).
 
 | Phase | Status | Verified evidence |
 | --- | --- | --- |
@@ -21,8 +21,9 @@ No model training or frozen experiment was rerun for this documentation and reli
 
 ## Release result
 
-- Strict equal-budget 2x2 on the same 300-example holdout and 192-token budget:
-  E00 20.00%, E01 60.67%, E20 33.33%, E21 100.00% execution accuracy.
+- Strict equal-budget 2x2 on the same fixed 300-example holdout, governed schema and
+  192-token budget: E00 20.00%, E01 60.67%, E20 33.33%, E21 100.00% execution accuracy.
+  This is a bounded holdout result, not unrestricted Text2SQL accuracy.
 - E21 remains 300/300 correct across fixed, status/date-shift and FK-reassignment snapshots.
 - A40–A48 are complete. A40 is 58.02% on the broader 81-example, 17-family slice;
   removing Few-shot costs 22.22 points and removing FK completion costs 17.28 points.
@@ -34,6 +35,9 @@ No model training or frozen experiment was rerun for this documentation and reli
   produced five readable stage observations without storing credentials in Git or evidence files.
 - Long evaluations now checkpoint every completed sample and reuse matching completed reports.
   `--no-resume` is required to force a deliberate rerun.
+- v1.1.1 closes historical-query authorization and cache-isolation gaps: query ownership is
+  persisted and filtered by scope, cross-scope reads return 404, unknown policies deny all, and
+  cached values contain no prior request/session/trace/usage metadata.
 
 ## Release boundary
 

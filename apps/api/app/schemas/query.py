@@ -7,6 +7,9 @@ from typing import Any, Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
 
 
+LEGACY_UNSCOPED = "__legacy_unscoped__"
+
+
 class QueryStatus(str, Enum):
     RUNNING = "running"
     CLARIFICATION_REQUIRED = "clarification_required"
@@ -68,6 +71,9 @@ class TraceEvent(BaseModel):
 class QueryRecord(BaseModel):
     query_id: str
     trace_id: str
+    # Records created before scope persistence are deliberately isolated.  They
+    # are not silently assigned to the default scope during deserialization.
+    scope: str = Field(default=LEGACY_UNSCOPED, min_length=1, max_length=128)
     session_id: Optional[str] = None
     question: str
     clarification_answer: Optional[str] = None

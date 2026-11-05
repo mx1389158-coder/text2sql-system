@@ -35,7 +35,13 @@ from ..schemas.query import (
     SchemaEvidenceResponse,
     TraceEvent,
 )
-from .cache import QueryCache, TTLCache
+from .cache import (
+    CachedQueryResult,
+    QueryCache,
+    TTLCache,
+    normalize_question,
+    stable_cache_key,
+)
 from .intent import IntentClassifier
 from .observability import ObservabilitySink
 
@@ -60,7 +66,10 @@ class Text2SQLOrchestrator:
         self.runner = runner
         self.repository = repository
         self.access_policy = access_policy or AccessPolicy(
-            {}, {table.name for table in catalog.tables}, catalog.schema
+            {},
+            {table.name for table in catalog.tables},
+            catalog.schema,
+            version="missing-deny-all",
         )
         self.intent = IntentClassifier()
         self.retriever = SchemaRetriever(catalog, dense_weight=settings.schema_dense_weight)
@@ -86,6 +95,7 @@ class Text2SQLOrchestrator:
         record = QueryRecord(
             query_id=existing_query_id or str(uuid.uuid4()),
             trace_id=str(uuid.uuid4()),
+            scope=scope,
             session_id=session_id,
             question=question.strip(),
             clarification_answer=clarification_answer,
@@ -94,6 +104,7 @@ class Text2SQLOrchestrator:
             prompt_version=SYSTEM_PROMPT_VERSION,
         )
         self.repository.save(record)
+        scope_policy = self.access_policy.resolve(scope)
         stage_started = time.perf_counter()
         decision = self.intent.classify(record.question)
         record.intent = decision.intent
@@ -112,7 +123,7 @@ class Text2SQLOrchestrator:
             return self.repository.save(record)
         if decision.intent == Intent.META:
             record.status = QueryStatus.COMPLETED
-            record.explanation = self._catalog_explanation()
+            record.explanation = self._catalog_explanation(scope_policy.tables)
             return self.repository.save(record)
 
         ambiguity = self.semantic_catalog.ambiguity(record.question)
@@ -135,22 +146,26 @@ class Text2SQLOrchestrator:
             f"[{item.key}@{item.version}] {item.name}: {item.definition}" for item in semantic_items
         ]
         cache_key = self.cache.key(
-            record.question + (clarification_answer or ""),
-            scope,
-            self.catalog.version,
-            ",".join(item.version for item in semantic_items),
+            question=record.question,
+            clarification=clarification_answer or "",
+            schema_version=self.catalog.version,
+            scope=scope,
+            policy_version=self.access_policy.version,
+            strategy=strategy,
+            model_id=record.model or "unknown",
+            prompt_version=record.prompt_version or "unversioned",
+            few_shot_version=self.few_shots.version,
+            semantic_version=self.semantic_catalog.version,
+            runtime_version=self._runtime_cache_version(strategy),
         )
         cached = self.cache.get(cache_key)
         if cached:
-            cached.query_id = record.query_id
-            cached.trace_id = record.trace_id
-            cached.cached = True
-            cached.created_at = record.created_at
-            self._trace(cached, "cache", "hit", time.perf_counter(), {}, trace_listener)
-            return self.repository.save(cached)
+            cached.apply_to(record)
+            record.cached = True
+            self._trace(record, "cache", "hit", time.perf_counter(), {}, trace_listener)
+            return self.repository.save(record)
 
         stage_started = time.perf_counter()
-        scope_policy = self.access_policy.resolve(scope)
         scoped_columns = {
             table: scope_policy.allowed_columns(
                 table,
@@ -168,11 +183,22 @@ class Text2SQLOrchestrator:
             )
         )
         top_k = len(self.catalog.tables) if strategy == "baseline" else self.settings.schema_top_k
-        schema_key = QueryCache.key(
-            record.question + (clarification_answer or ""),
-            scope,
-            self.catalog.version,
-            f"schema:{strategy}:{top_k}",
+        schema_key = stable_cache_key(
+            "schema-evidence-v2",
+            normalized_question=normalize_question(record.question),
+            normalized_clarification=normalize_question(clarification_answer or ""),
+            scope=scope,
+            policy_version=self.access_policy.version,
+            schema_version=self.catalog.version,
+            strategy=strategy,
+            top_k=top_k,
+            max_top_k=self.settings.schema_max_top_k,
+            dense_weight=self.settings.schema_dense_weight,
+            fk_completion=self.settings.enable_fk_completion,
+            adaptive_schema=self.settings.enable_adaptive_schema,
+            token_budget=(
+                16000 if strategy == "baseline" else self.settings.schema_token_budget
+            ),
         )
         evidence = self.schema_cache.get(schema_key)
         schema_cache_hit = evidence is not None
@@ -228,11 +254,16 @@ class Text2SQLOrchestrator:
             trace_listener,
         )
 
-        few_shot_key = QueryCache.key(
-            record.question,
-            scope,
-            self.catalog.version,
-            "few-shot:" + ",".join(evidence.selected_tables),
+        few_shot_key = stable_cache_key(
+            "few-shot-v2",
+            normalized_question=normalize_question(record.question),
+            scope=scope,
+            policy_version=self.access_policy.version,
+            schema_version=self.catalog.version,
+            strategy=strategy,
+            few_shot_version=self.few_shots.version,
+            selected_tables=evidence.selected_tables,
+            enabled=self.settings.enable_few_shots,
         )
         few_shots = (
             []
@@ -597,7 +628,7 @@ class Text2SQLOrchestrator:
             record, "explanation", "completed", time.perf_counter(), {}, trace_listener
         )
         self.repository.save(record)
-        self.cache.set(cache_key, record)
+        self.cache.set(cache_key, CachedQueryResult.from_record(record))
         return record
 
     @staticmethod
@@ -616,9 +647,28 @@ class Text2SQLOrchestrator:
             expanded=evidence.expanded,
         )
 
-    def _catalog_explanation(self) -> str:
-        summaries = [f"{table.name}（{table.description}）" for table in self.catalog.tables]
+    def _catalog_explanation(self, allowed_tables: set[str]) -> str:
+        summaries = [
+            f"{table.name}（{table.description}）"
+            for table in self.catalog.tables
+            if table.name in allowed_tables
+        ]
+        if not summaries:
+            return "当前权限域没有可访问的数据库表。"
         return f"数据库目录版本 {self.catalog.version}，共 {len(summaries)} 张表：" + "、".join(summaries)
+
+    def _runtime_cache_version(self, strategy: str) -> str:
+        return stable_cache_key(
+            "runtime-config-v1",
+            strategy=strategy,
+            candidate_count=(1 if strategy == "baseline" else self.settings.candidate_count),
+            max_repair_rounds=(
+                0 if strategy == "baseline" else self.settings.max_repair_rounds
+            ),
+            semantic_threshold=self.settings.candidate_semantic_threshold,
+            model_max_tokens=self.settings.model_max_tokens,
+            max_rows=self.settings.max_rows,
+        )
 
     @staticmethod
     def _explain(result: ExecutionResult) -> str:

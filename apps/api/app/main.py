@@ -10,7 +10,7 @@ from .services.limits import SafetyLimitsMiddleware
 
 app = FastAPI(
     title="星云智家智能问数 API",
-    version="0.1.0",
+    version="1.1.1",
     description="Schema Linking、只读 SQL 执行、反馈修正与可复现实验 API",
 )
 _settings = get_settings()

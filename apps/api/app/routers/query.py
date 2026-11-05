@@ -27,7 +27,7 @@ def verify_api_key(
         return scope
     if settings.api_key and x_api_key != settings.api_key:
         raise HTTPException(status_code=401, detail="无效 API Key")
-    return "default" if settings.api_key else "anonymous"
+    return "default"
 
 
 @router.post("/query", response_model=None)
@@ -86,7 +86,7 @@ async def clarify_query(
     scope: str = Depends(verify_api_key),
     orchestrator: Text2SQLOrchestrator = Depends(get_orchestrator),
 ):
-    original = query_repository.get(query_id)
+    original = query_repository.get(query_id, scope)
     if original is None:
         raise HTTPException(status_code=404, detail="查询不存在")
     if original.status != QueryStatus.CLARIFICATION_REQUIRED:
@@ -102,14 +102,14 @@ async def clarify_query(
 
 
 @router.get("/query/{query_id}", response_model=QueryRecord)
-async def get_query(query_id: str, _: str = Depends(verify_api_key)):
-    record = query_repository.get(query_id)
+async def get_query(query_id: str, scope: str = Depends(verify_api_key)):
+    record = query_repository.get(query_id, scope)
     if record is None:
         raise HTTPException(status_code=404, detail="查询不存在")
     return record
 
 
 @router.get("/queries")
-async def list_queries(_: str = Depends(verify_api_key), limit: int = 50):
-    return {"items": query_repository.list(max(1, min(limit, 200)))}
+async def list_queries(scope: str = Depends(verify_api_key), limit: int = 50):
+    return {"items": query_repository.list(scope, max(1, min(limit, 200)))}
 

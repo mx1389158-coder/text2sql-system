@@ -8,6 +8,7 @@ from apps.api.app.core.config import Settings
 from apps.api.app.repositories import QueryRepository
 from apps.api.app.schemas.query import QueryStatus
 from apps.api.app.services.orchestrator import Text2SQLOrchestrator
+from packages.execution.access import AccessPolicy
 from packages.execution.demo_db import create_demo_database
 from packages.execution.guard import GuardPolicy, SQLGuard, SQLSafetyError
 from packages.execution.runner import SQLiteRunner
@@ -25,7 +26,15 @@ async def main() -> None:
         db_path = create_demo_database(Path(temporary) / "demo.db")
         catalog = CatalogLoader.from_json(ROOT / "data/processed/catalog_v1.json")
         guard = SQLGuard(
-            GuardPolicy(max_rows=200, allowed_tables={table.name for table in catalog.tables})
+            GuardPolicy(
+                max_rows=200,
+                allowed_tables={table.name for table in catalog.tables},
+                allowed_columns={
+                    table.name: {column.name for column in table.columns}
+                    for table in catalog.tables
+                },
+                allowed_schemas={catalog.schema, "main"},
+            )
         )
         safe = guard.validate_and_rewrite("SELECT id, model_code FROM products")
         assert "LIMIT 200" in safe.sql
@@ -53,6 +62,9 @@ async def main() -> None:
             guard=guard,
             runner=SQLiteRunner(db_path),
             repository=QueryRepository(),
+            access_policy=AccessPolicy.allow_all(
+                {table.name for table in catalog.tables}, catalog.schema
+            ),
         )
         product_query = await orchestrator.submit("列出产品型号、名称和价格")
         assert product_query.status == QueryStatus.COMPLETED

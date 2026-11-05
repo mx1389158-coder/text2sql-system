@@ -12,17 +12,17 @@ router = APIRouter(tags=["feedback"])
 
 
 @router.get("/feedback")
-async def list_feedback(_: str = Depends(verify_api_key), limit: int = 100):
-    return {"items": feedback_repository.list(max(1, min(limit, 500)))}
+async def list_feedback(scope: str = Depends(verify_api_key), limit: int = 100):
+    return {"items": feedback_repository.list(scope, max(1, min(limit, 500)))}
 
 
 @router.post("/feedback")
 async def submit_feedback(
     payload: FeedbackRequest,
-    _: str = Depends(verify_api_key),
+    scope: str = Depends(verify_api_key),
     orchestrator: Text2SQLOrchestrator = Depends(get_orchestrator),
 ):
-    query = query_repository.get(payload.query_id)
+    query = query_repository.get(payload.query_id, scope)
     if query is None:
         raise HTTPException(status_code=404, detail="查询不存在")
     if payload.corrected_sql:

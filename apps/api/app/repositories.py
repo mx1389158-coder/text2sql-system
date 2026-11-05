@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from .schemas.query import FeedbackRequest, QueryRecord
+from .schemas.query import LEGACY_UNSCOPED, FeedbackRequest, QueryRecord
 
 
 class QueryRepository:
@@ -31,52 +31,95 @@ class QueryRepository:
             connection.execute(
                 """CREATE TABLE IF NOT EXISTS query_records (
                     query_id TEXT PRIMARY KEY,
+                    scope TEXT NOT NULL DEFAULT '__legacy_unscoped__',
                     payload TEXT NOT NULL,
                     updated_at TEXT NOT NULL
                 )"""
             )
+            columns = {
+                str(row["name"])
+                for row in connection.execute("PRAGMA table_info(query_records)").fetchall()
+            }
+            if "scope" not in columns:
+                connection.execute(
+                    "ALTER TABLE query_records ADD COLUMN scope TEXT NOT NULL "
+                    f"DEFAULT '{LEGACY_UNSCOPED}'"
+                )
+            connection.execute(
+                "CREATE INDEX IF NOT EXISTS idx_query_records_scope_updated "
+                "ON query_records(scope, updated_at DESC)"
+            )
 
     def save(self, record: QueryRecord) -> QueryRecord:
         with self._lock:
+            existing = self._records.get(record.query_id)
+            if existing is not None and existing.scope != record.scope:
+                raise PermissionError("query scope ownership cannot be changed")
             record.updated_at = datetime.now(timezone.utc)
-            self._records[record.query_id] = record
             if self.database_path:
                 with self._connect() as connection:
+                    owner = connection.execute(
+                        "SELECT scope FROM query_records WHERE query_id = ?",
+                        (record.query_id,),
+                    ).fetchone()
+                    if owner is not None and str(owner["scope"]) != record.scope:
+                        raise PermissionError("query scope ownership cannot be changed")
                     connection.execute(
-                        """INSERT INTO query_records(query_id, payload, updated_at)
-                        VALUES (?, ?, ?)
+                        """INSERT INTO query_records(query_id, scope, payload, updated_at)
+                        VALUES (?, ?, ?, ?)
                         ON CONFLICT(query_id) DO UPDATE SET
                           payload=excluded.payload, updated_at=excluded.updated_at""",
-                        (record.query_id, record.model_dump_json(), record.updated_at.isoformat()),
+                        (
+                            record.query_id,
+                            record.scope,
+                            record.model_dump_json(),
+                            record.updated_at.isoformat(),
+                        ),
                     )
+            self._records[record.query_id] = record
             return record
 
-    def get(self, query_id: str) -> Optional[QueryRecord]:
+    def get(self, query_id: str, scope: str) -> Optional[QueryRecord]:
         with self._lock:
             record = self._records.get(query_id)
-            if record is not None or not self.database_path:
-                return record
+            if record is not None:
+                return record if record.scope == scope else None
+            if not self.database_path:
+                return None
             with self._connect() as connection:
                 row = connection.execute(
-                    "SELECT payload FROM query_records WHERE query_id = ?", (query_id,)
+                    "SELECT scope, payload FROM query_records WHERE query_id = ? AND scope = ?",
+                    (query_id, scope),
                 ).fetchone()
             if row is None:
                 return None
             record = QueryRecord.model_validate_json(row["payload"])
+            if record.scope != str(row["scope"]):
+                record = record.model_copy(update={"scope": str(row["scope"])})
             self._records[query_id] = record
             return record
 
-    def list(self, limit: int = 100) -> List[QueryRecord]:
+    def list(self, scope: str, limit: int = 100) -> List[QueryRecord]:
         with self._lock:
             if not self.database_path:
                 return sorted(
-                    self._records.values(), key=lambda item: item.updated_at, reverse=True
+                    (item for item in self._records.values() if item.scope == scope),
+                    key=lambda item: item.updated_at,
+                    reverse=True,
                 )[:limit]
             with self._connect() as connection:
                 rows = connection.execute(
-                    "SELECT payload FROM query_records ORDER BY updated_at DESC LIMIT ?", (limit,)
+                    "SELECT scope, payload FROM query_records "
+                    "WHERE scope = ? ORDER BY updated_at DESC LIMIT ?",
+                    (scope, limit),
                 ).fetchall()
-            return [QueryRecord.model_validate_json(row["payload"]) for row in rows]
+            records = []
+            for row in rows:
+                record = QueryRecord.model_validate_json(row["payload"])
+                if record.scope != str(row["scope"]):
+                    record = record.model_copy(update={"scope": str(row["scope"])})
+                records.append(record)
+            return records
 
 
 class FeedbackRepository:
@@ -94,6 +137,7 @@ class FeedbackRepository:
             "question": query.question,
             "predicted_sql": query.sql,
             "trace_id": query.trace_id,
+            "scope": query.scope,
             "created_at": datetime.now(timezone.utc).isoformat(),
             "training_status": "candidate_only",
         }
@@ -102,13 +146,14 @@ class FeedbackRepository:
             with self.path.open("a", encoding="utf-8") as handle:
                 handle.write(json.dumps(payload, ensure_ascii=False) + "\n")
 
-    def list(self, limit: int = 200) -> List[dict]:
+    def list(self, scope: str, limit: int = 200) -> List[dict]:
         if not self.path.exists():
             return []
         with self._lock:
             with self.path.open("r", encoding="utf-8") as handle:
                 rows = [json.loads(line) for line in handle if line.strip()]
-        return list(reversed(rows[-limit:]))
+        scoped_rows = [row for row in rows if row.get("scope") == scope]
+        return list(reversed(scoped_rows[-limit:]))
 
 
 class JobRepository:

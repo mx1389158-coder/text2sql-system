@@ -1,7 +1,10 @@
 import json
 from pathlib import Path
 
-from apps.api.app.services.cache import TTLCache
+import pytest
+
+from apps.api.app.schemas.query import QueryRecord, QueryResult, QueryStatus, TraceEvent
+from apps.api.app.services.cache import CachedQueryResult, QueryCache, TTLCache
 from packages.generation.few_shot import FewShotRetriever
 from packages.schema_linker.retriever import SchemaRetriever
 
@@ -151,3 +154,87 @@ def test_ttl_cache_clear():
     assert cache.get("key") == {"value": 1}
     cache.clear()
     assert cache.get("key") is None
+
+
+def _query_cache_key(**overrides):
+    values = {
+        "question": "统计最近 30 天订单金额",
+        "clarification": "",
+        "schema_version": "schema-v1",
+        "scope": "analyst",
+        "policy_version": "policy-v1",
+        "strategy": "baseline",
+        "model_id": "model-v1",
+        "prompt_version": "prompt-v1",
+        "few_shot_version": "fewshot-v1",
+        "semantic_version": "semantic-v1",
+        "runtime_version": "runtime-v1",
+    }
+    values.update(overrides)
+    return QueryCache.key(**values)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("scope", "finance_admin"),
+        ("policy_version", "policy-v2"),
+        ("strategy", "optimized"),
+        ("model_id", "model-v2"),
+        ("prompt_version", "prompt-v2"),
+        ("schema_version", "schema-v2"),
+        ("few_shot_version", "fewshot-v2"),
+        ("semantic_version", "semantic-v2"),
+        ("runtime_version", "runtime-v2"),
+        ("clarification", "按支付时间"),
+    ],
+)
+def test_query_cache_key_isolates_runtime_dimensions(field, value):
+    assert _query_cache_key(**{field: value}) != _query_cache_key()
+
+
+def test_query_cache_key_normalizes_equivalent_question_whitespace_and_case():
+    assert _query_cache_key(question="  SALES   BY Month ") == _query_cache_key(
+        question="sales by month"
+    )
+
+
+def test_cached_value_excludes_request_metadata():
+    source = QueryRecord(
+        query_id="old-query",
+        trace_id="old-trace",
+        scope="analyst",
+        session_id="old-session",
+        question="列出产品",
+        status=QueryStatus.COMPLETED,
+        sql="SELECT id FROM products",
+        result=QueryResult(columns=["id"], rows=[{"id": 1}], elapsed_ms=12.5),
+        model_calls=3,
+        prompt_tokens=100,
+        completion_tokens=20,
+        repair_rounds=2,
+        repair_succeeded=True,
+        trace=[TraceEvent(stage="generation", status="completed")],
+    )
+    cached = CachedQueryResult.from_record(source)
+    request = QueryRecord(
+        query_id="new-query",
+        trace_id="new-trace",
+        scope="analyst",
+        session_id="new-session",
+        question=source.question,
+    )
+
+    cached.apply_to(request)
+
+    assert request.query_id == "new-query"
+    assert request.trace_id == "new-trace"
+    assert request.session_id == "new-session"
+    assert request.model_calls == 0
+    assert request.prompt_tokens == 0
+    assert request.completion_tokens == 0
+    assert request.repair_rounds == 0
+    assert request.repair_succeeded is False
+    assert request.trace == []
+    assert request.result is not None
+    assert request.result.elapsed_ms == 0.0

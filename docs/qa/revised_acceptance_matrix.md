@@ -8,5 +8,9 @@
 - [x] 计划角色 E00/E01/E10/E11 四格完成；最终 tuned 角色由不可变实际运行 E20/E21 映射，严格同数据、192 token、5 调用预算。
 - [x] EX、表/列 Recall、澄清、安全、Repair Gain、token、调用、p50/p95、显存和 Badcase 报告。
 - [x] Web 查询、SQL/结果、Schema 证据、实验对比、README、模型卡、数据卡和 Langfuse Cloud。
+- [x] QueryRecord scope 所有权、详情 404、列表/澄清/反馈 scope 过滤和 legacy 记录 fail-closed。
+- [x] 结果/Schema/Few-shot 缓存按权限与策略版本隔离，命中后重新生成请求级元数据。
 
 补充门禁：四类产品验收 4/4；完整 Python 回归、Ruff、Web typecheck/build 必须通过后才能发布。
+
+v1.1.1 权限与缓存收尾证据见 `docs/qa/security_cache_hardening_v1.1.1.md`。

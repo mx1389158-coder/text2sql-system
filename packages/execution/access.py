@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -25,10 +26,35 @@ class ScopePolicy:
 
 
 class AccessPolicy:
-    def __init__(self, scopes: Dict[str, ScopePolicy], all_tables: Set[str], default_schema: str):
+    def __init__(
+        self,
+        scopes: Dict[str, ScopePolicy],
+        all_tables: Set[str],
+        default_schema: str,
+        version: str = "inline",
+    ):
         self.scopes = scopes
         self.all_tables = {item.lower() for item in all_tables}
         self.default_schema = default_schema.lower()
+        self.version = version
+
+    @classmethod
+    def allow_all(
+        cls, all_tables: Set[str], default_schema: str, scope: str = "default"
+    ) -> "AccessPolicy":
+        """Create an explicit permissive policy for isolated demos/tests only."""
+        return cls(
+            {
+                scope: ScopePolicy(
+                    schemas={default_schema.lower()},
+                    tables={item.lower() for item in all_tables},
+                    sample_values={"*": {"*"}},
+                )
+            },
+            all_tables,
+            default_schema,
+            version="explicit-allow-all",
+        )
 
     @classmethod
     def from_json(
@@ -36,8 +62,9 @@ class AccessPolicy:
     ) -> "AccessPolicy":
         target = Path(path)
         if not target.exists():
-            return cls({}, all_tables, default_schema)
-        payload = json.loads(target.read_text(encoding="utf-8"))
+            return cls({}, all_tables, default_schema, version="missing-deny-all")
+        raw_bytes = target.read_bytes()
+        payload = json.loads(raw_bytes.decode("utf-8"))
         scopes = {}
         for name, raw in payload.get("scopes", {}).items():
             tables = {str(item).lower() for item in raw.get("tables", [])}
@@ -56,15 +83,21 @@ class AccessPolicy:
                 columns=columns,
                 sample_values=sample_values,
             )
-        return cls(scopes, all_tables, default_schema)
+        declared_version = str(payload.get("version") or "unversioned")
+        content_hash = hashlib.sha256(raw_bytes).hexdigest()[:16]
+        return cls(
+            scopes,
+            all_tables,
+            default_schema,
+            version=f"{declared_version}:sha256:{content_hash}",
+        )
 
     def resolve(self, scope: str) -> ScopePolicy:
-        policy = self.scopes.get(scope) or self.scopes.get("default")
+        policy = self.scopes.get(scope)
         if policy is None:
             return ScopePolicy(
-                schemas={self.default_schema},
-                tables=set(self.all_tables),
-                sample_values={"*": {"*"}},
+                schemas=set(),
+                tables=set(),
             )
         tables = self.all_tables if "*" in policy.tables else policy.tables & self.all_tables
         return ScopePolicy(

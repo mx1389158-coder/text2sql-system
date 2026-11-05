@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,14 +19,22 @@ class SemanticDefinition:
 
 
 class SemanticCatalog:
-    def __init__(self, definitions: List[SemanticDefinition]):
+    def __init__(
+        self, definitions: List[SemanticDefinition], version: str = "unversioned"
+    ):
         self.definitions = definitions
+        self.version = version
 
     @classmethod
     def from_json(cls, path: str | Path) -> "SemanticCatalog":
-        with Path(path).open("r", encoding="utf-8") as handle:
-            raw = json.load(handle)
-        return cls([SemanticDefinition(**item) for item in raw["definitions"]])
+        raw_bytes = Path(path).read_bytes()
+        raw = json.loads(raw_bytes.decode("utf-8"))
+        declared_version = str(raw.get("version") or "unversioned")
+        content_hash = hashlib.sha256(raw_bytes).hexdigest()[:16]
+        return cls(
+            [SemanticDefinition(**item) for item in raw["definitions"]],
+            version=f"{declared_version}:sha256:{content_hash}",
+        )
 
     def retrieve(self, question: str, limit: int = 4) -> List[SemanticDefinition]:
         normalized_question = question.lower()

@@ -8,8 +8,8 @@ Linking、候选生成、SQL AST 安全检查、只读执行、有限修正后�
 
 ## 最终验收结果
 
-- 严格同预算 2×2（同一 300 条 Holdout、192 token）：E00 20.00%、E01 60.67%、
-  E20 33.33%、E21 100.00% 执行准确率；
+- 严格同预算 2×2（受治理 Schema、同一固定 300 条 Holdout、192 token）：E00 20.00%、
+  E01 60.67%、E20 33.33%、E21 100.00% execution accuracy；该数字不代表开放场景通用准确率；
 - E21 三快照 Test-Suite 为 300/300，安全集 120/120，歧义检测 80/80，澄清后执行 10/10；
 - A40–A48 九组消融全部完成，浏览器验收 8/8，备份恢复演练通过；
 - Langfuse Cloud 日本区鉴权、真实查询五阶段 trace 上报和 API 读回验证通过；
@@ -28,6 +28,11 @@ Linking、候选生成、SQL AST 安全检查、只读执行、有限修正后�
 - Vue 3 问数、图表、Schema 关系图、2×2 实验和 Badcase 界面；
 - 4,100/620/300 训练、开发、冻结盲测语料（含纠正型 Badcase 与全表覆盖样本），另有 300 条未见业务族 holdout、100 安全集、80 歧义集及版本化实验 manifests；
 - 单元、集成、E2E 与安全攻击测试。
+
+v1.1.1 安全收尾进一步保证：查询记录在 SQLite 和 API 层按 scope 强制隔离，跨 scope
+详情访问统一返回 404，查询列表自动按当前 scope 过滤；未知或缺失权限配置 deny-all。
+结果缓存键包含 scope、权限策略、strategy、模型、Prompt、Schema、Few-shot、语义目录和
+运行参数版本，缓存值不复用旧请求的 session、trace、调用量、token 和耗时元数据。
 
 训练产物保留在本地且不提交大文件；v5 已通过适配器校验、冻结集评测和质量门禁，按受治理
 Schema 与优化运行时范围注册。模型注册不代表任意 Schema 的通用准确率。
@@ -114,6 +119,7 @@ SQLGuard；模型无法解除安全拒绝。
 - `POST /api/v1/query`：提交问题；`?stream=true` 返回 SSE 事件；
 - `POST /api/v1/query/{id}/clarify`：补充口径并恢复状态机；
 - `GET /api/v1/query/{id}`：查询完整结果与 trace；
+- `GET /api/v1/queries`：只列出当前 API Key scope 拥有的查询记录；
 - `POST /api/v1/feedback`：写入人工候选 Badcase，不自动训练；
 - `POST /api/v1/evals/run`、`GET /api/v1/evals/{id}`：后台评测；
 - `GET /api/v1/models`、`GET /api/v1/schema`。

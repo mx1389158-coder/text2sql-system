@@ -7,6 +7,7 @@ import pytest
 from apps.api.app.core.config import Settings
 from apps.api.app.repositories import QueryRepository
 from apps.api.app.services.orchestrator import Text2SQLOrchestrator
+from packages.execution.access import AccessPolicy
 from packages.execution.demo_db import create_demo_database
 from packages.execution.guard import GuardPolicy, SQLGuard
 from packages.execution.runner import SQLiteRunner
@@ -61,5 +62,8 @@ def orchestrator(catalog, guard, demo_db):
         guard=guard,
         runner=SQLiteRunner(demo_db),
         repository=QueryRepository(),
+        access_policy=AccessPolicy.allow_all(
+            {table.name for table in catalog.tables}, catalog.schema
+        ),
     )
 

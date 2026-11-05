@@ -25,12 +25,12 @@ Status: validated for the governed Nebula Smart Home schema with the optimized r
 - Versioned evidence: `docs/model_card/qwen25-coder-1.5b-text2sql-v5/` contains the
   loss curves, trainer log, train/eval results and verification report.
 
-## Strict equal-budget 2x2
+## Strict equal-budget 2x2 on the governed fixed holdout
 
 All four cells use the same 300-example `holdout_v2`, 192 output tokens and at most five
 model calls per sample.
 
-| Experiment | Model | Strategy | SQL valid | Execution accuracy | P50 | Calls |
+| Experiment | Model | Strategy | SQL valid | Fixed-holdout execution accuracy | P50 | Calls |
 | --- | --- | --- | ---: | ---: | ---: | ---: |
 | E00 | Base | Baseline | 33.33% | 20.00% | 7.42 s | 300 |
 | E01 | Base | Optimized | 94.00% | 60.67% | 20.16 s | 755 |

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -37,7 +38,14 @@ class FewShotRetriever:
         self.path = Path(path)
         self.limit = max(0, limit)
         self.encoder = HashingTextEncoder()
+        self.version = self._version()
         self.examples = self._load()
+
+    def _version(self) -> str:
+        if not self.path.exists():
+            return "missing"
+        digest = hashlib.sha256(self.path.read_bytes()).hexdigest()[:16]
+        return f"sha256:{digest}:limit:{self.limit}"
 
     def _load(self) -> List[FewShotExample]:
         if not self.path.exists() or self.limit == 0:
