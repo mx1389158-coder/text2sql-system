@@ -1,10 +1,10 @@
 {
-  "deployed_at": "2026-11-03T07:20:52.234343+00:00",
+  "deployed_at": "2026-11-05T09:21:02.075102+00:00",
   "host": "127.0.0.1",
   "port": 22222,
   "vm": "nebula-text2sql-docker",
   "ssh_host_key_sha256": "65965b5406cf222e4328a6f9b0feb6040aac92adbdbecc06a72146eb046951d6",
-  "archive_sha256": "40b8f896cb2cba4b8950834eebdf0a642902bb0efdfa6de1a6141e7fd5bb5cd2",
+  "archive_sha256": "063d6dabc526d108d22fe42dab1f5acb1984ad1c8bc2003b6cea6363b5319ba9",
   "os": "Ubuntu 24.04",
   "docker": "Docker version 29.1.3, build 29.1.3-0ubuntu3~24.04.2",
   "compose": "Docker Compose version 2.40.3+ds1-0ubuntu1~24.04.1",
@@ -14,12 +14,12 @@
   "compose_status": [
     {
       "Command": "\"uvicorn apps.api.ap…\"",
-      "CreatedAt": "2026-11-03 07:20:31 +0000 UTC",
+      "CreatedAt": "2026-11-05 09:20:46 +0000 UTC",
       "ExitCode": 0,
       "Health": "healthy",
-      "ID": "81ce1f377b2c",
+      "ID": "6d117572a7b8",
       "Image": "nebula-text2sql-api",
-      "Labels": "com.docker.compose.project.working_dir=/home/text2sql/text2sql-system,com.docker.compose.service=api,com.docker.compose.container-number=1,com.docker.compose.image=sha256:d5bc4dcaf49fcb83fdef354a4c1a24a345e4de6d4b2378924efa7c088416b9ed,com.docker.compose.project=nebula-text2sql,com.docker.compose.project.config_files=/home/text2sql/text2sql-system/docker-compose.yml,com.docker.compose.replace=api-1,com.docker.compose.version=2.40.3,com.docker.compose.config-hash=8c0d7bd26a4b802a4b4a1e5828838003f722afd994bfd5554d376de8c47d23ef,com.docker.compose.depends_on=postgres:service_healthy:false,com.docker.compose.oneoff=False",
+      "Labels": "com.docker.compose.oneoff=False,com.docker.compose.project=nebula-text2sql,com.docker.compose.depends_on=postgres:service_healthy:false,com.docker.compose.image=sha256:d7e0662e9e30b457897b11313a2e0ddb97afc4a081652de6422eaf937e3b038a,com.docker.compose.project.config_files=/home/text2sql/text2sql-system/docker-compose.yml,com.docker.compose.project.working_dir=/home/text2sql/text2sql-system,com.docker.compose.replace=api-1,com.docker.compose.service=api,com.docker.compose.version=2.40.3,com.docker.compose.config-hash=8c0d7bd26a4b802a4b4a1e5828838003f722afd994bfd5554d376de8c47d23ef,com.docker.compose.container-number=1",
       "LocalVolumes": "3",
       "Mounts": "nebula-text2sq…,nebula-text2sq…,nebula-text2sq…",
       "Name": "nebula-text2sql-api-1",
@@ -41,7 +41,7 @@
           "Protocol": "tcp"
         }
       ],
-      "RunningFor": "18 seconds ago",
+      "RunningFor": "13 seconds ago",
       "Service": "api",
       "Size": "0B",
       "State": "running",
@@ -54,9 +54,9 @@
       "Health": "healthy",
       "ID": "43a0f83a63fc",
       "Image": "m.daocloud.io/docker.io/library/postgres:17-alpine",
-      "Labels": "com.docker.compose.config-hash=43d038b48a98f2dc06514dce67917379a4f813d25d0c11af8886f0b132e01d2f,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.oneoff=False,com.docker.compose.project=nebula-text2sql,com.docker.compose.project.working_dir=/home/text2sql/text2sql-system,com.docker.compose.image=sha256:266d3c257594e195b309ae9d1805e54c788f1d7b375f56bf6c367aac6c917e7b,com.docker.compose.project.config_files=/home/text2sql/text2sql-system/docker-compose.yml,com.docker.compose.replace=postgres-1,com.docker.compose.service=postgres,com.docker.compose.version=2.40.3",
+      "Labels": "com.docker.compose.oneoff=False,com.docker.compose.project=nebula-text2sql,com.docker.compose.replace=postgres-1,com.docker.compose.service=postgres,com.docker.compose.config-hash=43d038b48a98f2dc06514dce67917379a4f813d25d0c11af8886f0b132e01d2f,com.docker.compose.container-number=1,com.docker.compose.project.config_files=/home/text2sql/text2sql-system/docker-compose.yml,com.docker.compose.project.working_dir=/home/text2sql/text2sql-system,com.docker.compose.version=2.40.3,com.docker.compose.depends_on=,com.docker.compose.image=sha256:266d3c257594e195b309ae9d1805e54c788f1d7b375f56bf6c367aac6c917e7b",
       "LocalVolumes": "1",
-      "Mounts": "nebula-text2sq…,/home/text2sql…",
+      "Mounts": "/home/text2sql…,nebula-text2sq…",
       "Name": "nebula-text2sql-postgres-1",
       "Names": "nebula-text2sql-postgres-1",
       "Networks": "nebula-text2sql_default",
@@ -76,20 +76,20 @@
           "Protocol": "tcp"
         }
       ],
-      "RunningFor": "19 seconds ago",
+      "RunningFor": "2 days ago",
       "Service": "postgres",
       "Size": "0B",
       "State": "running",
-      "Status": "Up 17 seconds (healthy)"
+      "Status": "Up 8 minutes (healthy)"
     },
     {
       "Command": "\"/docker-entrypoint.…\"",
-      "CreatedAt": "2026-11-03 07:20:32 +0000 UTC",
+      "CreatedAt": "2026-11-05 09:20:47 +0000 UTC",
       "ExitCode": 0,
       "Health": "starting",
-      "ID": "a84095f28dde",
+      "ID": "4eca1da46db1",
       "Image": "nebula-text2sql-web",
-      "Labels": "com.docker.compose.oneoff=False,com.docker.compose.project=nebula-text2sql,com.docker.compose.service=web,com.docker.compose.version=2.40.3,maintainer=NGINX Docker Maintainers <docker-maint@nginx.com>,com.docker.compose.container-number=1,com.docker.compose.image=sha256:5a2e13522916c3b247da048c94b5343acbe581456c92bb61302d0daa6fc1342a,com.docker.compose.project.config_files=/home/text2sql/text2sql-system/docker-compose.yml,com.docker.compose.project.working_dir=/home/text2sql/text2sql-system,com.docker.compose.replace=web-1,com.docker.compose.config-hash=159b6bafdd889cef4b3a031ec92111c4f9f67402a841ca61f051aae5a858bf31,com.docker.compose.depends_on=api:service_healthy:false",
+      "Labels": "com.docker.compose.depends_on=api:service_healthy:false,com.docker.compose.project=nebula-text2sql,com.docker.compose.replace=web-1,com.docker.compose.service=web,com.docker.compose.version=2.40.3,maintainer=NGINX Docker Maintainers <docker-maint@nginx.com>,com.docker.compose.image=sha256:b74c6256a204ef5deafbe4327d76dbe0f47b76d7ca2c1fc87951eea0a8d7c666,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/home/text2sql/text2sql-system/docker-compose.yml,com.docker.compose.project.working_dir=/home/text2sql/text2sql-system,com.docker.compose.config-hash=159b6bafdd889cef4b3a031ec92111c4f9f67402a841ca61f051aae5a858bf31,com.docker.compose.container-number=1",
       "LocalVolumes": "0",
       "Mounts": "",
       "Name": "nebula-text2sql-web-1",
@@ -111,7 +111,7 @@
           "Protocol": "tcp"
         }
       ],
-      "RunningFor": "17 seconds ago",
+      "RunningFor": "12 seconds ago",
       "Service": "web",
       "Size": "0B",
       "State": "running",
