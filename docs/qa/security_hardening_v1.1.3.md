@@ -46,3 +46,17 @@ unavailable until a scoped evaluation key is configured. Existing deployments ca
 - Vue typecheck and production build: passed.
 - Dedicated tests cover restricted/evaluation authorization, scoped job visibility, legacy migration,
   atomic active-job limiting, invalid strategies and restricted `COUNT(*)` behavior.
+
+## Dedicated VM deployment
+
+The v1.1.3 archive was deployed only to `nebula-text2sql-docker`. Compose interpolation succeeded
+with the ignored secret file, PostgreSQL and API reported healthy, and the effective publishers were:
+
+- PostgreSQL: `127.0.0.1:15432 -> 5432`
+- API: `127.0.0.1:18000 -> 8000`
+- Web/Nginx: `0.0.0.0:15173 -> 80`
+
+Runtime checks through the Web `/api/` proxy returned 401 without a key, 403 with the `default`
+key, and 200 with the `evaluation` key for `GET /api/v1/evals`. Invalid query and evaluation
+strategies both returned 422. No evaluation job was created.
+The redacted deployment evidence is `infra/virtualbox/deployment-report.json`.
