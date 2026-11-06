@@ -7,10 +7,10 @@ services:
     environment:
       POSTGRES_DB: text2sql
       POSTGRES_USER: text2sql_admin
-      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-local_admin_change_me}
-      TEXT2SQL_READONLY_PASSWORD: ${TEXT2SQL_READONLY_PASSWORD:-local_readonly_change_me}
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:?POSTGRES_ADMIN_PASSWORD is required}
+      TEXT2SQL_READONLY_PASSWORD: ${TEXT2SQL_READONLY_PASSWORD:?TEXT2SQL_READONLY_PASSWORD is required}
     ports:
-      - "${TEXT2SQL_POSTGRES_PORT:-15432}:5432"
+      - "${TEXT2SQL_BIND_HOST:-127.0.0.1}:${TEXT2SQL_POSTGRES_PORT:-15432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./infra/migrations:/docker-entrypoint-initdb.d:ro
@@ -25,7 +25,7 @@ services:
     restart: unless-stopped
     command: ["redis-server", "--save", "60", "1"]
     ports:
-      - "${TEXT2SQL_REDIS_PORT:-16379}:6379"
+      - "${TEXT2SQL_BIND_HOST:-127.0.0.1}:${TEXT2SQL_REDIS_PORT:-16379}:6379"
     profiles: ["cache"]
 
   api:
@@ -40,7 +40,7 @@ services:
       TEXT2SQL_ENV: ${TEXT2SQL_ENV:-production}
       TEXT2SQL_API_KEY: ${TEXT2SQL_API_KEY:-}
       TEXT2SQL_API_KEYS_JSON: ${TEXT2SQL_API_KEYS_JSON:-}
-      TEXT2SQL_DATABASE_URL: postgresql://text2sql_readonly:${TEXT2SQL_READONLY_PASSWORD:-local_readonly_change_me}@postgres:5432/text2sql
+      TEXT2SQL_DATABASE_URL: postgresql://text2sql_readonly:${TEXT2SQL_READONLY_PASSWORD:?TEXT2SQL_READONLY_PASSWORD is required}@postgres:5432/text2sql
       TEXT2SQL_DATABASE_SCHEMA: public
       TEXT2SQL_CATALOG_PATH: /app/data/processed/catalog_v1.json
       TEXT2SQL_SEMANTIC_CATALOG_PATH: /app/data/processed/semantic_catalog_v1.json
@@ -52,6 +52,7 @@ services:
       TEXT2SQL_ACCESS_POLICY_PATH: /app/data/security/access_policy.json
       TEXT2SQL_EVALUATION_ALLOWED_ROOT: /app/data
       TEXT2SQL_CANDIDATE_COUNT: ${TEXT2SQL_CANDIDATE_COUNT:-3}
+      TEXT2SQL_MAX_ACTIVE_EVALUATION_JOBS: ${TEXT2SQL_MAX_ACTIVE_EVALUATION_JOBS:-1}
       TEXT2SQL_LANGFUSE_HOST: ${TEXT2SQL_LANGFUSE_HOST:-}
       TEXT2SQL_LANGFUSE_PUBLIC_KEY: ${TEXT2SQL_LANGFUSE_PUBLIC_KEY:-}
       TEXT2SQL_LANGFUSE_SECRET_KEY: ${TEXT2SQL_LANGFUSE_SECRET_KEY:-}
@@ -59,7 +60,7 @@ services:
       LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
       LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
     ports:
-      - "${TEXT2SQL_API_PORT:-18000}:8000"
+      - "${TEXT2SQL_BIND_HOST:-127.0.0.1}:${TEXT2SQL_API_PORT:-18000}:8000"
     volumes:
       - api_state:/app/data/state
       - api_feedback:/app/data/interim
@@ -83,7 +84,7 @@ services:
         DOCKER_REGISTRY_PREFIX: ${DOCKER_REGISTRY_PREFIX:-}
         NPM_REGISTRY: ${NPM_REGISTRY:-https://registry.npmjs.org}
     ports:
-      - "${TEXT2SQL_WEB_PORT:-15173}:80"
+      - "${TEXT2SQL_WEB_BIND_HOST:-0.0.0.0}:${TEXT2SQL_WEB_PORT:-15173}:80"
     depends_on:
       api:
         condition: service_healthy

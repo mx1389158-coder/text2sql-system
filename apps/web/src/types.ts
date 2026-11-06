@@ -1,3 +1,5 @@
+export type Strategy = 'baseline' | 'optimized'
+
 export type TraceEvent = {
   stage: string
   status: string

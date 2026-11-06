@@ -21,7 +21,8 @@ This prevents an omitted production secret from falling back to the full-access 
 
 - `docker-compose.yml` forwards both `TEXT2SQL_API_KEY` and `TEXT2SQL_API_KEYS_JSON`.
 - `.env.example` documents the production requirement.
-- `scripts/generate_deployment_secrets.py` creates a non-empty single API key for new deployments.
+- At v1.1.2, `scripts/generate_deployment_secrets.py` created a non-empty single API key. Starting
+  with v1.1.3 it creates separate random `default` and `evaluation` scoped keys.
 - `scripts/ensure_api_auth.py` safely adds a key to an existing ignored `.env` only when both auth
   modes are empty. It never prints the generated value and preserves all existing settings.
 - `scripts/deploy_virtualbox.py --env-file .env` uploads that ignored file atomically with mode 0600;

@@ -15,3 +15,6 @@
 
 v1.1.1 权限与缓存收尾证据见 `docs/qa/security_cache_hardening_v1.1.1.md`。
 v1.1.2 生产鉴权启动门禁见 `docs/qa/production_auth_hardening_v1.1.2.md`。
+v1.1.3 已完成评测接口专用 scope、评测任务所有权、原子并发上限、严格策略枚举、
+受限权限 `COUNT(*)` 兼容、数据库密码强制配置及内部端口默认回环绑定；证据见
+`docs/qa/security_hardening_v1.1.3.md`。

@@ -8,7 +8,14 @@ from copy import deepcopy
 from dataclasses import dataclass
 from typing import Dict, Generic, Optional, Tuple, TypeVar
 
-from ..schemas.query import Intent, QueryRecord, QueryResult, QueryStatus, SchemaEvidenceResponse
+from ..schemas.query import (
+    Intent,
+    QueryRecord,
+    QueryResult,
+    QueryStatus,
+    SchemaEvidenceResponse,
+    Strategy,
+)
 
 
 T = TypeVar("T")
@@ -113,7 +120,7 @@ class QueryCache(TTLCache[CachedQueryResult]):
         schema_version: str,
         scope: str,
         policy_version: str,
-        strategy: str,
+        strategy: Strategy,
         model_id: str,
         prompt_version: str,
         few_shot_version: str,

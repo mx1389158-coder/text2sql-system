@@ -33,6 +33,7 @@ from ..schemas.query import (
     QueryResult,
     QueryStatus,
     SchemaEvidenceResponse,
+    Strategy,
     TraceEvent,
 )
 from .cache import (
@@ -86,7 +87,7 @@ class Text2SQLOrchestrator:
         self,
         question: str,
         session_id: Optional[str] = None,
-        strategy: str = "optimized",
+        strategy: Strategy = "optimized",
         clarification_answer: Optional[str] = None,
         existing_query_id: Optional[str] = None,
         scope: str = "default",
@@ -657,7 +658,7 @@ class Text2SQLOrchestrator:
             return "当前权限域没有可访问的数据库表。"
         return f"数据库目录版本 {self.catalog.version}，共 {len(summaries)} 张表：" + "、".join(summaries)
 
-    def _runtime_cache_version(self, strategy: str) -> str:
+    def _runtime_cache_version(self, strategy: Strategy) -> str:
         return stable_cache_key(
             "runtime-config-v1",
             strategy=strategy,

@@ -41,6 +41,10 @@ No model training or frozen experiment was rerun for this documentation and reli
 - v1.1.2 fails startup when production has neither single-key nor scoped multi-key authentication.
   Compose forwards both settings, deployment-secret generation creates a non-empty key, and the Web
   UI can submit a session-only API key without embedding it in the frontend bundle.
+- v1.1.3 restricts all evaluation endpoints to the `evaluation` scope, persists and filters eval-job
+  ownership, limits active jobs atomically, constrains strategies to baseline/optimized, and permits
+  `COUNT(*)` without permitting wildcard row projections. Compose now requires both database
+  passwords and binds PostgreSQL, Redis and the direct API port to loopback by default.
 
 ## Release boundary
 

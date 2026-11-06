@@ -30,12 +30,15 @@ def main() -> None:
     readonly_password = secret()
     vm_password = secret(24)
     api_key = secret(40)
+    evaluation_api_key = secret(40)
     env = "\n".join(
         [
             "TEXT2SQL_ENV=production",
-            f"TEXT2SQL_API_KEY={api_key}",
-            "TEXT2SQL_API_KEYS_JSON=",
+            "TEXT2SQL_API_KEY=",
+            f'TEXT2SQL_API_KEYS_JSON={{"{api_key}":"default","{evaluation_api_key}":"evaluation"}}',
             "TEXT2SQL_LLM_PROVIDER=demo",
+            "TEXT2SQL_BIND_HOST=127.0.0.1",
+            "TEXT2SQL_WEB_BIND_HOST=0.0.0.0",
             "TEXT2SQL_POSTGRES_PORT=15432",
             "TEXT2SQL_REDIS_PORT=16379",
             "TEXT2SQL_API_PORT=18000",

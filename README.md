@@ -41,6 +41,12 @@ v1.1.2 增加生产启动门禁：`TEXT2SQL_ENV=production` 时必须配置
 训练产物保留在本地且不提交大文件；v5 已通过适配器校验、冻结集评测和质量门禁，按受治理
 Schema 与优化运行时范围注册。模型注册不代表任意 Schema 的通用准确率。
 
+v1.1.3 security closure: `/evals` endpoints require the exact `evaluation` scope; evaluation jobs
+are persisted and filtered by owner scope; active jobs are atomically capped (default 1); invalid
+strategies return 422; and restricted `COUNT(*)` is allowed while `SELECT *` remains denied. Compose
+requires explicit database passwords and binds PostgreSQL, Redis and direct API ports to loopback by
+default. See `docs/qa/security_hardening_v1.1.3.md`.
+
 ## 1. 本地快速演示（无需 Docker/GPU）
 
 要求 Python 3.11、Node 22+。
@@ -77,10 +83,14 @@ docker compose up --build -d
 ```
 
 也可以运行 `python scripts/generate_deployment_secrets.py` 生成不会打印到终端的随机数据库
-密码和独立虚拟机密码；脚本默认拒绝覆盖已有文件。
+密码、独立的 `default`/`evaluation` API Key 和虚拟机密码；脚本默认拒绝覆盖已有文件。
+已有单 Key 部署可运行 `python scripts/ensure_evaluation_auth.py --env-file .env`：旧 Key 会
+保留为 `default`，脚本新增 `evaluation` Key，不打印密钥且不会改动其他环境配置。
 
 默认宿主机端口为 Web 15173、API 18000、PostgreSQL 15432、Redis 16379，避免和其他
-项目的常见默认端口冲突。API 使用 `text2sql_readonly` 账户。
+项目的常见默认端口冲突。PostgreSQL、Redis 和直连 API 默认只绑定 `127.0.0.1`，Web
+入口默认绑定 `0.0.0.0` 并通过 Compose 私有网络反向代理 `/api/`。API 使用
+`text2sql_readonly` 账户；Compose 缺少任一数据库密码时会在创建容器前直接失败。
 首次初始化后若修改迁移，请创建新编号迁移；开发期要重建空卷时再显式删除卷。
 
 Langfuse Cloud 使用官方环境变量 `LANGFUSE_BASE_URL`、`LANGFUSE_PUBLIC_KEY` 和
@@ -129,7 +139,7 @@ SQLGuard；模型无法解除安全拒绝。
 - `GET /api/v1/query/{id}`：查询完整结果与 trace；
 - `GET /api/v1/queries`：只列出当前 API Key scope 拥有的查询记录；
 - `POST /api/v1/feedback`：写入人工候选 Badcase，不自动训练；
-- `POST /api/v1/evals/run`、`GET /api/v1/evals/{id}`：后台评测；
+- `POST /api/v1/evals/run`、`GET /api/v1/evals/{id}`：后台评测，仅接受映射到 `evaluation` scope 的 API Key；
 - `GET /api/v1/models`、`GET /api/v1/schema`。
 
 OpenAPI 文档位于 `http://localhost:8000/docs`。

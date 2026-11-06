@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 
 
 LEGACY_UNSCOPED = "__legacy_unscoped__"
+Strategy = Literal["baseline", "optimized"]
 
 
 class QueryStatus(str, Enum):
@@ -28,7 +29,7 @@ class Intent(str, Enum):
 class QueryRequest(BaseModel):
     question: str = Field(min_length=1, max_length=2000)
     session_id: Optional[str] = None
-    strategy: str = "optimized"
+    strategy: Strategy = "optimized"
 
 
 class ClarifyRequest(BaseModel):
@@ -94,7 +95,7 @@ class QueryRecord(BaseModel):
     completion_tokens: int = 0
     model: Optional[str] = None
     prompt_version: Optional[str] = None
-    strategy: str = "optimized"
+    strategy: Strategy = "optimized"
     cached: bool = False
     trace: List[TraceEvent] = []
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
@@ -112,6 +113,6 @@ class FeedbackRequest(BaseModel):
 class EvalRunRequest(BaseModel):
     dataset_path: str = "data/processed/smoke.jsonl"
     model: str = "demo"
-    strategy: str = "optimized"
+    strategy: Strategy = "optimized"
     experiment_id: Optional[str] = None
 

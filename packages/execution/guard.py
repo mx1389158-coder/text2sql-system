@@ -101,7 +101,7 @@ class SQLGuard:
             unknown = referenced - {name.lower() for name in self.policy.allowed_tables}
             if unknown:
                 raise SQLSafetyError(f"访问未授权表：{', '.join(sorted(unknown))}", "table_denied")
-        if self.policy.deny_select_star and root.find(exp.Star):
+        if self.policy.deny_select_star and self._has_wildcard_projection(root):
             raise SQLSafetyError("受限权限不允许 SELECT *", "column_denied")
         self._validate_columns(root, referenced, cte_names)
 
@@ -182,6 +182,18 @@ class SQLGuard:
             return function.sql_name().lower()
         except Exception:
             return function.key.lower()
+
+    @staticmethod
+    def _has_wildcard_projection(root: exp.Expression) -> bool:
+        """Reject SELECT * / alias.* without rejecting aggregate arguments like COUNT(*)."""
+        for select in root.find_all(exp.Select):
+            for projection in select.expressions:
+                expression = projection.this if isinstance(projection, exp.Alias) else projection
+                if isinstance(expression, exp.Star):
+                    return True
+                if isinstance(expression, exp.Column) and isinstance(expression.this, exp.Star):
+                    return True
+        return False
 
     @staticmethod
     def _strip_literals(sql: str) -> str:

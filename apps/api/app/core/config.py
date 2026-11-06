@@ -50,6 +50,7 @@ class Settings(BaseModel):
     rate_limit_window_seconds: int = Field(default=60, ge=1, le=3600)
     max_concurrent_requests: int = Field(default=8, ge=1, le=256)
     evaluation_concurrency: int = Field(default=1, ge=1, le=8)
+    max_active_evaluation_jobs: int = Field(default=1, ge=1, le=8)
     evaluation_allowed_root: Path = Path("data")
     model_parse_retries: int = Field(default=1, ge=0, le=3)
     langfuse_host: Optional[str] = None

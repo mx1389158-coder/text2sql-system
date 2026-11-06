@@ -165,6 +165,7 @@ class JobRepository:
             connection.execute(
                 """CREATE TABLE IF NOT EXISTS evaluation_jobs (
                     job_id TEXT PRIMARY KEY,
+                    scope TEXT NOT NULL DEFAULT '__legacy_unscoped__',
                     status TEXT NOT NULL,
                     payload TEXT NOT NULL,
                     result TEXT,
@@ -173,65 +174,112 @@ class JobRepository:
                     updated_at TEXT NOT NULL
                 )"""
             )
+            columns = {
+                str(row["name"])
+                for row in connection.execute("PRAGMA table_info(evaluation_jobs)").fetchall()
+            }
+            if "scope" not in columns:
+                connection.execute(
+                    "ALTER TABLE evaluation_jobs ADD COLUMN scope TEXT NOT NULL "
+                    f"DEFAULT '{LEGACY_UNSCOPED}'"
+                )
+            connection.execute(
+                "CREATE INDEX IF NOT EXISTS idx_evaluation_jobs_scope_status_created "
+                "ON evaluation_jobs(scope, status, created_at DESC)"
+            )
 
     def _connect(self) -> sqlite3.Connection:
         connection = sqlite3.connect(self.database_path, timeout=5)
         connection.row_factory = sqlite3.Row
         return connection
 
-    def create(self, job_id: str, payload: dict) -> dict:
+    def create(
+        self,
+        job_id: str,
+        scope: str,
+        payload: dict,
+        max_active_jobs: Optional[int] = None,
+    ) -> Optional[dict]:
         now = datetime.now(timezone.utc).isoformat()
         with self._lock, self._connect() as connection:
+            connection.execute("BEGIN IMMEDIATE")
+            if max_active_jobs is not None:
+                active = connection.execute(
+                    "SELECT COUNT(*) FROM evaluation_jobs "
+                    "WHERE scope = ? AND status IN ('queued', 'running')",
+                    (scope,),
+                ).fetchone()[0]
+                if int(active) >= max_active_jobs:
+                    connection.rollback()
+                    return None
             connection.execute(
                 """INSERT INTO evaluation_jobs
-                (job_id, status, payload, created_at, updated_at)
-                VALUES (?, 'queued', ?, ?, ?)""",
-                (job_id, json.dumps(payload, ensure_ascii=False), now, now),
+                (job_id, scope, status, payload, created_at, updated_at)
+                VALUES (?, ?, 'queued', ?, ?, ?)""",
+                (job_id, scope, json.dumps(payload, ensure_ascii=False), now, now),
             )
-        return self.get(job_id) or {}
+        return self.get(job_id, scope)
 
     def update(
-        self, job_id: str, status: str, result: Optional[dict] = None, error: Optional[str] = None
-    ) -> None:
+        self,
+        job_id: str,
+        scope: str,
+        status: str,
+        result: Optional[dict] = None,
+        error: Optional[str] = None,
+    ) -> bool:
         now = datetime.now(timezone.utc).isoformat()
         with self._lock, self._connect() as connection:
             connection.execute(
                 """UPDATE evaluation_jobs
-                SET status = ?, result = ?, error = ?, updated_at = ? WHERE job_id = ?""",
+                SET status = ?, result = ?, error = ?, updated_at = ?
+                WHERE job_id = ? AND scope = ?""",
                 (
                     status,
                     json.dumps(result, ensure_ascii=False) if result is not None else None,
                     error,
                     now,
                     job_id,
+                    scope,
                 ),
             )
+            return connection.total_changes == 1
 
-    def get(self, job_id: str) -> Optional[dict]:
+    def get(self, job_id: str, scope: str) -> Optional[dict]:
         with self._lock, self._connect() as connection:
             row = connection.execute(
-                "SELECT * FROM evaluation_jobs WHERE job_id = ?", (job_id,)
+                "SELECT * FROM evaluation_jobs WHERE job_id = ? AND scope = ?",
+                (job_id, scope),
             ).fetchone()
         return self._decode(row) if row else None
 
-    def list(self, limit: int = 100) -> List[dict]:
+    def list(self, scope: str, limit: int = 100) -> List[dict]:
         with self._lock, self._connect() as connection:
             rows = connection.execute(
-                "SELECT * FROM evaluation_jobs ORDER BY created_at DESC LIMIT ?", (limit,)
+                "SELECT * FROM evaluation_jobs WHERE scope = ? "
+                "ORDER BY created_at DESC LIMIT ?",
+                (scope, limit),
             ).fetchall()
         return [self._decode(row) for row in rows]
 
-    def recoverable(self) -> List[dict]:
+    def recoverable(self, scope: str, limit: Optional[int] = None) -> List[dict]:
+        sql = (
+            "SELECT * FROM evaluation_jobs WHERE scope = ? "
+            "AND status IN ('queued', 'running') ORDER BY created_at"
+        )
+        params: tuple[object, ...] = (scope,)
+        if limit is not None:
+            sql += " LIMIT ?"
+            params += (limit,)
         with self._lock, self._connect() as connection:
-            rows = connection.execute(
-                "SELECT * FROM evaluation_jobs WHERE status IN ('queued', 'running')"
-            ).fetchall()
+            rows = connection.execute(sql, params).fetchall()
         return [self._decode(row) for row in rows]
 
     @staticmethod
     def _decode(row: sqlite3.Row) -> dict:
         return {
             "job_id": row["job_id"],
+            "scope": row["scope"],
             "status": row["status"],
             "payload": json.loads(row["payload"]),
             "summary": json.loads(row["result"]) if row["result"] else None,

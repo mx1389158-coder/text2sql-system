@@ -1,4 +1,4 @@
-import type { Badcase, Catalog, EvalJob, QueryRecord, SystemInfo } from '../types'
+import type { Badcase, Catalog, EvalJob, QueryRecord, Strategy, SystemInfo } from '../types'
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL || '/api/v1'
 const apiKeyStorage = 'nebula-text2sql-api-key'
@@ -31,7 +31,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   system: () => request<SystemInfo>('/system'),
-  query: (question: string, strategy = 'optimized') =>
+  query: (question: string, strategy: Strategy = 'optimized') =>
     request<QueryRecord>('/query', {
       method: 'POST',
       body: JSON.stringify({ question, strategy }),
@@ -47,7 +47,7 @@ export const api = {
       body: JSON.stringify({ query_id: queryId, rating, comment }),
     }),
   catalog: () => request<Catalog>('/schema'),
-  startEval: (strategy: string, datasetPath: string, model: string) =>
+  startEval: (strategy: Strategy, datasetPath: string, model: string) =>
     request<{ job_id: string; status: string }>('/evals/run', {
       method: 'POST',
       body: JSON.stringify({ dataset_path: datasetPath, model, strategy }),

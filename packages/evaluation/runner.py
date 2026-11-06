@@ -9,7 +9,7 @@ from pathlib import Path
 from statistics import median
 from typing import Any, Dict, List, Optional
 
-from apps.api.app.schemas.query import QueryRecord
+from apps.api.app.schemas.query import QueryRecord, Strategy
 from apps.api.app.services.orchestrator import Text2SQLOrchestrator
 
 from .metrics import (
@@ -59,7 +59,7 @@ class EvaluationRunner:
     async def run(
         self,
         dataset_path: str | Path,
-        strategy: str = "optimized",
+        strategy: Strategy = "optimized",
         max_model_calls_per_sample: Optional[int] = None,
         checkpoint_path: str | Path | None = None,
         checkpoint_context: Optional[Dict[str, Any]] = None,

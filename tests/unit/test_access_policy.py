@@ -42,7 +42,11 @@ def test_restricted_guard_rejects_star_and_hidden_column():
         )
     )
 
-    for sql in ("SELECT * FROM products", "SELECT name FROM products"):
+    for sql in (
+        "SELECT * FROM products",
+        "SELECT p.* FROM products AS p",
+        "SELECT name FROM products",
+    ):
         try:
             guard.validate_and_rewrite(sql)
         except SQLSafetyError as error:
@@ -53,6 +57,9 @@ def test_restricted_guard_rejects_star_and_hidden_column():
     assert "model_code" in guard.validate_and_rewrite(
         "SELECT model_code FROM products"
     ).sql
+
+    count_result = guard.validate_and_rewrite("SELECT COUNT(*) FROM products")
+    assert "COUNT(*)" in count_result.sql
 
 
 def test_missing_access_policy_fails_closed(tmp_path):

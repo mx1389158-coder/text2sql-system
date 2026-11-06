@@ -19,10 +19,22 @@ from .query import verify_api_key
 
 router = APIRouter(tags=["evaluation"])
 _tasks: Set[asyncio.Task] = set()
+EVALUATION_SCOPE = "evaluation"
 
 
-async def _run(job_id: str, payload: EvalRunRequest, orchestrator: Text2SQLOrchestrator) -> None:
-    job_repository.update(job_id, "running")
+def require_evaluation_scope(scope: str = Depends(verify_api_key)) -> str:
+    if scope != EVALUATION_SCOPE:
+        raise HTTPException(status_code=403, detail="evaluation scope required")
+    return scope
+
+
+async def _run(
+    job_id: str,
+    scope: str,
+    payload: EvalRunRequest,
+    orchestrator: Text2SQLOrchestrator,
+) -> None:
+    job_repository.update(job_id, scope, "running")
     try:
         runner = EvaluationRunner(orchestrator)
         summary = await runner.run(payload.dataset_path, strategy=payload.strategy)
@@ -33,28 +45,41 @@ async def _run(job_id: str, payload: EvalRunRequest, orchestrator: Text2SQLOrche
         result["model"] = payload.model
         result["strategy"] = payload.strategy
         result["experiment_id"] = payload.experiment_id
-        job_repository.update(job_id, "completed", result=result)
+        job_repository.update(job_id, scope, "completed", result=result)
     except Exception as error:
-        job_repository.update(job_id, "failed", error=str(error)[:500])
+        job_repository.update(job_id, scope, "failed", error=str(error)[:500])
 
 
-def _schedule(job_id: str, payload: EvalRunRequest, orchestrator: Text2SQLOrchestrator) -> None:
-    task = asyncio.create_task(_run(job_id, payload, orchestrator))
+def _schedule(
+    job_id: str,
+    scope: str,
+    payload: EvalRunRequest,
+    orchestrator: Text2SQLOrchestrator,
+) -> None:
+    task = asyncio.create_task(_run(job_id, scope, payload, orchestrator))
     _tasks.add(task)
     task.add_done_callback(_tasks.discard)
 
 
 async def recover_jobs() -> None:
     orchestrator = get_orchestrator()
-    for job in job_repository.recoverable():
-        job_repository.update(job["job_id"], "queued")
-        _schedule(job["job_id"], EvalRunRequest(**job["payload"]), orchestrator)
+    settings = get_settings()
+    for job in job_repository.recoverable(
+        EVALUATION_SCOPE, limit=settings.max_active_evaluation_jobs
+    ):
+        job_repository.update(job["job_id"], EVALUATION_SCOPE, "queued")
+        _schedule(
+            job["job_id"],
+            EVALUATION_SCOPE,
+            EvalRunRequest(**job["payload"]),
+            orchestrator,
+        )
 
 
 @router.post("/evals/run", status_code=202)
 async def start_eval(
     payload: EvalRunRequest,
-    _: str = Depends(verify_api_key),
+    scope: str = Depends(require_evaluation_scope),
     orchestrator: Text2SQLOrchestrator = Depends(get_orchestrator),
     settings: Settings = Depends(get_settings),
 ):
@@ -69,20 +94,31 @@ async def start_eval(
         raise HTTPException(status_code=422, detail="请求的模型与当前 API 实例不匹配")
     payload.dataset_path = str(dataset)
     job_id = str(uuid.uuid4())
-    job_repository.create(job_id, payload.model_dump(mode="json"))
-    _schedule(job_id, payload, orchestrator)
+    job = job_repository.create(
+        job_id,
+        scope,
+        payload.model_dump(mode="json"),
+        max_active_jobs=settings.max_active_evaluation_jobs,
+    )
+    if job is None:
+        raise HTTPException(
+            status_code=429,
+            detail="maximum active evaluation jobs reached",
+            headers={"Retry-After": "5"},
+        )
+    _schedule(job_id, scope, payload, orchestrator)
     return {"job_id": job_id, "status": "queued"}
 
 
 @router.get("/evals/{job_id}")
-async def get_eval(job_id: str, _: str = Depends(verify_api_key)):
-    job = job_repository.get(job_id)
+async def get_eval(job_id: str, scope: str = Depends(require_evaluation_scope)):
+    job = job_repository.get(job_id, scope)
     if job is None:
         raise HTTPException(status_code=404, detail="评测任务不存在")
     return job
 
 
 @router.get("/evals")
-async def list_evals(_: str = Depends(verify_api_key), limit: int = 50):
-    return {"jobs": job_repository.list(max(1, min(limit, 200)))}
+async def list_evals(scope: str = Depends(require_evaluation_scope), limit: int = 50):
+    return {"jobs": job_repository.list(scope, max(1, min(limit, 200)))}
 

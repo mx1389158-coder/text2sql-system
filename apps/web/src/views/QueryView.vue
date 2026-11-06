@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { api } from '../api/client'
-import type { QueryRecord } from '../types'
+import type { QueryRecord, Strategy } from '../types'
 
 const examples = [
   '列出产品型号、名称和价格',
@@ -13,7 +13,7 @@ const question = ref(examples[0])
 const loading = ref(false)
 const error = ref('')
 const record = ref<QueryRecord | null>(null)
-const strategy = ref('optimized')
+const strategy = ref<Strategy>('optimized')
 const feedbackSent = ref(false)
 const chart = computed(() => {
   const result = record.value?.result

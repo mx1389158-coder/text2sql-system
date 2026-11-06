@@ -78,3 +78,28 @@ def test_compose_forwards_scoped_api_keys():
     )
 
     assert "TEXT2SQL_API_KEYS_JSON: ${TEXT2SQL_API_KEYS_JSON:-}" in compose
+
+
+def test_compose_database_credentials_and_internal_ports_fail_closed():
+    compose = (Path(__file__).resolve().parents[2] / "docker-compose.yml").read_text(
+        encoding="utf-8"
+    )
+
+    assert "${POSTGRES_ADMIN_PASSWORD:?POSTGRES_ADMIN_PASSWORD is required}" in compose
+    assert (
+        "${TEXT2SQL_READONLY_PASSWORD:?TEXT2SQL_READONLY_PASSWORD is required}" in compose
+    )
+    assert "local_admin_change_me" not in compose
+    assert "local_readonly_change_me" not in compose
+    assert (
+        '"${TEXT2SQL_BIND_HOST:-127.0.0.1}:${TEXT2SQL_POSTGRES_PORT:-15432}:5432"'
+        in compose
+    )
+    assert (
+        '"${TEXT2SQL_BIND_HOST:-127.0.0.1}:${TEXT2SQL_REDIS_PORT:-16379}:6379"'
+        in compose
+    )
+    assert (
+        '"${TEXT2SQL_BIND_HOST:-127.0.0.1}:${TEXT2SQL_API_PORT:-18000}:8000"'
+        in compose
+    )
