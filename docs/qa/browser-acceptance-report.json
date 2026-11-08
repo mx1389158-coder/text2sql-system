@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-08T04:27:03.066Z",
-  "base_url": "http://localhost:4173",
+  "generated_at": "2026-11-08T07:23:13.856Z",
+  "base_url": "http://127.0.0.1:15173",
   "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   "total": 8,
   "passed": 8,
@@ -9,42 +9,42 @@
     {
       "name": "application shell and API mode",
       "status": "passed",
-      "elapsed_ms": 678
+      "elapsed_ms": 668
     },
     {
       "name": "simple query renders SQL, result and trace",
       "status": "passed",
-      "elapsed_ms": 217
+      "elapsed_ms": 908
     },
     {
       "name": "ambiguity clarification resumes the state machine",
       "status": "passed",
-      "elapsed_ms": 242
+      "elapsed_ms": 954
     },
     {
       "name": "complex join question completes safely",
       "status": "passed",
-      "elapsed_ms": 25
+      "elapsed_ms": 26
     },
     {
       "name": "write request is rejected",
       "status": "passed",
-      "elapsed_ms": 67
+      "elapsed_ms": 373
     },
     {
       "name": "prompt injection is rejected",
       "status": "passed",
-      "elapsed_ms": 76
+      "elapsed_ms": 81
     },
     {
       "name": "schema relationship graph renders 23 tables",
       "status": "passed",
-      "elapsed_ms": 199
+      "elapsed_ms": 212
     },
     {
       "name": "experiments and Badcase pages render",
       "status": "passed",
-      "elapsed_ms": 51
+      "elapsed_ms": 52
     }
   ]
 }
