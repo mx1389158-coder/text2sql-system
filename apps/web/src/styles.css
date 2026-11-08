@@ -66,9 +66,8 @@ button { -webkit-tap-highlight-color: transparent; }
 .sidebar nav button.active .nav-icon { color: #bcbcff; background: rgba(123,123,235,.2); }
 .system-card { margin-top: auto; display: flex; align-items: center; gap: 11px; padding: 14px; border: 1px solid rgba(126, 221, 205, .15); border-radius: 12px; background: rgba(20, 184, 166, .07); }
 .shield-icon { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 auto; color: #65d4c3; border-radius: 10px; background: rgba(15,159,143,.12); }
-.system-card b, .system-card small { display: block; }
+.system-card b { display: block; }
 .system-card b { font-size: 11px; font-weight: 650; color: #dbe5ef; }
-.system-card small { margin-top: 3px; font-size: 9px; color: #78869a; }
 
 .workspace { min-height: 100vh; margin-left: 264px; }
 .topbar { min-height: 106px; padding: 24px 34px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.92); backdrop-filter: blur(16px); }
