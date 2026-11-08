@@ -47,6 +47,11 @@ strategies return 422; and restricted `COUNT(*)` is allowed while `SELECT *` rem
 requires explicit database passwords and binds PostgreSQL, Redis and direct API ports to loopback by
 default. See `docs/qa/security_hardening_v1.1.3.md`.
 
+v1.2.0 replaces the original dark terminal-style frontend with a professional responsive data
+workspace, informed by SQLChat, DataChat and DB-GPT interaction patterns. Query composition,
+Schema/SQL evidence, result views and Schema exploration were reorganized without changing backend
+contracts. See `docs/qa/ui_redesign_v1.2.0.md`.
+
 ## 1. 本地快速演示（无需 Docker/GPU）
 
 要求 Python 3.11、Node 22+。

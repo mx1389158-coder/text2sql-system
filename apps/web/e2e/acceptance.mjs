@@ -4,6 +4,7 @@ import path from 'node:path'
 
 const baseUrl = process.env.TEXT2SQL_WEB_URL || 'http://127.0.0.1:15173'
 const edge = process.env.TEXT2SQL_BROWSER_PATH || 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
+const apiKey = process.env.TEXT2SQL_BROWSER_API_KEY || ''
 const root = path.resolve(import.meta.dirname, '..', '..', '..')
 const screenshotDir = path.join(root, 'docs', 'qa', 'screenshots')
 const reportPath = path.join(root, 'docs', 'qa', 'browser-acceptance-report.json')
@@ -24,9 +25,14 @@ const record = async (name, action) => {
 const browser = await chromium.launch({ executablePath: edge, headless: true })
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
 try {
+  if (apiKey) {
+    await page.addInitScript(key => {
+      window.sessionStorage.setItem('nebula-text2sql-api-key', key)
+    }, apiKey)
+  }
   await record('application shell and API mode', async () => {
     await page.goto(baseUrl, { waitUntil: 'networkidle' })
-    await page.getByRole('heading', { name: '智能问数工作台' }).waitFor()
+    await page.getByRole('heading', { name: '智能问数', exact: true }).waitFor()
     await page.getByText('本地演示模式').waitFor()
   })
 
@@ -74,7 +80,7 @@ try {
 
   await record('schema relationship graph renders 23 tables', async () => {
     await page.getByRole('button', { name: /Schema 目录/ }).click()
-    await page.getByText('23 表').waitFor({ timeout: 30000 })
+    await page.locator('.catalog-list .section-heading > b').getByText('23', { exact: true }).waitFor({ timeout: 30000 })
     await page.getByRole('img', { name: '数据库表关系图' }).waitFor()
     await page.screenshot({ path: path.join(screenshotDir, '04-schema.png'), fullPage: true })
   })

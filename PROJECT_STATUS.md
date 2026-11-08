@@ -45,6 +45,9 @@ No model training or frozen experiment was rerun for this documentation and reli
   ownership, limits active jobs atomically, constrains strategies to baseline/optimized, and permits
   `COUNT(*)` without permitting wildcard row projections. Compose now requires both database
   passwords and binds PostgreSQL, Redis and the direct API port to loopback by default.
+- v1.2.0 redesigns the Vue workspace using established open-source Text2SQL interaction patterns:
+  clearer navigation, query-first composition, side-by-side Schema/SQL evidence, result view tabs,
+  searchable Schema detail and responsive layouts. Browser acceptance remains 8/8.
 
 ## Release boundary
 

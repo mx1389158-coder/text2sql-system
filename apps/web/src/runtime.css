@@ -1,4 +1,1 @@
-.mode i.healthy {
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
-}
+.mode i.healthy { background: var(--teal); box-shadow: 0 0 0 4px var(--teal-soft); }
